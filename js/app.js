@@ -6,7 +6,13 @@
     finance: "Finance",
   };
 
+  const CITY_CENTERS = {
+    melbourne: [-37.8136, 144.9631],
+    sydney: [-33.8688, 151.2093],
+  };
+
   const state = {
+    city: "melbourne",
     field: "all",
     type: "all",
     status: "all",
@@ -57,6 +63,7 @@
   let markers = [];
 
   function matchesFilters(inst) {
+    if (inst.city !== state.city) return false;
     if (state.field !== "all" && !inst.fields[state.field]) return false;
     if (state.type !== "all" && inst.type !== state.type) return false;
     if (state.status !== "all" && getStatus(inst.id) !== state.status) return false;
@@ -221,7 +228,7 @@
 
   function initMap() {
     if (map) return;
-    map = L.map("map").setView([-37.8136, 144.9631], 11);
+    map = L.map("map").setView(CITY_CENTERS[state.city], 11);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors",
       maxZoom: 18,
@@ -338,6 +345,7 @@
     });
   }
 
+  setupChipGroup("city-filters", "city");
   setupChipGroup("field-filters", "field");
   setupChipGroup("type-filters", "type");
   setupChipGroup("status-filters", "status");

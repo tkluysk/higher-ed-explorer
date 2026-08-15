@@ -1,12 +1,14 @@
-// Melbourne higher education institutions dataset.
+// Higher education institutions dataset (Melbourne, Sydney).
 // Compiled from institution websites, August 2026 — verify program names,
 // fees, and entry requirements directly with each institution before
 // applying, as these shift between academic years.
 // Each institution lists only the fields (fashion/chemistry/business/finance)
 // it is actually strong in; `fields[x]` is an array of specific program names.
+// `city` is a lowercase slug used by the city filter in the UI.
 const INSTITUTIONS = [
   {
     id: "unimelb",
+    city: "melbourne",
     name: "University of Melbourne",
     type: "University",
     location: "Parkville",
@@ -29,6 +31,7 @@ const INSTITUTIONS = [
   },
   {
     id: "monash",
+    city: "melbourne",
     name: "Monash University",
     type: "University",
     location: "Clayton & Caulfield",
@@ -53,6 +56,7 @@ const INSTITUTIONS = [
   },
   {
     id: "rmit",
+    city: "melbourne",
     name: "RMIT University",
     type: "University",
     location: "Brunswick (fashion) & Melbourne CBD (business)",
@@ -82,6 +86,7 @@ const INSTITUTIONS = [
   },
   {
     id: "deakin",
+    city: "melbourne",
     name: "Deakin University",
     type: "University",
     location: "Burwood",
@@ -103,6 +108,7 @@ const INSTITUTIONS = [
   },
   {
     id: "swinburne",
+    city: "melbourne",
     name: "Swinburne University of Technology",
     type: "University",
     location: "Hawthorn",
@@ -126,6 +132,7 @@ const INSTITUTIONS = [
   },
   {
     id: "latrobe",
+    city: "melbourne",
     name: "La Trobe University",
     type: "University",
     location: "Bundoora",
@@ -149,6 +156,7 @@ const INSTITUTIONS = [
   },
   {
     id: "vu",
+    city: "melbourne",
     name: "Victoria University",
     type: "University",
     location: "Footscray Park",
@@ -170,6 +178,7 @@ const INSTITUTIONS = [
   },
   {
     id: "acu",
+    city: "melbourne",
     name: "Australian Catholic University (Melbourne)",
     type: "University",
     location: "Fitzroy (St Patrick's campus)",
@@ -190,6 +199,7 @@ const INSTITUTIONS = [
   },
   {
     id: "boxhill",
+    city: "melbourne",
     name: "Box Hill Institute",
     type: "TAFE",
     location: "Box Hill (Elgar campus)",
@@ -213,6 +223,7 @@ const INSTITUTIONS = [
   },
   {
     id: "kangan",
+    city: "melbourne",
     name: "Kangan Institute",
     type: "TAFE",
     location: "Cremorne (Textile and Fashion Hub)",
@@ -237,6 +248,7 @@ const INSTITUTIONS = [
   },
   {
     id: "whitehouse",
+    city: "melbourne",
     name: "Whitehouse Institute of Design (Melbourne)",
     type: "Private College",
     location: "Melbourne CBD",
@@ -258,6 +270,7 @@ const INSTITUTIONS = [
   },
   {
     id: "melbpoly",
+    city: "melbourne",
     name: "Melbourne Polytechnic",
     type: "TAFE",
     location: "Prahran",
@@ -279,6 +292,7 @@ const INSTITUTIONS = [
   },
   {
     id: "torrens",
+    city: "melbourne",
     name: "Torrens University Australia (Melbourne)",
     type: "Private College",
     location: "Melbourne CBD",
@@ -300,6 +314,7 @@ const INSTITUTIONS = [
   },
   {
     id: "holmesglen",
+    city: "melbourne",
     name: "Holmesglen Institute",
     type: "TAFE",
     location: "Chadstone",
@@ -321,6 +336,7 @@ const INSTITUTIONS = [
   },
   {
     id: "lci",
+    city: "melbourne",
     name: "LCI Melbourne",
     type: "Private College",
     location: "Collingwood",
@@ -345,6 +361,7 @@ const INSTITUTIONS = [
   },
   {
     id: "fashionmasters",
+    city: "melbourne",
     name: "Melbourne School of Fashion (Fashionmasters / Holmes Institute)",
     type: "Private College",
     location: "Melbourne CBD (185 Spring Street)",
