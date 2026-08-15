@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melbourne Higher Ed Explorer</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-inner">
+    <h1>Melbourne Higher Ed Explorer</h1>
+    <p class="subtitle">Universities, TAFEs &amp; colleges for fashion, chemistry, business &amp; finance</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <section class="controls" aria-label="Filters">
+    <div class="control-group" role="group" aria-label="Filter by field">
+      <span class="control-label">Field</span>
+      <div class="chip-row" id="field-filters">
+        <button class="chip chip-all" data-field="all" aria-pressed="true">All fields</button>
+        <button class="chip" data-field="fashion" aria-pressed="false">Fashion</button>
+        <button class="chip" data-field="chemistry" aria-pressed="false">Chemistry</button>
+        <button class="chip" data-field="business" aria-pressed="false">Business</button>
+        <button class="chip" data-field="finance" aria-pressed="false">Finance</button>
+      </div>
+    </div>
+    <div class="control-group" role="group" aria-label="Filter by institution type">
+      <span class="control-label">Type</span>
+      <div class="chip-row" id="type-filters">
+        <button class="chip chip-all" data-type="all" aria-pressed="true">All types</button>
+        <button class="chip" data-type="University" aria-pressed="false">University</button>
+        <button class="chip" data-type="TAFE" aria-pressed="false">TAFE</button>
+        <button class="chip" data-type="Private College" aria-pressed="false">Private College</button>
+      </div>
+    </div>
+    <div class="control-group search-group">
+      <label class="control-label" for="search-input">Search</label>
+      <input type="search" id="search-input" placeholder="Search institutions or programs…">
+    </div>
+    <div class="control-group view-toggle-group" role="group" aria-label="View">
+      <button class="view-toggle active" id="view-list-btn" aria-pressed="true">List</button>
+      <button class="view-toggle" id="view-map-btn" aria-pressed="false">Map</button>
+    </div>
+  </section>
+
+  <p class="result-count" id="result-count" aria-live="polite"></p>
+
+  <section id="list-view" class="list-view">
+    <div class="card-grid" id="card-grid"></div>
+  </section>
+
+  <section id="map-view" class="map-view" hidden>
+    <div id="map"></div>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<footer class="app-footer">
+  <p>Personal reference tool — data compiled from institution websites, subject to change. Verify details before applying.</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="data/institutions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
