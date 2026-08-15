@@ -7,9 +7,19 @@
   };
 
   const CITY_CENTERS = {
+    all: [-35.5, 148.0],
     melbourne: [-37.8136, 144.9631],
     sydney: [-33.8688, 151.2093],
   };
+
+  const CITY_LABELS = {
+    melbourne: "Melbourne",
+    sydney: "Sydney",
+  };
+
+  function locationLabel(inst) {
+    return state.city === "all" ? `${inst.location}, ${CITY_LABELS[inst.city]}` : inst.location;
+  }
 
   const state = {
     city: "melbourne",
@@ -64,7 +74,7 @@
   let markers = [];
 
   function matchesFilters(inst) {
-    if (inst.city !== state.city) return false;
+    if (state.city !== "all" && inst.city !== state.city) return false;
     if (state.field !== "all" && !inst.fields[state.field]) return false;
     if (state.type !== "all" && inst.type !== state.type) return false;
     if (state.status !== "all" && getStatus(inst.id) !== state.status) return false;
@@ -118,7 +128,7 @@
             <h3 class="card-name">${inst.name}</h3>
             <span class="card-type">${inst.type}</span>
           </div>
-          <p class="card-location">${inst.location}</p>
+          <p class="card-location">${locationLabel(inst)}</p>
           <p class="card-desc">${inst.description}</p>
           <div class="field-tags">${tags}${hybridBadges}</div>
           <div class="status-controls">
@@ -216,7 +226,7 @@
           <button type="button" class="status-btn dislike-btn${status === "not-interested" ? " active" : ""}" data-action="dislike" data-id="${inst.id}" aria-pressed="${status === "not-interested"}" title="Not interested">✕</button>
         </div>
       </div>
-      <p class="modal-meta">${inst.type} · ${inst.location}</p>
+      <p class="modal-meta">${inst.type} · ${locationLabel(inst)}</p>
       <p class="modal-desc">${inst.description}</p>
       <div class="modal-section-title">Relevant programs</div>
       ${sections}
@@ -289,7 +299,7 @@
       const marker = L.marker([inst.lat, inst.lng], { icon: markerIconFor(status) }).addTo(map);
       marker.bindPopup(`
         <p class="popup-name">${inst.name}</p>
-        <p class="popup-location">${inst.type} · ${inst.location}</p>
+        <p class="popup-location">${inst.type} · ${locationLabel(inst)}</p>
         <div class="field-tags">${tags}</div>
         <div class="status-controls">
           <button type="button" class="status-btn star-btn${status === "starred" ? " active" : ""}" data-action="star" data-id="${inst.id}" title="Star">★</button>
@@ -350,7 +360,7 @@
         <tr data-id="${inst.id}" class="compare-row" tabindex="0" role="button" aria-label="View details for ${inst.name}">
           <td class="compare-name">
             ${inst.name}
-            <span class="compare-type">${inst.type} · ${inst.location}</span>
+            <span class="compare-type">${inst.type} · ${locationLabel(inst)}</span>
           </td>
           <td class="compare-score"><span class="compare-stars">${stars(inst.compare.fashion)}</span></td>
           <td class="compare-score"><span class="compare-stars">${stars(inst.compare.sciTech)}</span></td>
@@ -432,7 +442,7 @@
         state[key] = chip.dataset[key];
         renderCards();
         if (state.view === "map") renderMarkers();
-    if (state.view === "compare") renderCompareTable();
+        if (state.view === "compare") renderCompareTable();
       });
     });
   }
