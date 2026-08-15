@@ -9,9 +9,42 @@
   const state = {
     field: "all",
     type: "all",
+    status: "all",
     query: "",
     view: "list",
   };
+
+  const STATUS_KEY = "hee-status";
+  const statusMap = loadStatusMap();
+
+  function loadStatusMap() {
+    try {
+      return JSON.parse(localStorage.getItem(STATUS_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+
+  function saveStatusMap() {
+    localStorage.setItem(STATUS_KEY, JSON.stringify(statusMap));
+  }
+
+  function getStatus(id) {
+    return statusMap[id] || null;
+  }
+
+  function setStatus(id, status) {
+    if (statusMap[id] === status) {
+      delete statusMap[id];
+    } else if (status === null) {
+      delete statusMap[id];
+    } else {
+      statusMap[id] = status;
+    }
+    saveStatusMap();
+    renderCards();
+    if (state.view === "map") renderMarkers();
+  }
 
   const cardGrid = document.getElementById("card-grid");
   const resultCount = document.getElementById("result-count");
@@ -26,6 +59,7 @@
   function matchesFilters(inst) {
     if (state.field !== "all" && !inst.fields[state.field]) return false;
     if (state.type !== "all" && inst.type !== state.type) return false;
+    if (state.status !== "all" && getStatus(inst.id) !== state.status) return false;
     if (state.query) {
       const q = state.query.toLowerCase();
       const haystack = [
@@ -63,8 +97,12 @@
         const tags = fieldTagsFor(inst)
           .map((f) => `<span class="field-tag ${f}">${FIELD_LABELS[f]}</span>`)
           .join("");
+        const status = getStatus(inst.id);
+        const cardClass = status === "not-interested" ? "card card-not-interested" : "card";
+        const starClass = status === "starred" ? "status-btn star-btn active" : "status-btn star-btn";
+        const dislikeClass = status === "not-interested" ? "status-btn dislike-btn active" : "status-btn dislike-btn";
         return `
-        <article class="card" tabindex="0" role="button" data-id="${inst.id}" aria-label="View details for ${inst.name}">
+        <article class="${cardClass}" tabindex="0" role="button" data-id="${inst.id}" aria-label="View details for ${inst.name}">
           <div class="card-top">
             <h3 class="card-name">${inst.name}</h3>
             <span class="card-type">${inst.type}</span>
@@ -72,6 +110,10 @@
           <p class="card-location">${inst.location}</p>
           <p class="card-desc">${inst.description}</p>
           <div class="field-tags">${tags}</div>
+          <div class="status-controls">
+            <button type="button" class="${starClass}" data-action="star" data-id="${inst.id}" aria-pressed="${status === "starred"}" aria-label="Star ${inst.name}" title="Star">★</button>
+            <button type="button" class="${dislikeClass}" data-action="dislike" data-id="${inst.id}" aria-pressed="${status === "not-interested"}" aria-label="Mark ${inst.name} as not interested" title="Not interested">✕</button>
+          </div>
         </article>`;
       })
       .join("");
@@ -83,6 +125,15 @@
           e.preventDefault();
           openModal(card.dataset.id);
         }
+      });
+    });
+
+    cardGrid.querySelectorAll(".status-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const id = btn.dataset.id;
+        const newStatus = btn.dataset.action === "star" ? "starred" : "not-interested";
+        setStatus(id, newStatus);
       });
     });
   }
@@ -128,9 +179,16 @@
       .join("");
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
+    const status = getStatus(inst.id);
 
     modalBody.innerHTML = `
-      <h2 class="modal-title" id="modal-title">${inst.name}</h2>
+      <div class="modal-top-row">
+        <h2 class="modal-title" id="modal-title">${inst.name}</h2>
+        <div class="status-controls">
+          <button type="button" class="status-btn star-btn${status === "starred" ? " active" : ""}" data-action="star" data-id="${inst.id}" aria-pressed="${status === "starred"}" title="Star">★</button>
+          <button type="button" class="status-btn dislike-btn${status === "not-interested" ? " active" : ""}" data-action="dislike" data-id="${inst.id}" aria-pressed="${status === "not-interested"}" title="Not interested">✕</button>
+        </div>
+      </div>
       <p class="modal-meta">${inst.type} · ${inst.location}</p>
       <p class="modal-desc">${inst.description}</p>
       <div class="modal-section-title">Relevant programs</div>
@@ -138,6 +196,13 @@
       ${visitSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
+    modalBody.querySelectorAll(".status-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const newStatus = btn.dataset.action === "star" ? "starred" : "not-interested";
+        setStatus(btn.dataset.id, newStatus);
+        openModal(id);
+      });
+    });
     modalBackdrop.hidden = false;
     modalClose.focus();
   }
@@ -164,6 +229,22 @@
     renderMarkers();
   }
 
+  function markerIconFor(status) {
+    const color = status === "starred" ? "#eda100" : status === "not-interested" ? "#e34948" : "#2a78d6";
+    const html = status === "starred"
+      ? `<div class="pin-marker pin-starred" style="background:${color}"><span>★</span></div>`
+      : status === "not-interested"
+      ? `<div class="pin-marker pin-not-interested" style="background:${color}"><span>✕</span></div>`
+      : `<div class="pin-marker" style="background:${color}"></div>`;
+    return L.divIcon({
+      className: "pin-marker-wrap",
+      html,
+      iconSize: [26, 26],
+      iconAnchor: [13, 26],
+      popupAnchor: [0, -24],
+    });
+  }
+
   function renderMarkers() {
     if (!map) return;
     markers.forEach((m) => map.removeLayer(m));
@@ -175,21 +256,34 @@
       const tags = fieldTagsFor(inst)
         .map((f) => `<span class="field-tag ${f}">${FIELD_LABELS[f]}</span>`)
         .join(" ");
-      const marker = L.marker([inst.lat, inst.lng]).addTo(map);
+      const status = getStatus(inst.id);
+      const marker = L.marker([inst.lat, inst.lng], { icon: markerIconFor(status) }).addTo(map);
       marker.bindPopup(`
         <p class="popup-name">${inst.name}</p>
         <p class="popup-location">${inst.type} · ${inst.location}</p>
         <div class="field-tags">${tags}</div>
+        <div class="status-controls">
+          <button type="button" class="status-btn star-btn${status === "starred" ? " active" : ""}" data-action="star" data-id="${inst.id}" title="Star">★</button>
+          <button type="button" class="status-btn dislike-btn${status === "not-interested" ? " active" : ""}" data-action="dislike" data-id="${inst.id}" title="Not interested">✕</button>
+        </div>
         <p class="popup-link"><a href="#" data-id="${inst.id}" class="popup-details-link">View details</a></p>
       `);
       marker.on("popupopen", () => {
-        const link = document.querySelector(".popup-details-link");
+        const popupEl = marker.getPopup().getElement();
+        const link = popupEl.querySelector(".popup-details-link");
         if (link) {
           link.addEventListener("click", (e) => {
             e.preventDefault();
             openModal(inst.id);
           });
         }
+        popupEl.querySelectorAll(".status-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const newStatus = btn.dataset.action === "star" ? "starred" : "not-interested";
+            setStatus(btn.dataset.id, newStatus);
+          });
+        });
       });
       markers.push(marker);
     });
@@ -245,6 +339,7 @@
 
   setupChipGroup("field-filters", "field");
   setupChipGroup("type-filters", "type");
+  setupChipGroup("status-filters", "status");
 
   searchInput.addEventListener("input", (e) => {
     state.query = e.target.value.trim();

@@ -14,6 +14,11 @@
   --field-business: #2a78d6;
   --field-finance: #eda100;
 
+  --status-star: #eda100;
+  --status-dislike: #d03b3b;
+  --status-dislike-bg: rgba(208, 59, 59, 0.08);
+  --status-dislike-border: rgba(208, 59, 59, 0.35);
+
   --card-shadow: 0 1px 2px rgba(11, 11, 11, 0.06), 0 4px 12px rgba(11, 11, 11, 0.05);
 }
 
@@ -34,6 +39,11 @@
     --field-business: #3987e5;
     --field-finance: #c98500;
 
+    --status-star: #c98500;
+    --status-dislike: #e66767;
+    --status-dislike-bg: rgba(230, 103, 103, 0.12);
+    --status-dislike-border: rgba(230, 103, 103, 0.4);
+
     --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 }
@@ -53,6 +63,11 @@
   --field-chemistry: #199e70;
   --field-business: #3987e5;
   --field-finance: #c98500;
+
+  --status-star: #c98500;
+  --status-dislike: #e66767;
+  --status-dislike-bg: rgba(230, 103, 103, 0.12);
+  --status-dislike-border: rgba(230, 103, 103, 0.4);
 
   --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
@@ -179,6 +194,47 @@ body {
 .card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(11,11,11,0.08), 0 8px 20px rgba(11,11,11,0.08); }
 .card:focus-visible { outline: 2px solid var(--field-business); outline-offset: 2px; }
 
+.card-not-interested {
+  background: var(--status-dislike-bg);
+  border-color: var(--status-dislike-border);
+}
+.card-not-interested .card-name,
+.card-not-interested .card-desc,
+.card-not-interested .card-location { opacity: 0.7; }
+
+.status-controls {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.status-btn {
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--page-plane);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+.status-btn:hover { background: var(--gridline); }
+.star-btn.active {
+  background: var(--status-star);
+  border-color: var(--status-star);
+  color: #fff;
+}
+.dislike-btn.active {
+  background: var(--status-dislike);
+  border-color: var(--status-dislike);
+  color: #fff;
+}
+
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .card-name { font-size: 1.05rem; font-weight: 600; margin: 0; line-height: 1.3; }
 .card-type {
@@ -213,11 +269,37 @@ body {
 .map-view { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
 #map { height: 640px; width: 100%; background: var(--surface-1); }
 
+.pin-marker-wrap { background: transparent; border: none; }
+.pin-marker {
+  width: 26px;
+  height: 26px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pin-marker.pin-starred,
+.pin-marker.pin-not-interested {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.pin-marker.pin-starred span,
+.pin-marker.pin-not-interested span { transform: rotate(45deg); }
+.pin-marker::before { content: ""; }
+.pin-marker.pin-starred::before,
+.pin-marker.pin-not-interested::before { display: none; }
+
 .leaflet-popup-content-wrapper { background: var(--surface-1); color: var(--text-primary); border-radius: 10px; }
 .leaflet-popup-tip { background: var(--surface-1); }
 .popup-name { font-weight: 600; margin: 0 0 4px; font-size: 0.95rem; }
 .popup-location { color: var(--text-secondary); font-size: 0.8rem; margin: 0 0 6px; }
 .popup-link { font-size: 0.8rem; }
+.leaflet-popup-content .status-controls { margin: 8px 0; }
+.leaflet-popup-content .status-btn { width: 26px; height: 26px; font-size: 0.85rem; }
 
 .no-results { color: var(--text-muted); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
 
@@ -250,6 +332,8 @@ body {
 }
 .modal-close:hover { color: var(--text-primary); }
 
+.modal-top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.modal-top-row .status-controls { margin-top: 2px; flex-shrink: 0; }
 .modal-title { font-size: 1.3rem; margin: 0 0 4px; padding-right: 24px; }
 .modal-meta { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 14px; }
 .modal-desc { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.55; margin: 0 0 18px; }
