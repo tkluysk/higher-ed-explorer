@@ -87,6 +87,26 @@
     });
   }
 
+  function renderVisitSection(visit) {
+    const openDayLink =
+      visit.openDayUrl && visit.openDayUrl.startsWith("http")
+        ? `<a href="${visit.openDayUrl}" target="_blank" rel="noopener noreferrer">${visit.openDay}</a>`
+        : visit.openDay;
+    const toursLink =
+      visit.toursUrl && visit.toursUrl.startsWith("http")
+        ? `<a href="${visit.toursUrl}" target="_blank" rel="noopener noreferrer">${visit.tours}</a>`
+        : visit.tours;
+    const notes = visit.notes ? `<p class="visit-notes">${visit.notes}</p>` : "";
+
+    return `
+      <div class="modal-section-title">Visiting</div>
+      <div class="visit-block">
+        <p class="visit-row"><span class="visit-label">Open Day</span> ${openDayLink}</p>
+        <p class="visit-row"><span class="visit-label">Tours</span> ${toursLink}</p>
+        ${notes}
+      </div>`;
+  }
+
   function openModal(id) {
     const inst = INSTITUTIONS.find((i) => i.id === id);
     if (!inst) return;
@@ -107,12 +127,15 @@
       })
       .join("");
 
+    const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
+
     modalBody.innerHTML = `
       <h2 class="modal-title" id="modal-title">${inst.name}</h2>
       <p class="modal-meta">${inst.type} · ${inst.location}</p>
       <p class="modal-desc">${inst.description}</p>
       <div class="modal-section-title">Relevant programs</div>
       ${sections}
+      ${visitSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
     modalBackdrop.hidden = false;

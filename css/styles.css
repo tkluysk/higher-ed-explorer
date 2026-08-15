@@ -261,6 +261,36 @@ body {
 .program-field-name { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
 .program-field-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
 .program-list { margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
+.visit-block {
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 4px;
+}
+.visit-row {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+.visit-row:last-of-type { margin-bottom: 0; }
+.visit-row a { color: var(--field-business); text-decoration: none; }
+.visit-row a:hover { text-decoration: underline; }
+.visit-label {
+  display: inline-block;
+  min-width: 68px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.visit-notes {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
 .modal-website {
   display: inline-block;
   margin-top: 6px;
