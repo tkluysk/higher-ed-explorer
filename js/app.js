@@ -50,6 +50,7 @@
     saveStatusMap();
     renderCards();
     if (state.view === "map") renderMarkers();
+    if (state.view === "compare") renderCompareTable();
   }
 
   const cardGrid = document.getElementById("card-grid");
@@ -104,6 +105,9 @@
         const tags = fieldTagsFor(inst)
           .map((f) => `<span class="field-tag ${f}">${FIELD_LABELS[f]}</span>`)
           .join("");
+        const hybridBadges = (inst.hybrid || [])
+          .map((h) => `<span class="hybrid-tag">⬡ ${h.label}</span>`)
+          .join("");
         const status = getStatus(inst.id);
         const cardClass = status === "not-interested" ? "card card-not-interested" : "card";
         const starClass = status === "starred" ? "status-btn star-btn active" : "status-btn star-btn";
@@ -116,7 +120,7 @@
           </div>
           <p class="card-location">${inst.location}</p>
           <p class="card-desc">${inst.description}</p>
-          <div class="field-tags">${tags}</div>
+          <div class="field-tags">${tags}${hybridBadges}</div>
           <div class="status-controls">
             <button type="button" class="${starClass}" data-action="star" data-id="${inst.id}" aria-pressed="${status === "starred"}" aria-label="Star ${inst.name}" title="Star">★</button>
             <button type="button" class="${dislikeClass}" data-action="dislike" data-id="${inst.id}" aria-pressed="${status === "not-interested"}" aria-label="Mark ${inst.name} as not interested" title="Not interested">✕</button>
@@ -165,6 +169,21 @@
       </div>`;
   }
 
+  function renderHybridSection(hybrid) {
+    const items = hybrid
+      .map(
+        (h) => `
+        <div class="hybrid-block">
+          <p class="hybrid-block-label">⬡ ${h.label}</p>
+          <p class="hybrid-block-desc">${h.description}</p>
+        </div>`
+      )
+      .join("");
+    return `
+      <div class="modal-section-title">Interdisciplinary programs</div>
+      ${items}`;
+  }
+
   function openModal(id) {
     const inst = INSTITUTIONS.find((i) => i.id === id);
     if (!inst) return;
@@ -186,6 +205,7 @@
       .join("");
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
+    const hybridSection = inst.hybrid && inst.hybrid.length ? renderHybridSection(inst.hybrid) : "";
     const status = getStatus(inst.id);
 
     modalBody.innerHTML = `
@@ -200,6 +220,7 @@
       <p class="modal-desc">${inst.description}</p>
       <div class="modal-section-title">Relevant programs</div>
       ${sections}
+      ${hybridSection}
       ${visitSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
@@ -302,35 +323,105 @@
     }
   }
 
+  function renderCompareTable() {
+    const table = document.getElementById("compare-table");
+    const scored = getFilteredInstitutions().filter((i) => i.compare);
+
+    if (!scored.length) {
+      table.outerHTML =
+        '<p class="no-results">No fit-scored institutions match these filters. Try a different field, type, or status filter.</p><table class="compare-table" id="compare-table"></table>';
+      return;
+    }
+
+    scored.sort((a, b) => {
+      const scoreOf = (i) => i.compare.fashion + i.compare.sciTech + i.compare.business;
+      return scoreOf(b) - scoreOf(a);
+    });
+
+    const stars = (n) => {
+      const full = Math.floor(n);
+      const half = n - full >= 0.5;
+      return "★".repeat(full) + (half ? "½" : "");
+    };
+
+    const rows = scored
+      .map(
+        (inst) => `
+        <tr data-id="${inst.id}" class="compare-row" tabindex="0" role="button" aria-label="View details for ${inst.name}">
+          <td class="compare-name">
+            ${inst.name}
+            <span class="compare-type">${inst.type} · ${inst.location}</span>
+          </td>
+          <td class="compare-score"><span class="compare-stars">${stars(inst.compare.fashion)}</span></td>
+          <td class="compare-score"><span class="compare-stars">${stars(inst.compare.sciTech)}</span></td>
+          <td class="compare-score"><span class="compare-stars">${stars(inst.compare.business)}</span></td>
+          <td class="compare-note">${inst.compare.note}</td>
+        </tr>`
+      )
+      .join("");
+
+    table.innerHTML = `
+      <colgroup>
+        <col class="compare-col-name">
+        <col class="compare-col-score">
+        <col class="compare-col-score">
+        <col class="compare-col-score">
+        <col class="compare-col-note">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Institution</th>
+          <th>Fashion / industry</th>
+          <th>Science &amp; tech crossover</th>
+          <th>Business / entrepreneurship</th>
+          <th>Take</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    `;
+
+    table.querySelectorAll(".compare-row").forEach((row) => {
+      row.addEventListener("click", () => openModal(row.dataset.id));
+      row.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(row.dataset.id);
+        }
+      });
+    });
+  }
+
   function setView(view) {
     state.view = view;
     const listView = document.getElementById("list-view");
     const mapView = document.getElementById("map-view");
+    const compareView = document.getElementById("compare-view");
     const listBtn = document.getElementById("view-list-btn");
     const mapBtn = document.getElementById("view-map-btn");
+    const compareBtn = document.getElementById("view-compare-btn");
 
-    if (view === "list") {
-      listView.hidden = false;
-      mapView.hidden = true;
-      listBtn.classList.add("active");
-      mapBtn.classList.remove("active");
-      listBtn.setAttribute("aria-pressed", "true");
-      mapBtn.setAttribute("aria-pressed", "false");
-    } else {
-      listView.hidden = true;
-      mapView.hidden = false;
-      listBtn.classList.remove("active");
-      mapBtn.classList.add("active");
-      listBtn.setAttribute("aria-pressed", "false");
-      mapBtn.setAttribute("aria-pressed", "true");
+    listView.hidden = view !== "list";
+    mapView.hidden = view !== "map";
+    compareView.hidden = view !== "compare";
+    listBtn.classList.toggle("active", view === "list");
+    mapBtn.classList.toggle("active", view === "map");
+    compareBtn.classList.toggle("active", view === "compare");
+    listBtn.setAttribute("aria-pressed", String(view === "list"));
+    mapBtn.setAttribute("aria-pressed", String(view === "map"));
+    compareBtn.setAttribute("aria-pressed", String(view === "compare"));
+
+    if (view === "map") {
       initMap();
       renderMarkers();
       requestAnimationFrame(() => map.invalidateSize());
+    } else if (view === "compare") {
+      renderCompareTable();
     }
   }
 
   document.getElementById("view-list-btn").addEventListener("click", () => setView("list"));
   document.getElementById("view-map-btn").addEventListener("click", () => setView("map"));
+  document.getElementById("view-compare-btn").addEventListener("click", () => setView("compare"));
 
   function setupChipGroup(containerId, key) {
     const container = document.getElementById(containerId);
@@ -341,6 +432,7 @@
         state[key] = chip.dataset[key];
         renderCards();
         if (state.view === "map") renderMarkers();
+    if (state.view === "compare") renderCompareTable();
       });
     });
   }
@@ -354,6 +446,7 @@
     state.query = e.target.value.trim();
     renderCards();
     if (state.view === "map") renderMarkers();
+    if (state.view === "compare") renderCompareTable();
   });
 
   renderCards();

@@ -59,6 +59,7 @@
     <div class="control-group view-toggle-group" role="group" aria-label="View">
       <button class="view-toggle active" id="view-list-btn" aria-pressed="true">List</button>
       <button class="view-toggle" id="view-map-btn" aria-pressed="false">Map</button>
+      <button class="view-toggle" id="view-compare-btn" aria-pressed="false">Compare</button>
     </div>
   </section>
 
@@ -70,6 +71,15 @@
 
   <section id="map-view" class="map-view" hidden>
     <div id="map"></div>
+  </section>
+
+  <section id="compare-view" class="compare-view" hidden>
+    <p class="compare-intro">
+      A rough fit comparison for fashion-leaning institutions, scored on fashion/industry strength, science &amp; tech crossover, and business/entrepreneurship potential — reflecting how directly each program blends the fields, not just whether it offers them separately.
+    </p>
+    <div class="compare-table-wrap">
+      <table class="compare-table" id="compare-table"></table>
+    </div>
   </section>
 </main>
 

@@ -266,8 +266,72 @@ body {
 .field-tag.business { background: var(--field-business); }
 .field-tag.finance { background: var(--field-finance); }
 
+.hybrid-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px 3px 7px;
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: linear-gradient(90deg, var(--field-fashion), var(--field-business));
+  background: color-mix(in oklab, var(--field-fashion) 50%, var(--field-business) 50%);
+  opacity: 0.9;
+}
+
+.hybrid-block {
+  background: var(--page-plane);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.hybrid-block-label { font-weight: 600; font-size: 0.9rem; margin: 0 0 6px; }
+.hybrid-block-desc { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+
 .map-view { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
 #map { height: 640px; width: 100%; background: var(--surface-1); }
+
+.compare-intro {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  max-width: 780px;
+  margin: 0 0 16px;
+}
+.compare-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-1);
+}
+.compare-table { border-collapse: collapse; width: 100%; min-width: 900px; table-layout: fixed; }
+.compare-table col.compare-col-name { width: 20%; }
+.compare-table col.compare-col-score { width: 13%; }
+.compare-table col.compare-col-note { width: 34%; }
+.compare-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.compare-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gridline);
+  vertical-align: top;
+  font-size: 0.86rem;
+}
+.compare-row { cursor: pointer; }
+.compare-row:hover { background: var(--page-plane); }
+.compare-row:focus-visible { outline: 2px solid var(--field-business); outline-offset: -2px; }
+.compare-name { font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+.compare-type { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; white-space: normal; }
+.compare-score { white-space: nowrap; }
+.compare-stars { color: var(--status-star); letter-spacing: 1px; }
+.compare-note { color: var(--text-secondary); line-height: 1.5; min-width: 260px; }
 
 .pin-marker-wrap { background: transparent; border: none; }
 .pin-marker {

@@ -63,12 +63,14 @@ const INSTITUTIONS = [
     lat: -37.7679,
     lng: 144.9614,
     website: "https://www.rmit.edu.au",
+    compare: { fashion: 5, sciTech: 5, business: 5, note: "Best overall fit — three distinct fashion pathways (design, materials/tech, enterprise) within one School of Fashion & Textiles." },
     description:
-      "Home to Australia's #1 and world top-20 ranked fashion school (Business of Fashion rankings), based at the Brunswick campus. Also holds a strong applied-science/chemistry reputation with RACI accreditation, and a large CBD business school.",
+      "Home to Australia's #1 and world top-20 ranked fashion school (Business of Fashion rankings), based at the Brunswick campus. Also holds a strong applied-science/chemistry reputation with RACI accreditation, and a large CBD business school. Uniquely offers three distinct fashion pathways — design, materials/technology, and enterprise — within one School of Fashion & Textiles.",
     fields: {
       fashion: [
         "Bachelor of Fashion (Design) — Brunswick",
         "Bachelor of Fashion (Enterprise) — retail/marketing/product management, Brunswick",
+        "Bachelor of Fashion Sustainability — Brunswick",
       ],
       chemistry: [
         "Bachelor of Science — Chemistry major (RACI-accredited)",
@@ -76,6 +78,18 @@ const INSTITUTIONS = [
       ],
       business: ["Bachelor of Business (various majors)"],
     },
+    hybrid: [
+      {
+        label: "Fashion + Materials Science",
+        description:
+          "Bachelor of Fashion Sustainability sits at the intersection of design and materials science, with majors/minors spanning Textile & Material Design, Fashion Innovation & Technology, Fashion Design, Materials Innovation, and Digital Fashion. Backed by a research centre combining fashion, textile engineering, materials science and chemistry (smart textiles, polymers, wearables, sensors), with industry partners including Australian Wool Innovation and Bruck Textiles.",
+      },
+      {
+        label: "Fashion + Enterprise",
+        description:
+          "Bachelor of Fashion (Enterprise) teaches product management, marketing, retail and consumer behaviour specifically through the fashion industry, not generic business — with industry-partnered commercial projects. A postgraduate Master of Fashion (Entrepreneurship) extends this into fashion analytics, supply chains and brand-building.",
+      },
+    ],
     visit: {
       openDay: "Early-mid Aug 2026, varies by campus (Bundoora 2 Aug, Brunswick/City 9 Aug, Point Cook 16 Aug, Bendigo 23 Aug)",
       openDayUrl: "https://www.rmit.edu.au/events/all-events/rmit-open-day",
@@ -115,13 +129,22 @@ const INSTITUTIONS = [
     lat: -37.8218,
     lng: 145.0387,
     website: "https://www.swinburne.edu.au",
+    compare: { fashion: 3.5, sciTech: 5, business: 5, note: "Dark horse — tech-fashion wild card (AR/VR, generative AI, smart fabrics), but the fashion degree is new and lacks a long alumni track record." },
     description:
-      "Known for strong industry-integrated learning — all degrees include Work Integrated Learning placements. No dedicated fashion program.",
+      "Known for strong industry-integrated learning — all degrees include Work Integrated Learning placements. Its Bachelor of Design (Fashion) is a newer, deliberately tech-forward program — a strong option if she likes fashion but also has a technical/entrepreneurial streak, though it lacks the long alumni track record of RMIT or UTS fashion programs.",
     fields: {
+      fashion: ["Bachelor of Design (Fashion), majoring in Fashion Design — Hawthorn"],
       chemistry: ["Bachelor of Science — Chemistry major"],
       business: ["Bachelor of Business (Accounting, Business Administration, and other majors)"],
       finance: ["Bachelor of Business — Finance major (CFA-affiliated)"],
     },
+    hybrid: [
+      {
+        label: "Fashion + Technology",
+        description:
+          "Bachelor of Design (Fashion) is built around \"fashion futures\": dedicated units in Wearable Technology Design Studio, Emerging Technologies in Fashion and Textile Design, Sustainable Fashion Design Studio, plus digital fabrication and prototyping in the ProtoLAB. A Fashion Branding & Management unit in year 3 adds commercial/entrepreneurial grounding. Note: this specific fashion degree doesn't currently list a confirmed double-degree pairing with Business or Applied Innovation (those pairings exist for the general Bachelor of Design, not yet confirmed for the Fashion major) — verify directly if that combination matters.",
+      },
+    ],
     visit: {
       openDay: "Sun 26 Jul 2026 (Hawthorn, typically late July)",
       openDayUrl: "https://www.swinburne.edu.au/openday/",
@@ -255,6 +278,7 @@ const INSTITUTIONS = [
     lat: -37.8136,
     lng: 144.9569,
     website: "https://www.whitehouse-design.edu.au",
+    compare: { fashion: 4.5, sciTech: 1, business: 3, note: "Excellent if she becomes fully committed to fashion design specifically; not the pick while she's still intellectually interested in chemistry/science." },
     description:
       "Specialist private design college in the historic Royal Mail Exchange Building. Accelerated 2-year, trimester-based, industry-styled and portfolio-driven pedagogy — a strong option for a design-first fashion pathway rather than a broad university degree.",
     fields: {
@@ -382,6 +406,315 @@ const INSTITUTIONS = [
       tours: "No online tour booking found; direct phone/email contact via Holmes Institute appears to be the only path to arranging a visit.",
       toursUrl: "not found",
       notes: "The weakest-documented institution here — recommend contacting Holmes Institute directly before the trip to confirm any visit is even possible.",
+    },
+  },
+  {
+    id: "usyd",
+    city: "sydney",
+    name: "University of Sydney",
+    type: "University",
+    location: "Camperdown/Darlington",
+    lat: -33.8886,
+    lng: 151.1873,
+    website: "https://www.sydney.edu.au",
+    description:
+      "Sandstone Group of Eight university. Business School ranked ~29th globally for Accounting & Finance (QS 2025). No dedicated fashion program.",
+    fields: {
+      chemistry: ["Bachelor of Science — Chemistry major"],
+      business: ["Bachelor of Commerce"],
+      finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
+    },
+    visit: {
+      openDay: "Sat 29 Aug 2026",
+      openDayUrl: "https://openday.sydney.edu.au/",
+      tours: "Monthly guided tours (first Thursday, 4–5pm) bookable via Eventbrite; heritage tours via Chau Chak Wing Museum on weekdays; 360° virtual tour also available.",
+      toursUrl: "https://www.sydney.edu.au/engage/visit/campus-tours/book-a-campus-tour.html",
+    },
+  },
+  {
+    id: "unsw",
+    city: "sydney",
+    name: "University of New South Wales (UNSW)",
+    type: "University",
+    location: "Kensington (Art & Design campus in Paddington)",
+    lat: -33.9173,
+    lng: 151.2313,
+    website: "https://www.unsw.edu.au",
+    compare: { fashion: 3.5, sciTech: 5, business: 4, note: "Best academic hedge — strongest choice if she wants to stay broadly technical/scientific while keeping fashion/textiles as a substantial design focus, rather than committing to fashion as the primary identity." },
+    description:
+      "Group of Eight university with a strong STEM and finance reputation across Asia-Pacific (Business School ranked ~10th globally for Accounting & Finance). Fashion isn't a dedicated program — the Art & Design campus in Paddington leans fine art/design — but its broad Bachelor of Design lets students combine textiles/fashion with computational or industrial design.",
+    fields: {
+      chemistry: ["Bachelor of Science — Chemistry major"],
+      business: ["Bachelor of Commerce"],
+      finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
+    },
+    hybrid: [
+      {
+        label: "Fashion + Computational Design",
+        description:
+          "Bachelor of Design (Paddington) is deliberately broad — students can work across Textiles & Fashion Design, Industrial Design, Computational Design, Integrated Design, and Robotic Fabrication, combining a specialisation with a minor or free electives. Best suited to someone who wants to be a multidisciplinary designer with a strong fashion interest, rather than fashion as the primary identity — pair with UNSW's substantial science/engineering faculties if she wants to keep options broadly technical.",
+      },
+    ],
+    visit: {
+      openDay: "Sat 5 Sep 2026, 9am–4pm",
+      openDayUrl: "https://www.unsw.edu.au/openday",
+      tours: "Fortnightly Saturday tours (1st and 3rd Saturday) at Kensington; Thursday evening tours at the Paddington Art & Design campus; 360° virtual tour also available.",
+      toursUrl: "https://www.unsw.edu.au/study/discover/campus/campus-tours",
+    },
+  },
+  {
+    id: "uts",
+    city: "sydney",
+    name: "University of Technology Sydney (UTS)",
+    type: "University",
+    location: "Ultimo",
+    lat: -33.883,
+    lng: 151.1994,
+    website: "https://www.uts.edu.au",
+    compare: { fashion: 5, sciTech: 4.5, business: 4.5, note: "Excellent alternative to RMIT — very innovative, with the most direct fashion+business and fashion+innovation combined degrees of any Sydney school." },
+    description:
+      "Sydney's standout choice for fashion — ranked 28th globally for undergraduate fashion (Business of Fashion 2026), with purpose-built design facilities (3D printing, seamless knitting, digital design tech). Chemistry is not a UTS strength. Particularly notable for combining fashion directly with business and innovation degrees rather than treating them as separate faculties.",
+    fields: {
+      fashion: ["Bachelor of Design in Fashion and Textiles"],
+      business: ["Bachelor of Business"],
+      finance: ["Master of Finance"],
+    },
+    hybrid: [
+      {
+        label: "Fashion + Business",
+        description:
+          "Bachelor of Fashion Business is a joint School of Design + UTS Business School degree — genuine business training (finance, accounting, marketing, management) studied alongside fashion as an industry, with Fashion Business students working alongside design and business students specifically to encourage cross-disciplinary work. One of the most direct fashion+finance/business combinations available in Australia.",
+      },
+      {
+        label: "Fashion + Innovation",
+        description:
+          "A four-year combined Fashion & Textiles + Bachelor of Creative Intelligence and Innovation degree, built around transdisciplinary problem-solving rather than a conventional design silo. UTS also runs live sustainable-materials research (e.g. a 2026 project on fully compostable plant-based 3D-knitted clothing) — a strong pick if she's drawn to fashion + technology + entrepreneurship + sustainability more than to conventional science/maths subjects.",
+      },
+    ],
+    visit: {
+      openDay: "Sat 29 Aug 2026 (also \"Experience UTS Day\" 15 Jul 2026)",
+      openDayUrl: "https://www.uts.edu.au/events/open-day",
+      tours: "Regular student-led tours departing UTS Tower Building 1 foyer, bookable via Humanitix (UTS Domestic Recruitment Team).",
+      toursUrl: "https://events.humanitix.com",
+      notes: "UTS Fashion and Textiles Honours Graduate Showcase (~mid-November annually) is part of the Faculty of Design and Society End of Year Student Showcase — a strong public fashion event distinct from Open Day.",
+    },
+  },
+  {
+    id: "macquarie",
+    city: "sydney",
+    name: "Macquarie University",
+    type: "University",
+    location: "North Ryde (Wallumattagal campus)",
+    lat: -33.7739,
+    lng: 151.1128,
+    website: "https://www.mq.edu.au",
+    description:
+      "No dedicated fashion program. Macquarie Business School is well regarded for finance, co-located with a major business/tech precinct of 300+ companies for strong industry connections.",
+    fields: {
+      chemistry: ["Bachelor of Science — Chemistry major"],
+      business: ["Bachelor of Commerce"],
+      finance: ["Master of Applied Finance"],
+    },
+    visit: {
+      openDay: "Sat 15 Aug 2026, 10am–4pm",
+      openDayUrl: "https://event.mq.edu.au/open-day/",
+      tours: "\"Explore Your Options\" tours led by student advisers plus 1:1 consultations, bookable via Humanitix; virtual tours also available; school group tours via schools@mq.edu.au.",
+      toursUrl: "https://events.humanitix.com/mqcampustours",
+    },
+  },
+  {
+    id: "westernsydney",
+    city: "sydney",
+    name: "Western Sydney University",
+    type: "University",
+    location: "Parramatta City (business programs) — Greater Western Sydney",
+    lat: -33.8148,
+    lng: 151.0011,
+    website: "https://www.westernsydney.edu.au",
+    description:
+      "Technically Greater Western Sydney rather than inner Sydney — worth flagging given commute distance. Strong applied/industry focus. No fashion or standalone chemistry major at the Sydney-proper campuses.",
+    fields: {
+      business: ["Bachelor of Business — Applied Finance and Fintech major"],
+      finance: ["Bachelor of Business — Applied Finance and Fintech major"],
+    },
+    visit: {
+      openDay: "Sun 5 Jul 2026, 10am–4pm, Parramatta South campus (free transport included, or parking at Rosehill Racecourse)",
+      openDayUrl: "https://www.westernsydney.edu.au/openday",
+      tours: "Contact study@city.westernsydney.edu.au or +61 2 8236 8037 for the Sydney City/Parramatta City campus; \"Campus Experiences\" program available for Year 5–12 groups.",
+      toursUrl: "https://city.westernsydney.edu.au/western/contact",
+    },
+  },
+  {
+    id: "acu-sydney",
+    city: "sydney",
+    name: "Australian Catholic University (North Sydney)",
+    type: "University",
+    location: "North Sydney (MacKillop campus)",
+    lat: -33.8388,
+    lng: 151.2073,
+    website: "https://www.acu.edu.au",
+    description:
+      "Smaller Catholic university with boutique class sizes. Business is the clearly relevant offering here; chemistry only appears incidentally via Biomedical/Nutrition Science units rather than as a standalone major — a weak/secondary match only. No fashion program.",
+    fields: {
+      business: ["Bachelor of Business"],
+    },
+    visit: {
+      openDay: "2026 date not confirmed — historically held Aug/Sep",
+      openDayUrl: "https://openday.acu.edu.au/",
+      tours: "Guided North Sydney campus tours — register interest via the campus tours page.",
+      toursUrl: "https://www.acu.edu.au/student-life/experience-uni-before-you-start/explore-your-local-campus/campus-tours",
+    },
+  },
+  {
+    id: "notredame-sydney",
+    city: "sydney",
+    name: "University of Notre Dame Australia (Sydney)",
+    type: "University",
+    location: "Broadway/Chippendale",
+    lat: -33.883,
+    lng: 151.1998,
+    website: "https://www.notredame.edu.au",
+    description:
+      "Small, boutique Catholic university with strong ethics focus and small class sizes. Genuinely offers chemistry as part of its Bachelor of Science (not research-intensive like the Go8s). No fashion program.",
+    fields: {
+      chemistry: ["Bachelor of Science — core chemistry units across Science Streams (Biology & Environment, Human & Medical Science, Multidisciplinary Science)"],
+      business: ["Bachelor of Business — School of Law & Business, Broadway"],
+    },
+    visit: {
+      openDay: "Sat 29 Aug 2026, 9am–3pm",
+      openDayUrl: "https://www.notredame.edu.au/engage/visit-us/openday",
+      tours: "No self-serve booking widget found — contact via the general Visit Us page.",
+      toursUrl: "https://www.notredame.edu.au/engage/visit-us",
+    },
+  },
+  {
+    id: "tafensw-fds",
+    city: "sydney",
+    name: "TAFE NSW — Fashion Design Studio (Ultimo)",
+    type: "TAFE",
+    location: "Ultimo",
+    lat: -33.8811,
+    lng: 151.1989,
+    website: "https://www.tafensw.edu.au",
+    compare: { fashion: 5, sciTech: 1, business: 2.5, note: "Fantastic pure-fashion option with a distinguished industry pedigree (Australian Fashion Week showcase since 1999) — but weak for a science/tech hedge." },
+    description:
+      "A specialist fashion school since 1955 — the only Australian fashion school with a standing showcase at Australian Fashion Week (since 1999). Pure design/garment-construction training with a distinguished industry pedigree, but little surrounding science/maths ecosystem.",
+    fields: {
+      fashion: [
+        "Bachelor of Fashion Design (3-year — garment design, pattern-making, sewing)",
+        "Diploma of Fashion",
+        "Certificate IV in Design (Fashion Design)",
+      ],
+    },
+    hybrid: [
+      {
+        label: "Pure fashion benchmark",
+        description:
+          "Worth using as the \"if she commits fully to fashion, what does a very industry-focused education look like\" comparison case against RMIT/UTS/Swinburne's hybrid programs — strongest industry pedigree and runway pathway of any Sydney fashion school, but not built around a science/tech/business crossover.",
+      },
+    ],
+    visit: {
+      openDay: "2026 date not confirmed for Ultimo — orientation sessions confirmed 15–16 Jul 2026 (Building B, Turner Hall)",
+      openDayUrl: "https://www.tafensw.edu.au/events",
+      tours: "Not clearly self-serve — check the events page for scheduled info sessions/open days closer to the date.",
+      toursUrl: "https://www.tafensw.edu.au/events",
+      notes: "\"The Innovators\" — FDS's graduate runway show at Australian Fashion Week (2026 show held 13 May) is a genuinely significant public event for a fashion-focused family, supported by \"The Next Garde\" industry incubator.",
+    },
+  },
+  {
+    id: "whitehouse-sydney",
+    city: "sydney",
+    name: "Whitehouse Institute of Design (Sydney)",
+    type: "Private College",
+    location: "Surry Hills",
+    lat: -33.8853,
+    lng: 151.2094,
+    website: "https://www.whitehouse-design.edu.au",
+    compare: { fashion: 4.5, sciTech: 1, business: 3, note: "Whitehouse's headquarters campus — excellent if she becomes fully committed to fashion design specifically; not the pick while she's still intellectually interested in chemistry/science." },
+    description:
+      "Whitehouse's headquarters/original campus, in Sydney's fashion and design precinct in Surry Hills. Well regarded specifically for fashion design and creative direction/styling — a strong specialist option distinct from UTS's more business-hybrid offering. Excellent if she becomes fully committed to fashion design; doesn't offer a science/chemistry ecosystem.",
+    fields: {
+      fashion: [
+        "Bachelor of Design — Fashion Design major",
+        "Master of Design",
+        "Advanced Diploma in Fashion Design",
+        "Certificate/Diploma in Creative Direction & Styling",
+      ],
+    },
+    visit: {
+      openDay: "\"Open House 2026\" — August 2026 (exact date not pinned down; check the Whitehouse blog closer to the date)",
+      openDayUrl: "https://www.whitehouse-design.edu.au/blog",
+      tours: "Tours available by appointment — email enquiry@whitehouse-design.edu.au or call 1300 551 433.",
+      toursUrl: "https://whitehouse-design.edu.au/schedule-a-tour/",
+      notes: "Graduate Showcase — fashion design graduates present final collections on the runway, described by Whitehouse as \"the ultimate launchpad into a design career.\"",
+    },
+  },
+  {
+    id: "billyblue",
+    city: "sydney",
+    name: "Billy Blue College of Design (Ultimo)",
+    type: "Private College",
+    location: "Ultimo",
+    lat: -33.8806,
+    lng: 151.1978,
+    website: "https://www.billyblue.edu.au",
+    description:
+      "Part of Torrens University Australia. Practical, industry-oriented programs with a reported 94% graduate employment within 12 months. Ultimo is specifically the Design/Technology campus (business/hospitality Torrens courses are taught at a separate Surry Hills campus).",
+    fields: {
+      fashion: [
+        "Bachelor of Branded Fashion Design (3-year — design, production, brand management, garment construction)",
+        "Bachelor of Fashion Marketing and Enterprise (also offered accelerated)",
+      ],
+    },
+    visit: {
+      openDay: "Early Feb 2026 pattern (10:30am–1pm) confirmed historically — verify exact 2026 date directly",
+      openDayUrl: "https://www.billyblue.edu.au",
+      tours: "No dedicated self-serve tour page found — managed via the Torrens University enrolment/domestic team; open days are the primary in-person visit mechanism.",
+      toursUrl: "https://www.torrens.edu.au",
+    },
+  },
+  {
+    id: "raffles",
+    city: "sydney",
+    name: "Raffles College of Design and Commerce",
+    type: "Private College",
+    location: "Parramatta — Greater Western Sydney",
+    lat: -33.8151,
+    lng: 151.0035,
+    website: "https://www.raffles.edu.au",
+    description:
+      "One of Sydney's longest-established private art/design schools (founded 1978). Relocated from North Sydney to Parramatta in 2015 — some directories still list the old address. Its Bachelor of Commerce with a Finance major is a genuine match for the finance interest alongside its fashion programs, which is unusual for a design college.",
+    fields: {
+      fashion: ["Bachelor of Design — Fashion Design or Fashion Marketing major"],
+      business: ["Bachelor of Commerce — Design Management, Management, or Marketing major"],
+      finance: ["Bachelor of Commerce — Finance major"],
+    },
+    visit: {
+      openDay: "Not confirmed — check raffles.edu.au directly for 2026 dates",
+      openDayUrl: "https://www.raffles.edu.au",
+      tours: "Not confirmed — likely via direct enquiry.",
+      toursUrl: "https://www.raffles.edu.au",
+    },
+  },
+  {
+    id: "kent",
+    city: "sydney",
+    name: "Kent Institute Australia (Sydney)",
+    type: "Private College",
+    location: "Sydney CBD",
+    lat: -33.8654,
+    lng: 151.2058,
+    website: "https://kent.edu.au",
+    description:
+      "A modest-profile private business college (est. 1989) — the weakest match on this list. Genuinely offers business but no distinct finance major, no chemistry, and no fashion. Included for completeness but not distinguished compared to the university options.",
+    fields: {
+      business: ["Bachelor of Business (8 specialisation options incl. Accounting, Marketing, Management; double-specialisation available)"],
+    },
+    visit: {
+      openDay: "Not found — check kent.edu.au directly",
+      openDayUrl: "https://kent.edu.au",
+      tours: "Not found — likely via direct enquiry at the Sydney CBD campus.",
+      toursUrl: "https://kent.edu.au",
     },
   },
 ];
