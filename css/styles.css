@@ -342,9 +342,9 @@ body {
 }
 .modal-close:hover { color: var(--text-primary); }
 
-.modal-top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.modal-top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-right: 36px; }
 .modal-top-row .status-controls { margin-top: 2px; flex-shrink: 0; }
-.modal-title { font-size: 1.3rem; margin: 0 0 4px; padding-right: 24px; }
+.modal-title { font-size: 1.3rem; margin: 0 0 4px; }
 .modal-meta { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 14px; }
 .modal-desc { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.55; margin: 0 0 18px; }
 .modal-section-title {
