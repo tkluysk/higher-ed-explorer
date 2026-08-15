@@ -226,6 +226,7 @@
       attribution: "&copy; OpenStreetMap contributors",
       maxZoom: 18,
     }).addTo(map);
+    L.control.scale({ metric: true, imperial: false, position: "bottomleft" }).addTo(map);
     renderMarkers();
   }
 

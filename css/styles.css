@@ -301,6 +301,16 @@ body {
 .leaflet-popup-content .status-controls { margin: 8px 0; }
 .leaflet-popup-content .status-btn { width: 26px; height: 26px; font-size: 0.85rem; }
 
+.leaflet-control-scale-line {
+  background: var(--surface-1);
+  border: 2px solid var(--text-secondary);
+  border-top: none;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 1px 6px;
+}
+
 .no-results { color: var(--text-muted); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
 
 .modal-backdrop {
