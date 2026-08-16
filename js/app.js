@@ -2,8 +2,11 @@
   const FIELD_LABELS = {
     fashion: "Fashion",
     chemistry: "Chemistry",
+    biology: "Biology",
     business: "Business",
     finance: "Finance",
+    entrepreneurship: "Entrepreneurship",
+    medicalSciences: "Medical Sciences",
   };
 
   const CITY_CENTERS = {
@@ -23,7 +26,7 @@
 
   const state = {
     city: "melbourne",
-    field: "all",
+    fields: new Set(), // empty = all fields
     type: "all",
     status: "all",
     query: "",
@@ -75,7 +78,7 @@
 
   function matchesFilters(inst) {
     if (state.city !== "all" && inst.city !== state.city) return false;
-    if (state.field !== "all" && !inst.fields[state.field]) return false;
+    if (state.fields.size && ![...state.fields].some((f) => inst.fields[f] && inst.fields[f].length)) return false;
     if (state.type !== "all" && inst.type !== state.type) return false;
     if (state.status !== "all" && getStatus(inst.id) !== state.status) return false;
     if (state.query) {
@@ -216,6 +219,20 @@
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
     const hybridSection = inst.hybrid && inst.hybrid.length ? renderHybridSection(inst.hybrid) : "";
+    const otherNotes = [
+      inst.entrepreneurshipNote ? { label: "Entrepreneurship", text: inst.entrepreneurshipNote } : null,
+      inst.biologyNote ? { label: "Biology", text: inst.biologyNote } : null,
+      inst.medicalSciencesNote ? { label: "Medical Sciences", text: inst.medicalSciencesNote } : null,
+    ].filter(Boolean);
+    const otherNotesSection = otherNotes.length
+      ? `
+      <div class="modal-section-title">Also considered</div>
+      <div class="other-notes-block">
+        ${otherNotes
+          .map((n) => `<p class="other-note"><span class="other-note-label">${n.label}:</span> ${n.text}</p>`)
+          .join("")}
+      </div>`
+      : "";
     const status = getStatus(inst.id);
 
     modalBody.innerHTML = `
@@ -231,6 +248,7 @@
       <div class="modal-section-title">Relevant programs</div>
       ${sections}
       ${hybridSection}
+      ${otherNotesSection}
       ${visitSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
@@ -433,6 +451,12 @@
   document.getElementById("view-map-btn").addEventListener("click", () => setView("map"));
   document.getElementById("view-compare-btn").addEventListener("click", () => setView("compare"));
 
+  function refreshViews() {
+    renderCards();
+    if (state.view === "map") renderMarkers();
+    if (state.view === "compare") renderCompareTable();
+  }
+
   function setupChipGroup(containerId, key) {
     const container = document.getElementById(containerId);
     container.querySelectorAll(".chip").forEach((chip) => {
@@ -440,15 +464,45 @@
         container.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
         chip.setAttribute("aria-pressed", "true");
         state[key] = chip.dataset[key];
-        renderCards();
-        if (state.view === "map") renderMarkers();
-        if (state.view === "compare") renderCompareTable();
+        refreshViews();
+      });
+    });
+  }
+
+  function setupMultiChipGroup(containerId, key) {
+    const container = document.getElementById(containerId);
+    const allChip = container.querySelector(".chip-all");
+    const optionChips = [...container.querySelectorAll(".chip:not(.chip-all)")];
+
+    function syncAllChipState() {
+      allChip.setAttribute("aria-pressed", String(state[key].size === 0));
+    }
+
+    allChip.addEventListener("click", () => {
+      state[key].clear();
+      optionChips.forEach((c) => c.setAttribute("aria-pressed", "false"));
+      syncAllChipState();
+      refreshViews();
+    });
+
+    optionChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const value = chip.dataset[key.slice(0, -1)] || chip.dataset[key];
+        const nowSelected = chip.getAttribute("aria-pressed") !== "true";
+        chip.setAttribute("aria-pressed", String(nowSelected));
+        if (nowSelected) {
+          state[key].add(value);
+        } else {
+          state[key].delete(value);
+        }
+        syncAllChipState();
+        refreshViews();
       });
     });
   }
 
   setupChipGroup("city-filters", "city");
-  setupChipGroup("field-filters", "field");
+  setupMultiChipGroup("field-filters", "fields");
   setupChipGroup("type-filters", "type");
   setupChipGroup("status-filters", "status");
 

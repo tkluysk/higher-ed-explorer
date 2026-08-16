@@ -19,9 +19,14 @@ const INSTITUTIONS = [
       "Australia's #1 ranked university (QS/THE) and a Group of Eight member. No undergraduate fashion program, but the Faculty of Science and Faculty of Business & Economics are among the most selective and research-strong in the country.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major"],
+      biology: [
+        "Bachelor of Science — several named majors (Ecology and Evolutionary Biology, Zoology, Marine Biology, Genetics, Microbiology, Cell and Developmental Biology) rather than one umbrella \"Biology\" major",
+      ],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major (CFA Institute Program Partner)"],
     },
+    entrepreneurshipNote:
+      "Not a dedicated undergraduate major — folded into Bachelor of Commerce as elective subjects. Dedicated study exists only at postgraduate level (Master of Entrepreneurship, with the Wade Institute).",
     visit: {
       openDay: "Sun 16 Aug 2026, 10am–4pm (annual, typically mid-August)",
       openDayUrl: "https://study.unimelb.edu.au/openday",
@@ -43,9 +48,14 @@ const INSTITUTIONS = [
     fields: {
       fashion: ["Bachelor of Design (Monash Art, Design & Architecture) — fashion strand, Caulfield"],
       chemistry: ["Bachelor of Science — Chemistry major, Clayton"],
+      biology: [
+        "Bachelor of Science — School of Biological Sciences, several named majors (Genetics and Genomics, Zoology, Ecology and Conservation Biology, Plant Sciences)",
+      ],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major"],
     },
+    entrepreneurshipNote:
+      "Not a dedicated undergraduate major — folded into Bachelor of Commerce/Business as elective units. Extracurricular support via the Fastrack program and Entrepreneurship and Innovation Hub (eiHub); Master of Business offers an entrepreneurship specialisation at postgrad level.",
     visit: {
       openDay: "Early Aug 2026 (Caulfield 1 Aug, Clayton 2 Aug, Parkville 16 Aug — dates vary by campus, typically early August)",
       openDayUrl: "https://www.monash.edu/open-day",
@@ -76,7 +86,9 @@ const INSTITUTIONS = [
         "Bachelor of Science — Chemistry major (RACI-accredited)",
         "Bachelor of Science (Applied Chemistry) / Bachelor of Engineering (Chemical Engineering) Honours",
       ],
+      biology: ["Bachelor of Science — Biological Sciences major (BP350, distinct from RMIT's separate Biotechnology major)"],
       business: ["Bachelor of Business (various majors)"],
+      entrepreneurship: ["Bachelor of Business — Entrepreneurship major (BP343), standalone major on launching, managing and growing ventures"],
     },
     hybrid: [
       {
@@ -111,7 +123,12 @@ const INSTITUTIONS = [
       "Large multi-campus university based at Burwood for Melbourne undergraduates. RACI-accredited chemistry and a CFA-recognised finance major. Only offers fashion at postgraduate level (Master of Fashion Design/Merchandising), so not an undergraduate fashion option.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major (RACI-accredited)"],
+      biology: ["Bachelor of Science — Human Biology major", "Bachelor of Science — Cell Biology and Genomics major (also combinable with Bachelor of Arts)"],
       finance: ["Bachelor of Commerce — Finance major (CFA Institute recognised)"],
+      entrepreneurship: [
+        "Bachelor of Business — Entrepreneurship and Innovation major",
+        "Entrepreneurship minor — addable to other degrees",
+      ],
     },
     visit: {
       openDay: "Sun 23 Aug 2026, 9am–3pm (Burwood)",
@@ -137,7 +154,10 @@ const INSTITUTIONS = [
       chemistry: ["Bachelor of Science — Chemistry major"],
       business: ["Bachelor of Business (Accounting, Business Administration, and other majors)"],
       finance: ["Bachelor of Business — Finance major (CFA-affiliated)"],
+      entrepreneurship: ["Bachelor of Business — Entrepreneurship major (also via Bachelor of Business (Professional))"],
     },
+    biologyNote:
+      "No general \"Biology\" major — closest options are Biochemistry or Biotechnology majors within Bachelor of Science; broader biology only appears within the separate Bachelor of Health Science (Biomedical Science).",
     hybrid: [
       {
         label: "Fashion + Technology",
@@ -166,8 +186,12 @@ const INSTITUTIONS = [
       "Main Melbourne undergraduate campus at Bundoora, with a CBD campus (Collins Street) for postgraduate business, health and law only. Around 70 major/minor combinations available in Commerce. No fashion program.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major"],
+      biology: [
+        "Bachelor of Biological Sciences — a standalone dedicated degree (not just a major within a general Bachelor of Science), with options including biochemistry, botany, ecology, genetics, human physiological sciences, microbiology, zoology",
+      ],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major"],
+      entrepreneurship: ["Bachelor of Business — Enterprise major (blends finance, consumer behaviour, digital literacy, entrepreneurship and innovation)"],
     },
     visit: {
       openDay: "Sun 2 Aug 2026, 10am–4pm (Bundoora, typically early August)",
@@ -192,6 +216,10 @@ const INSTITUTIONS = [
       business: ["Bachelor of Business"],
       finance: ["Bachelor of Business — Banking and Finance major"],
     },
+    entrepreneurshipNote:
+      "Not offered as a dedicated major — folded into Bachelor of Business as a core unit (\"Innovation and Entrepreneurship\"); closest major is \"Management & Innovation\".",
+    biologyNote:
+      "Not offered as a dedicated major — Bachelor of Science majors are limited to Biotechnology and Ecology/Environmental Management; biology appears only as first-year core units plus an optional Cell Biology/Microbiology minor.",
     visit: {
       openDay: "Sun 16 Aug 2026 (Footscray Park, typically mid-August)",
       openDayUrl: "https://study.vu.edu.au/openday",
@@ -213,6 +241,10 @@ const INSTITUTIONS = [
     fields: {
       business: ["Bachelor of Commerce"],
     },
+    entrepreneurshipNote:
+      "Weakest entrepreneurship offering among Melbourne institutions — only an elective unit and a minor addable to Bachelor of Commerce/Business Administration; no major at any level.",
+    biologyNote:
+      "No general Bachelor of Science — biology appears only as first-year core units within the Bachelor of Biomedical Science, whose only major is Physiological Pharmacology.",
     visit: {
       openDay: "Sun 9 Aug 2026, 10am–3pm (Melbourne/Fitzroy, typically early-mid August)",
       openDayUrl: "https://openday.acu.edu.au/",
@@ -237,6 +269,10 @@ const INSTITUTIONS = [
         "Bachelor of Design (Fashion Enterprise)",
       ],
     },
+    entrepreneurshipNote:
+      "Not offered as a dedicated major — folded into Bachelor of Commerce (Applied)/Business Studies as general business content, no standalone entrepreneurship major or unit.",
+    biologyNote:
+      "No general Biology/Biological Sciences major — closest is the Bachelor of Biosecurity Science, which centres on biosecurity/pest-disease management rather than general biology.",
     visit: {
       openDay: "\"Open Nights\" (not a single Open Day) — 2026: 20 Jan (Box Hill), 22 Jan (Lilydale), 18 Aug (Box Hill), 20 Aug (Lilydale), 26 Aug (City)",
       openDayUrl: "https://info.boxhill.edu.au/open-nights/",
@@ -261,6 +297,10 @@ const INSTITUTIONS = [
         "Diploma of Apparel, Fashion and Textiles",
       ],
     },
+    entrepreneurshipNote:
+      "Not offered as a dedicated major — entrepreneurship is a skill theme within Business/Management/IT certificates and diplomas, not a named major or degree.",
+    biologyNote:
+      "Not offered — TAFE-only, no Bachelor-level Biology program; offers Certificate III/IV in Laboratory Techniques plus pathways into partner universities (La Trobe, Victoria University, RMIT) for bio degrees.",
     visit: {
       openDay: "\"Open Nights\" (Talk & Tour) — 2026: Thu 27 Aug 3–6pm, Thu 3 Sep 3–6:30pm",
       openDayUrl: "https://www.kangan.edu.au/study-with-us/what-s-on/ki-opennight/cremorne_opennight",
@@ -284,6 +324,9 @@ const INSTITUTIONS = [
     fields: {
       fashion: ["Bachelor of Design — Fashion Design specialisation"],
     },
+    entrepreneurshipNote:
+      "Not offered as a dedicated major — entrepreneurship/business content is woven into the Bachelor of Design curriculum as a philosophy rather than a named subject or major.",
+    biologyNote: "Not offered — a pure design college with no science faculty or biology-related content.",
     visit: {
       openDay: "\"Open House\" — Sat 8 Aug 2026, 10am–2pm (typically early August)",
       openDayUrl: "https://www.whitehouse-design.edu.au/open-house",
@@ -306,6 +349,9 @@ const INSTITUTIONS = [
     fields: {
       fashion: ["Diploma/Certificate-level fashion & textile design courses (incl. costume)"],
     },
+    entrepreneurshipNote:
+      "Not a separate named specialisation — entrepreneurship exists as a core unit (\"Entrepreneurship\") within the Bachelor of Business (Preston campus, not Prahran); only a Marketing Specialisation stream is confirmed.",
+    biologyNote: "Not offered — no biology or biological sciences bachelor degree found.",
     visit: {
       openDay: "Not confirmed for 2026 — official page did not return a date at time of research",
       openDayUrl: "https://www.melbournepolytechnic.edu.au/open-day/",
@@ -327,7 +373,10 @@ const INSTITUTIONS = [
       "Private university opposite Flinders Street Station, positioned as a flexible, career-focused alternative to public universities. On-campus, online or blended study modes, including a 2-year accelerated option.",
     fields: {
       business: ["Bachelor of Business"],
+      entrepreneurship: ["Bachelor of Business (Entrepreneurship) — standalone 3-year (or 2-year accelerated) degree, venture creation/funding/business planning, 300hrs industry experience"],
     },
+    biologyNote:
+      "No standalone Biology/Biological Sciences degree — closest is foundational biology/physiology within the Bachelor/Diploma of Health Science (naturopathy/nutritional medicine training).",
     visit: {
       openDay: "Sat 29 Aug 2026, 10:30am–1pm (Flinders St); Virtual Open Day also 2–3 Sep 2026",
       openDayUrl: "https://www.torrens.edu.au/whats-on/open-day/melbourne",
@@ -350,6 +399,10 @@ const INSTITUTIONS = [
     fields: {
       fashion: ["Bachelor of Fashion Design"],
     },
+    entrepreneurshipNote:
+      "Not offered as a dedicated major — folded into Bachelor of Business Administration via electives and a final-year \"New Venture Creation\" capstone project, no formally named Entrepreneurship major.",
+    biologyNote:
+      "Not offered at Bachelor level — vocational Certificate III/IV in Laboratory Techniques only; bachelor offerings skew toward Nursing and Health.",
     visit: {
       openDay: "2026 Open Days: 22 Jan, 12 Mar, 7 May, 18 Jun, 6 Aug, 17 Sep, 12 Nov (Chadstone) — next one is Thu 17 Sep, just before the NZ spring break window",
       openDayUrl: "https://www.holmesglen.edu.au/study-with-us/open-days",
@@ -374,7 +427,16 @@ const INSTITUTIONS = [
         "Bachelor of Design Arts — Fashion & Costume Design major",
         "Diploma of Fashion Design",
       ],
+      entrepreneurship: ["Bachelor of Entrepreneurship (Creative Industries) — 2-year (6 trimester) degree combining business/management with creative-industries commercialisation, investor-ready business plans and industry pitching"],
     },
+    biologyNote: "Not offered — a design/creative college (Business & Management, Art, Animation, Design) with no biology or science program.",
+    hybrid: [
+      {
+        label: "Fashion + Entrepreneurship",
+        description:
+          "Bachelor of Entrepreneurship (Creative Industries) is purpose-built for creative-industries founders — combining core business/venture skills with commercialisation training specifically for design/fashion-adjacent businesses, including investor pitching. One of the most direct creative+entrepreneurship pairings in this dataset.",
+      },
+    ],
     visit: {
       openDay: "Sat 29 Aug 2026, 10am–3pm (Collingwood campus)",
       openDayUrl: "https://melbourne.lcieducation.com/en/news-and-events/events/open-day-2026",
@@ -400,6 +462,9 @@ const INSTITUTIONS = [
         "Certificate–Diploma pathway courses in design, production, marketing, retail",
       ],
     },
+    entrepreneurshipNote:
+      "Not a named major — the Bachelor of Fashion and Business targets \"fashion executives and entrepreneurs\" as a career outcome, but Holmes Institute's Bachelor of Business specialisations (Information Systems, Accounting, Marketing, Aviation Management, Management, Digital Business, Hospitality Management) don't include a standalone Entrepreneurship track; only covered via a unit within the Management specialisation.",
+    biologyNote: "Not offered — a fashion/business-focused institution with no biology or science program.",
     visit: {
       openDay: "Not found — no dedicated events/open day page located for this fashion arm",
       openDayUrl: "not found",
@@ -421,8 +486,10 @@ const INSTITUTIONS = [
       "Sandstone Group of Eight university. Business School ranked ~29th globally for Accounting & Finance (QS 2025). No dedicated fashion program.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major"],
+      biology: ["Bachelor of Science — Biology major (School of Life and Environmental Sciences, single-honours pathway available)"],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
+      entrepreneurship: ["Bachelor of Commerce — Innovation and Entrepreneurship major/minor, multidisciplinary (drawing units from Business, Arts, Engineering, Science, Architecture, Music)"],
     },
     visit: {
       openDay: "Sat 29 Aug 2026",
@@ -445,8 +512,10 @@ const INSTITUTIONS = [
       "Group of Eight university with a strong STEM and finance reputation across Asia-Pacific (Business School ranked ~10th globally for Accounting & Finance). Fashion isn't a dedicated program — the Art & Design campus in Paddington leans fine art/design — but its broad Bachelor of Design lets students combine textiles/fashion with computational or industrial design.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major"],
+      biology: ["Bachelor of Science — Biology major (one of 28 Science majors)", "Bachelor of Biotechnology (Honours) — more applied/industry-focused biology-adjacent degree"],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
+      entrepreneurship: ["Bachelor of Commerce — Innovation, Strategy and Entrepreneurship major, backed by UNSW Founders startup programs"],
     },
     hybrid: [
       {
@@ -478,7 +547,10 @@ const INSTITUTIONS = [
       fashion: ["Bachelor of Design in Fashion and Textiles"],
       business: ["Bachelor of Business"],
       finance: ["Master of Finance"],
+      entrepreneurship: ["Strategic Innovation and Entrepreneurship major — within Bachelor of Management or as an extension option within Bachelor of Business; plus a co-curricular Diploma in Innovation runnable alongside any degree"],
     },
+    biologyNote:
+      "No generalist Bachelor of Science with a plain Biology major — biology-related study is folded into named specialist degrees instead (Bachelor of Molecular Biotechnology, Bachelor of Science (Biotechnology/Medical Science), Bachelor of Environmental Biology), with a dedicated \"Biology\" major existing specifically inside the Bachelor of Forensic Science.",
     hybrid: [
       {
         label: "Fashion + Business",
@@ -512,9 +584,13 @@ const INSTITUTIONS = [
       "No dedicated fashion program. Macquarie Business School is well regarded for finance, co-located with a major business/tech precinct of 300+ companies for strong industry connections.",
     fields: {
       chemistry: ["Bachelor of Science — Chemistry major"],
+      biology: ["Bachelor of Science — Biology major (also combinable with Bachelor of Arts, Commerce, Advanced Science)", "Bachelor of Science — Human Biology major (medical/health focus)"],
       business: ["Bachelor of Commerce"],
       finance: ["Master of Applied Finance"],
+      entrepreneurship: ["Bachelor of Business — Strategy, Innovation and Entrepreneurship major (also combinable with Bachelor of Commerce)"],
     },
+    entrepreneurshipNote:
+      "Macquarie's historically well-known standalone \"Bachelor of Entrepreneurship\" no longer appears as an active current offering (only legacy handbook references found) — entrepreneurship is now delivered as a major inside Bachelor of Business/Commerce; verify directly with Macquarie admissions if the standalone degree matters.",
     visit: {
       openDay: "Sat 15 Aug 2026, 10am–4pm",
       openDayUrl: "https://event.mq.edu.au/open-day/",
@@ -534,8 +610,10 @@ const INSTITUTIONS = [
     description:
       "Technically Greater Western Sydney rather than inner Sydney — worth flagging given commute distance. Strong applied/industry focus. No fashion or standalone chemistry major at the Sydney-proper campuses.",
     fields: {
+      biology: ["Bachelor of Science — Biology major, combinable with ecology, zoology, environmental health or agriculture (availability varies by campus)"],
       business: ["Bachelor of Business — Applied Finance and Fintech major"],
       finance: ["Bachelor of Business — Applied Finance and Fintech major"],
+      entrepreneurship: ["Bachelor of Entrepreneurship — companion/combined degree only, cannot be studied standalone (must pair with another WSU bachelor's degree)"],
     },
     visit: {
       openDay: "Sun 5 Jul 2026, 10am–4pm, Parramatta South campus (free transport included, or parking at Rosehill Racecourse)",
@@ -558,6 +636,10 @@ const INSTITUTIONS = [
     fields: {
       business: ["Bachelor of Business"],
     },
+    entrepreneurshipNote:
+      "Not a major — a named 40-credit-point Entrepreneurship minor (new ventures, innovation, disruption, incl. family businesses and social enterprises) addable to a Commerce/Business degree.",
+    biologyNote:
+      "No generalist Bachelor of Science with a plain Biology major — life-sciences offering centres on Bachelor of Biomedical Science (human-biology/disease focus) plus separate Geography-Environment-Society and Sustainability majors.",
     visit: {
       openDay: "2026 date not confirmed — historically held Aug/Sep",
       openDayUrl: "https://openday.acu.edu.au/",
@@ -578,8 +660,11 @@ const INSTITUTIONS = [
       "Small, boutique Catholic university with strong ethics focus and small class sizes. Genuinely offers chemistry as part of its Bachelor of Science (not research-intensive like the Go8s). No fashion program.",
     fields: {
       chemistry: ["Bachelor of Science — core chemistry units across Science Streams (Biology & Environment, Human & Medical Science, Multidisciplinary Science)"],
+      biology: ["Bachelor of Science (Major: Biology) — covers Animal Diversity, Microbiology, Aquatic Science (confirm directly whether timetabled at the Sydney/Broadway campus each intake, as some Notre Dame science majors are Fremantle-only)"],
       business: ["Bachelor of Business — School of Law & Business, Broadway"],
     },
+    entrepreneurshipNote:
+      "Not a dedicated major — folded into Bachelor of Business Administration (compulsory innovation and entrepreneurship area of study) or as elective content within Bachelor of Commerce (Management major); Commerce majors limited to Accounting, Advertising, Economics, Finance, HR Management, Management, Marketing, Public Relations.",
     visit: {
       openDay: "Sat 29 Aug 2026, 9am–3pm",
       openDayUrl: "https://www.notredame.edu.au/engage/visit-us/openday",

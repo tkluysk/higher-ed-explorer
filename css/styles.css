@@ -11,8 +11,11 @@
 
   --field-fashion: #e87ba4;
   --field-chemistry: #1baf7a;
+  --field-biology: #008300;
   --field-business: #2a78d6;
   --field-finance: #eda100;
+  --field-entrepreneurship: #eb6834;
+  --field-medicalSciences: #4a3aa7;
 
   --status-star: #eda100;
   --status-dislike: #d03b3b;
@@ -36,8 +39,11 @@
 
     --field-fashion: #d55181;
     --field-chemistry: #199e70;
+    --field-biology: #008300;
     --field-business: #3987e5;
     --field-finance: #c98500;
+    --field-entrepreneurship: #d95926;
+    --field-medicalSciences: #9085e9;
 
     --status-star: #c98500;
     --status-dislike: #e66767;
@@ -61,8 +67,11 @@
 
   --field-fashion: #d55181;
   --field-chemistry: #199e70;
+  --field-biology: #008300;
   --field-business: #3987e5;
   --field-finance: #c98500;
+  --field-entrepreneurship: #d95926;
+  --field-medicalSciences: #9085e9;
 
   --status-star: #c98500;
   --status-dislike: #e66767;
@@ -138,8 +147,11 @@ body {
 }
 .chip[data-field="fashion"][aria-pressed="true"] { background: var(--field-fashion); border-color: var(--field-fashion); color: #fff; }
 .chip[data-field="chemistry"][aria-pressed="true"] { background: var(--field-chemistry); border-color: var(--field-chemistry); color: #fff; }
+.chip[data-field="biology"][aria-pressed="true"] { background: var(--field-biology); border-color: var(--field-biology); color: #fff; }
 .chip[data-field="business"][aria-pressed="true"] { background: var(--field-business); border-color: var(--field-business); color: #fff; }
 .chip[data-field="finance"][aria-pressed="true"] { background: var(--field-finance); border-color: var(--field-finance); color: #fff; }
+.chip[data-field="entrepreneurship"][aria-pressed="true"] { background: var(--field-entrepreneurship); border-color: var(--field-entrepreneurship); color: #fff; }
+.chip[data-field="medicalSciences"][aria-pressed="true"] { background: var(--field-medicalSciences); border-color: var(--field-medicalSciences); color: #fff; }
 
 .search-group input {
   font: inherit;
@@ -263,8 +275,11 @@ body {
 }
 .field-tag.fashion { background: var(--field-fashion); }
 .field-tag.chemistry { background: var(--field-chemistry); }
+.field-tag.biology { background: var(--field-biology); }
 .field-tag.business { background: var(--field-business); }
 .field-tag.finance { background: var(--field-finance); }
+.field-tag.entrepreneurship { background: var(--field-entrepreneurship); }
+.field-tag.medicalSciences { background: var(--field-medicalSciences); }
 
 .hybrid-tag {
   font-size: 0.72rem;
@@ -286,6 +301,17 @@ body {
 }
 .hybrid-block-label { font-weight: 600; font-size: 0.9rem; margin: 0 0 6px; }
 .hybrid-block-desc { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+
+.other-notes-block {
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 4px;
+}
+.other-note { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; margin: 0 0 8px; }
+.other-note:last-child { margin-bottom: 0; }
+.other-note-label { font-weight: 600; color: var(--text-primary); }
 
 .map-view { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
 #map { height: 640px; width: 100%; background: var(--surface-1); }
