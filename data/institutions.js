@@ -31,9 +31,19 @@ const INSTITUTIONS = [
       ],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major (CFA Institute Program Partner)"],
+      medicalSciences: [
+        "Bachelor of Biomedicine — dedicated degree (Parkville, Melbourne Model), ~14-16 majors incl. Human Structure and Function, Pathology, Pharmacology, Neuroscience, Microbiology and Immunology",
+      ],
     },
     entrepreneurshipNote:
       "Not a dedicated undergraduate major — folded into Bachelor of Commerce as elective subjects. Dedicated study exists only at postgraduate level (Master of Entrepreneurship, with the Wade Institute).",
+    hybrid: [
+      {
+        label: "Medical Sciences + Engineering",
+        description:
+          "\"Biomedical Engineering Systems\" is a genuine undergraduate major within the Bachelor of Biomedicine — biology/chemistry/physics combined with engineering systems modelling, with a direct pathway to the Master of Biomedical Engineering. A true medtech crossover embedded in the core degree, not a separate add-on. (Note: \"BioDesign Innovation Melbourne\", pairing engineering and MBA students on real clinical device problems, is a strong medtech-entrepreneurship program but is graduate-level only — not accessible to Bachelor of Biomedicine undergrads.)",
+      },
+    ],
     visit: {
       openDay: "Sun 16 Aug 2026, 10am–4pm (annual, typically mid-August)",
       openDayUrl: "https://study.unimelb.edu.au/openday",
@@ -67,9 +77,12 @@ const INSTITUTIONS = [
       ],
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major"],
+      medicalSciences: ["Bachelor of Biomedical Science — Clayton (anatomy, biochemistry, immunology, pharmacology, physiology)"],
     },
     entrepreneurshipNote:
       "Not a dedicated undergraduate major — folded into Bachelor of Commerce/Business as elective units. Extracurricular support via the Fastrack program and Entrepreneurship and Innovation Hub (eiHub); Master of Business offers an entrepreneurship specialisation at postgrad level.",
+    medicalSciencesNote:
+      "Monash Engineering (Clayton) also offers a Biomedical Engineering specialisation within the Bachelor of Engineering (Honours). Genuinely strong undergrad-accessible medtech-entrepreneurship ecosystem layered on top via the Monash Institute of Medical Engineering (MIME) and student-run Monash Young Medtech Innovators (MYMI) — biodesign-innovation training, med-tech startup support, and competitions (Heart Hack, SUMMIT, Future MedTech Leaders Program). Not a for-credit major, but a notable co-curricular crossover, more accessible than most other Melbourne universities' equivalents.",
     visit: {
       openDay: "Early Aug 2026 (Caulfield 1 Aug, Clayton 2 Aug, Parkville 16 Aug — dates vary by campus, typically early August)",
       openDayUrl: "https://www.monash.edu/open-day",
@@ -112,7 +125,13 @@ const INSTITUTIONS = [
       biology: ["Bachelor of Science — Biological Sciences major (BP350, distinct from RMIT's separate Biotechnology major)"],
       business: ["Bachelor of Business (various majors)"],
       entrepreneurship: ["Bachelor of Business — Entrepreneurship major (BP343), standalone major on launching, managing and growing ventures"],
+      medicalSciences: [
+        "Bachelor of Biomedical Science (Honours) BH130 — Bundoora campus, with a Medical Biotechnology minor option",
+        "Bachelor of Engineering (Biomedical Engineering) (Honours) BH069 — Melbourne City campus, biomechanics/medical electronics/device design",
+      ],
     },
+    medicalSciencesNote:
+      "Two separate dedicated degrees rather than majors-within-a-degree. No entrepreneurship/innovation crossover program found for medical sciences specifically (unlike Monash's MYMI or UniMelb's BioDesign) — RMIT's innovation/design strengths are concentrated in its broader engineering/design faculties rather than a medtech-specific incubator.",
     hybrid: [
       {
         label: "Fashion + Materials Science",
@@ -159,7 +178,12 @@ const INSTITUTIONS = [
         "Bachelor of Business — Entrepreneurship and Innovation major",
         "Entrepreneurship minor — addable to other degrees",
       ],
+      medicalSciences: [
+        "Bachelor of Biomedical Science — 6 specialisations: Cellular Biomedicine, Environmental Health, Infection and Immunity, Medical Biotechnology, Medical Genomics, Pharmaceutical Science",
+      ],
     },
+    medicalSciencesNote:
+      "No standalone medtech/digital-health degree, but Burwood's $26M Innovation in Technology, Science and Health precinct hosts the Health E-technologies Assessment Lab (digital health app evaluation) and wearable biosensor research (smart textiles, ML-enhanced biosensing) — research/lab infrastructure and postgrad scholarship areas rather than an undergraduate crossover major.",
     visit: {
       openDay: "Sun 23 Aug 2026, 9am–3pm (Burwood)",
       openDayUrl: "https://www.deakin.edu.au/open-day/melbourne-burwood",
@@ -193,6 +217,10 @@ const INSTITUTIONS = [
       business: ["Bachelor of Business (Accounting, Business Administration, and other majors)"],
       finance: ["Bachelor of Business — Finance major (CFA-affiliated)"],
       entrepreneurship: ["Bachelor of Business — Entrepreneurship major (also via Bachelor of Business (Professional))"],
+      medicalSciences: [
+        "Bachelor of Engineering (Honours) — Biomedical Engineering major (medical device design, imaging, prosthetics)",
+        "Bachelor of Health Science — Artificial Intelligence and Digital Health major",
+      ],
     },
     biologyNote:
       "No general \"Biology\" major — closest options are Biochemistry or Biotechnology majors within Bachelor of Science; broader biology only appears within the separate Bachelor of Health Science (Biomedical Science).",
@@ -201,6 +229,11 @@ const INSTITUTIONS = [
         label: "Fashion + Technology",
         description:
           "Bachelor of Design (Fashion) is built around \"fashion futures\": dedicated units in Wearable Technology Design Studio, Emerging Technologies in Fashion and Textile Design, Sustainable Fashion Design Studio, plus digital fabrication and prototyping in the ProtoLAB. A Fashion Branding & Management unit in year 3 adds commercial/entrepreneurial grounding. Note: this specific fashion degree doesn't currently list a confirmed double-degree pairing with Business or Applied Innovation (those pairings exist for the general Bachelor of Design, not yet confirmed for the Fashion major) — verify directly if that combination matters.",
+      },
+      {
+        label: "Medical Sciences + AI/Innovation",
+        description:
+          "The Artificial Intelligence and Digital Health major (Bachelor of Health Science) applies AI to diagnostics, imaging, monitoring and personalised care with human-centred design content — no prior programming required. The Biomedical Engineering major (Bachelor of Engineering Honours) separately blends electrical/electronics engineering with medicine (device design, imaging, prosthetics) and includes an Engineering Technology Innovation Project plus industry-linked design projects each semester. Both are strong innovation-flavoured medtech crossovers, though majors within broader degrees rather than standalone bachelor's titles.",
       },
     ],
     visit: {
@@ -237,7 +270,12 @@ const INSTITUTIONS = [
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major"],
       entrepreneurship: ["Bachelor of Business — Enterprise major (blends finance, consumer behaviour, digital literacy, entrepreneurship and innovation)"],
+      medicalSciences: [
+        "Bachelor of Biomedicine — Bundoora, majors in Cancer/Heart and Brain Diseases, Immunology and Infectious Disease, Physiology and Pharmacology, Molecular and Cellular Biochemistry, tied to the La Trobe Institute for Molecular Science",
+      ],
     },
+    medicalSciencesNote:
+      "Note: La Trobe's separately-named \"Bachelor of Biomedical Science\" is offered only at Bendigo/West Wodonga, not Bundoora — don't conflate the two. No undergraduate biomedical engineering or medtech/digital-health innovation major found at Bundoora; La Trobe's digital health offering (Master/Grad Cert in Digital Health) is postgraduate-only.",
     visit: {
       openDay: "Sun 2 Aug 2026, 10am–4pm (Bundoora, typically early August)",
       openDayUrl: "https://www.latrobe.edu.au/openday",
@@ -272,6 +310,8 @@ const INSTITUTIONS = [
       "Not offered as a dedicated major — folded into Bachelor of Business as a core unit (\"Innovation and Entrepreneurship\"); closest major is \"Management & Innovation\".",
     biologyNote:
       "Not offered as a dedicated major — Bachelor of Science majors are limited to Biotechnology and Ecology/Environmental Management; biology appears only as first-year core units plus an optional Cell Biology/Microbiology minor.",
+    medicalSciencesNote:
+      "At Footscray Park specifically, biomedical science is folded into the dual-disciplinary Bachelor of Biomedical and Exercise Science (anatomy, physiology, pathophysiology, biochemistry combined with exercise/sport science) rather than existing as a pure biomedical science degree — VU's dedicated biomedical science degrees (Bachelor of Biomedical Science, Bachelor of Science (Honours) Biomedical Sciences) are based at the St Albans campus instead, not Footscray Park. No medtech/digital-health innovation crossover found.",
     visit: {
       openDay: "Sun 16 Aug 2026 (Footscray Park, typically mid-August)",
       openDayUrl: "https://study.vu.edu.au/openday",
@@ -296,10 +336,13 @@ const INSTITUTIONS = [
       sourceNote: "acu.edu.au undergraduate entry requirements + uac.edu.au ACU international-students page — neither publishes NZ/NCEA-specific figures.",
     },
     description:
-      "Smaller, faith-based institution known for a supportive learning environment. Business/Commerce is its only clear match among the four fields — no confirmed chemistry major, finance specialisation, or fashion program at the Melbourne campus.",
+      "Smaller, faith-based institution known for a supportive learning environment. No confirmed chemistry major, finance specialisation, or fashion program at the Melbourne campus — Business/Commerce and Biomedical Science are its clearest matches.",
     fields: {
       business: ["Bachelor of Commerce"],
+      medicalSciences: ["Bachelor of Biomedical Science — major in Physiological Pharmacology, Honours pathway available (chemistry, biochemistry, cell biology, anatomy/physiology, genetics, microbiology, immunology)"],
     },
+    medicalSciencesNote:
+      "No entrepreneurship/innovation/tech crossover at undergraduate level — ACU's digital health offerings (Grad Cert/Grad Dip in Digital Health) exist only at postgraduate level.",
     entrepreneurshipNote:
       "Weakest entrepreneurship offering among Melbourne institutions — only an elective unit and a minor addable to Bachelor of Commerce/Business Administration; no major at any level.",
     biologyNote:
@@ -612,7 +655,13 @@ const INSTITUTIONS = [
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
       entrepreneurship: ["Bachelor of Commerce — Innovation and Entrepreneurship major/minor, multidisciplinary (drawing units from Business, Arts, Engineering, Science, Architecture, Music)"],
+      medicalSciences: [
+        "Bachelor of Science (Medical Science) — also offered as Bachelor of Science and Bachelor of Advanced Studies (Medical Science): anatomy, physiology, pharmacology, immunology, neuroscience",
+        "Bachelor of Engineering Honours (Biomedical Engineering) — separate 4-year medtech/device-design degree",
+      ],
     },
+    medicalSciencesNote:
+      "No specific innovation/entrepreneurship crossover stream found paired with either program — these are traditional science/engineering tracks without a distinct design-innovation or digital-health-entrepreneurship layer.",
     visit: {
       openDay: "Sat 29 Aug 2026",
       openDayUrl: "https://openday.sydney.edu.au/",
@@ -646,12 +695,21 @@ const INSTITUTIONS = [
       business: ["Bachelor of Commerce"],
       finance: ["Bachelor of Commerce — Finance major", "Master of Finance"],
       entrepreneurship: ["Bachelor of Commerce — Innovation, Strategy and Entrepreneurship major, backed by UNSW Founders startup programs"],
+      medicalSciences: [
+        "Bachelor of Medical Science — 3-year, majors in neuroscience, microbiology, immunology etc., jointly run by UNSW Science and Medicine",
+        "Bachelor of Engineering (Honours) — Biomedical Engineering",
+      ],
     },
     hybrid: [
       {
         label: "Fashion + Computational Design",
         description:
           "Bachelor of Design (Paddington) is deliberately broad — students can work across Textiles & Fashion Design, Industrial Design, Computational Design, Integrated Design, and Robotic Fabrication, combining a specialisation with a minor or free electives. Best suited to someone who wants to be a multidisciplinary designer with a strong fashion interest, rather than fashion as the primary identity — pair with UNSW's substantial science/engineering faculties if she wants to keep options broadly technical.",
+      },
+      {
+        label: "Medical Sciences + Innovation",
+        description:
+          "UNSW's Tyree IHealthE institute embeds genuine innovation content directly into the undergraduate Biomedical Engineering degree — notably \"Health Technology Innovation: Clinical Immersion\" (BIOM9910), which places engineering students in hospitals/clinics with clinicians to co-design solutions to unmet clinical needs, plus a \"Connected Health\" Vertically Integrated Project focused on wearable/smartphone-based health monitoring tech. A strong, verified match for a genuine medtech-innovation crossover at undergraduate level — one of the clearest finds in this dataset.",
       },
     ],
     visit: {
@@ -686,9 +744,16 @@ const INSTITUTIONS = [
       business: ["Bachelor of Business"],
       finance: ["Master of Finance"],
       entrepreneurship: ["Strategic Innovation and Entrepreneurship major — within Bachelor of Management or as an extension option within Bachelor of Business; plus a co-curricular Diploma in Innovation runnable alongside any degree"],
+      medicalSciences: [
+        "Bachelor of Medical Science — standalone degree, Medical and Health-related Sciences or Pathology major",
+        "Bachelor of Science — Medical Science or Biotechnology major",
+        "Bachelor of Engineering (Honours) — Biomedical, covering bioinstrumentation, tissue engineering, microfluidics, biomedical polymers, health economics",
+      ],
     },
     biologyNote:
       "No generalist Bachelor of Science with a plain Biology major — biology-related study is folded into named specialist degrees instead (Bachelor of Molecular Biotechnology, Bachelor of Science (Biotechnology/Medical Science), Bachelor of Environmental Biology), with a dedicated \"Biology\" major existing specifically inside the Bachelor of Forensic Science.",
+    medicalSciencesNote:
+      "UTS's Medical Science marketing emphasises \"blending science and technology\" but without formal entrepreneurship coursework confirmed. A possible crossover via the Bachelor of Science + Bachelor of Creative Intelligence and Innovation combined degree couldn't be confirmed — searches didn't verify whether Medical Science/Biotechnology is selectable as the Science component of that specific combination. Worth a direct UTS Handbook check; UNSW's Tyree IHealthE crossover is the more solidly verified find among Sydney universities.",
     hybrid: [
       {
         label: "Fashion + Business",
@@ -733,9 +798,14 @@ const INSTITUTIONS = [
       business: ["Bachelor of Commerce"],
       finance: ["Master of Applied Finance"],
       entrepreneurship: ["Bachelor of Business — Strategy, Innovation and Entrepreneurship major (also combinable with Bachelor of Commerce)"],
+      medicalSciences: [
+        "Bachelor of Medical Sciences — lab/research-oriented (not clinical), specialisations in anatomy & physiology, genomics & precision medicine, infectious disease/diagnostics, medicinal chemistry, neuroscience",
+      ],
     },
     entrepreneurshipNote:
       "Macquarie's historically well-known standalone \"Bachelor of Entrepreneurship\" no longer appears as an active current offering (only legacy handbook references found) — entrepreneurship is now delivered as a major inside Bachelor of Business/Commerce; verify directly with Macquarie admissions if the standalone degree matters.",
+    medicalSciencesNote:
+      "Note: Macquarie's separate \"Bachelor of Clinical Science\" is explicitly a fast-track pathway into Medicine/MD, Physiotherapy, Audiology, Speech Pathology — out of scope here. A Digital Health major (within the new Bachelor of Health Sciences) covers health data/informatics/digital health systems — a genuine health-tech crossover — but sits in a separate degree, not integrated with Medical Sciences or entrepreneurship programs. No undergraduate biomedical engineering degree exists (only a postgraduate Master of Engineering).",
     visit: {
       openDay: "Sat 15 Aug 2026, 10am–4pm",
       openDayUrl: "https://event.mq.edu.au/open-day/",
@@ -766,7 +836,10 @@ const INSTITUTIONS = [
       business: ["Bachelor of Business — Applied Finance and Fintech major"],
       finance: ["Bachelor of Business — Applied Finance and Fintech major"],
       entrepreneurship: ["Bachelor of Entrepreneurship — companion/combined degree only, cannot be studied standalone (must pair with another WSU bachelor's degree)"],
+      medicalSciences: ["Bachelor of Medical Science — Biomedical Science major (also Human Nutrition and Anatomy and Physiology majors), covering cellular/molecular/genetic biology of health and disease with sequencing, mass spectrometry and molecular biology lab access"],
     },
+    medicalSciencesNote:
+      "A Biomedical Engineering minor (not a standalone major since a 2024 downgrade) is available within the Bachelor of Engineering (Honours) — combining electronics/mechanical/mechatronic engineering with life sciences. A postgraduate-only Master of Health Science (Digital Health) explicitly covers \"innovation and entrepreneurship\" in digital health, but isn't integrated with the undergraduate Medical Science degree.",
     visit: {
       openDay: "Sun 5 Jul 2026, 10am–4pm, Parramatta South campus (free transport included, or parking at Rosehill Racecourse)",
       openDayUrl: "https://www.westernsydney.edu.au/openday",
@@ -791,10 +864,13 @@ const INSTITUTIONS = [
       sourceNote: "uac.edu.au ACU international-students page; acu.edu.au undergraduate entry requirements — neither names New Zealand/NCEA explicitly for English proficiency. Fee status: acu.edu.au/study-at-acu/fees-and-scholarships.",
     },
     description:
-      "Smaller Catholic university with boutique class sizes. Business is the clearly relevant offering here; chemistry only appears incidentally via Biomedical/Nutrition Science units rather than as a standalone major — a weak/secondary match only. No fashion program.",
+      "Smaller Catholic university with boutique class sizes. Business and Biomedical Science are the clearest matches here; chemistry only appears incidentally via Biomedical/Nutrition Science units rather than as a standalone major. No fashion program.",
     fields: {
       business: ["Bachelor of Business"],
+      medicalSciences: ["Bachelor of Biomedical Science — major in Physiological Pharmacology, minor in Pharmacology, Honours available (confirmed offered at North Sydney, distinct from ACU's Nursing/Midwifery/Paramedicine offerings there)"],
     },
+    medicalSciencesNote:
+      "No entrepreneurship/medtech/innovation crossover found beyond postgraduate-only Digital Health certificates.",
     entrepreneurshipNote:
       "Not a major — a named 40-credit-point Entrepreneurship minor (new ventures, innovation, disruption, incl. family businesses and social enterprises) addable to a Commerce/Business degree.",
     biologyNote:
@@ -828,7 +904,13 @@ const INSTITUTIONS = [
       chemistry: ["Bachelor of Science — core chemistry units across Science Streams (Biology & Environment, Human & Medical Science, Multidisciplinary Science)"],
       biology: ["Bachelor of Science (Major: Biology) — covers Animal Diversity, Microbiology, Aquatic Science (confirm directly whether timetabled at the Sydney/Broadway campus each intake, as some Notre Dame science majors are Fremantle-only)"],
       business: ["Bachelor of Business — School of Law & Business, Broadway"],
+      medicalSciences: [
+        "Bachelor of Biomedical Science — School of Health Sciences, Darlinghurst site (anatomy, molecular/cell biology, microbiology, biochemistry, genetics, pathology, physiology, immunology, neuroscience) with a 150-hour research/lab placement",
+        "Bachelor of Advanced Biomedical Science (Honours)",
+      ],
     },
+    medicalSciencesNote:
+      "Also offered as a Bachelor of Biomedical Science \"Assured Pathway\" into the Doctor of Medicine (that clinical pathway itself is out of scope here). Notre Dame Sydney's Primary Care Research group does digital-health/self-monitoring device research, but this is a research-centre activity, not an undergraduate medtech/innovation degree — no genuine crossover program at the degree level.",
     entrepreneurshipNote:
       "Not a dedicated major — folded into Bachelor of Business Administration (compulsory innovation and entrepreneurship area of study) or as elective content within Bachelor of Commerce (Management major); Commerce majors limited to Accounting, Advertising, Economics, Finance, HR Management, Management, Marketing, Public Relations.",
     visit: {
