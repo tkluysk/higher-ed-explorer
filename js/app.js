@@ -125,11 +125,18 @@
         const cardClass = status === "not-interested" ? "card card-not-interested" : "card";
         const starClass = status === "starred" ? "status-btn star-btn active" : "status-btn star-btn";
         const dislikeClass = status === "not-interested" ? "status-btn dislike-btn active" : "status-btn dislike-btn";
+        const ncea = inst.entryRequirements && inst.entryRequirements.ncealLevel;
+        const nceaBadge = ncea
+          ? `<span class="ncea-badge ncea-${ncea}" title="NZ English requirement: NCEA ${ncea === "L2" ? "Level 2" : "Level 3"}">NCEA ${ncea}</span>`
+          : "";
         return `
         <article class="${cardClass}" tabindex="0" role="button" data-id="${inst.id}" aria-label="View details for ${inst.name}">
           <div class="card-top">
             <h3 class="card-name">${inst.name}</h3>
-            <span class="card-type">${inst.type}</span>
+            <span class="card-badges">
+              <span class="card-type">${inst.type}</span>
+              ${nceaBadge}
+            </span>
           </div>
           <p class="card-location">${locationLabel(inst)}</p>
           <p class="card-desc">${inst.description}</p>
@@ -182,6 +189,29 @@
       </div>`;
   }
 
+  function renderEntryRequirementsSection(entry) {
+    const sourceNote = entry.sourceNote ? `<p class="entry-source-note">${entry.sourceNote}</p>` : "";
+    const feeRow = entry.feeStatus
+      ? `<p class="entry-row"><span class="entry-label">Fees</span> ${entry.feeStatus}</p>`
+      : "";
+    const subjectsRow = entry.subjectPrerequisites
+      ? `<p class="entry-row"><span class="entry-label">Subjects</span> ${entry.subjectPrerequisites}</p>`
+      : "";
+    const portfolioRow = entry.portfolio
+      ? `<p class="entry-row"><span class="entry-label">Portfolio</span> ${entry.portfolio}</p>`
+      : "";
+    return `
+      <div class="modal-section-title">NZ entry requirements</div>
+      <div class="entry-block">
+        <p class="entry-row"><span class="entry-label">Academic</span> ${entry.academic}</p>
+        <p class="entry-row"><span class="entry-label">English</span> ${entry.english}</p>
+        ${subjectsRow}
+        ${portfolioRow}
+        ${feeRow}
+        ${sourceNote}
+      </div>`;
+  }
+
   function renderHybridSection(hybrid) {
     const items = hybrid
       .map(
@@ -219,6 +249,7 @@
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
     const hybridSection = inst.hybrid && inst.hybrid.length ? renderHybridSection(inst.hybrid) : "";
+    const entrySection = inst.entryRequirements ? renderEntryRequirementsSection(inst.entryRequirements) : "";
     const otherNotes = [
       inst.entrepreneurshipNote ? { label: "Entrepreneurship", text: inst.entrepreneurshipNote } : null,
       inst.biologyNote ? { label: "Biology", text: inst.biologyNote } : null,
@@ -248,6 +279,7 @@
       <div class="modal-section-title">Relevant programs</div>
       ${sections}
       ${hybridSection}
+      ${entrySection}
       ${otherNotesSection}
       ${visitSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>

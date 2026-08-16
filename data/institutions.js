@@ -15,6 +15,13 @@ const INSTITUTIONS = [
     lat: -37.7964,
     lng: 144.9612,
     website: "https://www.unimelb.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3, minimum 80 credits overall",
+      english: "18 Level 3 credits in English (10+ at Merit or above)",
+      feeStatus: "Domestic — CSPs available to eligible NZ citizens; must reside in Australia for duration of study. HELP loan access depends on long-term residency.",
+      sourceNote: "study.unimelb.edu.au NCEA equivalency pages; ask.unimelb.edu.au.",
+    },
     description:
       "Australia's #1 ranked university (QS/THE) and a Group of Eight member. No undergraduate fashion program, but the Faculty of Science and Faculty of Business & Economics are among the most selective and research-strong in the country.",
     fields: {
@@ -43,6 +50,13 @@ const INSTITUTIONS = [
     lat: -37.9105,
     lng: 145.1362,
     website: "https://www.monash.edu",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3",
+      english: "18 credit points at NCEA Level 3 in English or an approved \"English-rich\" subject — Level 2 English does not satisfy this requirement",
+      feeStatus: "Domestic — NZ citizens on SCV 444 charged domestic fees; HELP loan needs the standard 10-year long-term residency test.",
+      sourceNote: "monash.edu/admissions/entry-requirements/nz-ncea; monash.edu/students/admin/enrolments/government-support/residency-requirements.",
+    },
     description:
       "Group of Eight member and Australia's largest university. Strong science and business reputation. Fashion appears only as a design strand within the Bachelor of Design at Caulfield — not a dedicated fashion school like RMIT or Whitehouse.",
     fields: {
@@ -74,6 +88,15 @@ const INSTITUTIONS = [
     lng: 144.9614,
     website: "https://www.rmit.edu.au",
     compare: { fashion: 5, sciTech: 5, business: 5, note: "Best overall fit — three distinct fashion pathways (design, materials/tech, enterprise) within one School of Fashion & Textiles." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3, meeting NZ University Entrance — RMIT maps NCEA achievement bands to VCE-equivalent scores case-by-case (e.g. Merit average ≈ 65% Australian standard, Excellence average ≈ 70-90%)",
+      english: "Mapped to a VCE-equivalent English study score: 25+ (non-EAL) or 27+ (EAL) required at bachelor level — check RMIT's current NZ country-equivalency page for the exact NCEA credit mapping.",
+      subjectPrerequisites: "No fixed named-subject prerequisites beyond English found; NCEA Level 3 general UE (18 credits at Level 3) is the baseline.",
+      portfolio: "Yes, for all three fashion degrees. Bachelor of Fashion (Design): a 10-15 page folio (2-3 projects) plus a written design-approach statement, plus an AI-use disclosure if applicable — deadlines are chronological until places fill, so apply early. Enterprise and Fashion Sustainability also require a selection task (exact folio spec not independently confirmed — check RMIT's current-year selection-task PDFs).",
+      feeStatus: "Domestic — NZ/AU citizens and PRs apply through RMIT's local (domestic) admissions channel, not the international selection pathway. CSP places available.",
+      sourceNote: "rmit.edu.au course/admissions-transparency/selection-task pages. For reference, RMIT's 2026 admitted-student data for Fashion Enterprise (BP327) showed a median ATAR of 74.1 (selection rank 79.2) — actual outcomes, not a published cutoff.",
+    },
     description:
       "Home to Australia's #1 and world top-20 ranked fashion school (Business of Fashion rankings), based at the Brunswick campus. Also holds a strong applied-science/chemistry reputation with RACI accreditation, and a large CBD business school. Uniquely offers three distinct fashion pathways — design, materials/technology, and enterprise — within one School of Fashion & Textiles.",
     fields: {
@@ -119,6 +142,13 @@ const INSTITUTIONS = [
     lat: -37.8474,
     lng: 145.1148,
     website: "https://www.deakin.edu.au",
+    entryRequirements: {
+      ncealLevel: "L2",
+      academic: "NCEA Level 3 overall (60+ credits at Level 3 within 80 total)",
+      english: "8 credits at NCEA Level 2 or higher (4 Writing + 4 Reading) — notably lower bar than Melbourne/Monash",
+      feeStatus: "Domestic — Deakin's Commonwealth-supported eligibility explicitly lists NZ citizens (alongside PR/humanitarian/PEV visa holders) who study the whole course while in Australia.",
+      sourceNote: "deakin.edu.au NCEA equivalency pages.",
+    },
     description:
       "Large multi-campus university based at Burwood for Melbourne undergraduates. RACI-accredited chemistry and a CFA-recognised finance major. Only offers fashion at postgraduate level (Master of Fashion Design/Merchandising), so not an undergraduate fashion option.",
     fields: {
@@ -147,6 +177,14 @@ const INSTITUTIONS = [
     lng: 145.0387,
     website: "https://www.swinburne.edu.au",
     compare: { fashion: 3.5, sciTech: 5, business: 5, note: "Dark horse — tech-fashion wild card (AR/VR, generative AI, smart fabrics), but the fashion degree is new and lacks a long alumni track record." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "Not a hard ATAR/NCEA-score gate — admission is portfolio-based. General completion of Year 12 or equivalent (which NCEA Level 3/UE satisfies) is the baseline eligibility check, not a specific credit threshold. No ATAR needed to apply.",
+      english: "Not separately specified for NZ/NCEA applicants — likely satisfied by the NCEA UE English component, not independently confirmed against a Swinburne-published NCEA page.",
+      portfolio: "Yes — the primary and determinative selection mechanism: a 10-page portfolio of creative work plus a 250-word written response on the applicant's passion for design and fashion career goals. Portfolio quality matters more than grades for this program.",
+      feeStatus: "Domestic — NZ/AU citizens and AU permanent residents classed as local students.",
+      sourceNote: "swinburne.edu.au Bachelor of Design (Fashion) course page + \"How to Become a Fashion Designer\" guide. Structurally different from RMIT/UTS/UNSW — worth noting since it changes the whole admissions calculus (portfolio-first rather than ATAR/selection-rank-anchored).",
+    },
     description:
       "Known for strong industry-integrated learning — all degrees include Work Integrated Learning placements. Its Bachelor of Design (Fashion) is a newer, deliberately tech-forward program — a strong option if she likes fashion but also has a technical/entrepreneurial streak, though it lacks the long alumni track record of RMIT or UTS fashion programs.",
     fields: {
@@ -182,6 +220,13 @@ const INSTITUTIONS = [
     lat: -37.7196,
     lng: 145.0483,
     website: "https://www.latrobe.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 (specific credit threshold not published — use La Trobe's equivalent-qualifications tool or contact admissions directly)",
+      english: "No specific NCEA English subject/credit threshold published; only general guidance that proficiency must be shown if qualifications come from a non-English-instruction country (implying NZ schooling likely self-satisfies this)",
+      feeStatus: "Domestic — NZ citizens confirmed as domestic students.",
+      sourceNote: "latrobe.custhelp.com (confirms domestic status); uac.edu.au La Trobe pages (no NCEA-specific detail). Recommend contacting La Trobe (1300 135 045) for a precise figure.",
+    },
     description:
       "Main Melbourne undergraduate campus at Bundoora, with a CBD campus (Collins Street) for postgraduate business, health and law only. Around 70 major/minor combinations available in Commerce. No fashion program.",
     fields: {
@@ -210,6 +255,13 @@ const INSTITUTIONS = [
     lat: -37.7937,
     lng: 144.8985,
     website: "https://www.vu.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "No explicit NCEA-specific threshold published — general Year-12-equivalent standard (VCE-equivalent completion) applies",
+      english: "No NCEA-specific English credit threshold published; VU's VCE-based standard is a study score of 20 in English (25 in EAL) — no confirmed NCEA equivalent",
+      feeStatus: "Domestic — NZ citizens/SCV444 visa holders confirmed domestic-equivalent for HECS-HELP eligibility.",
+      sourceNote: "askvu.vu.edu.au (entry requirements + HECS-HELP process) — no NCEA-specific figure published; recommend contacting AskVU directly.",
+    },
     description:
       "Practically-oriented, accessible university. Note: its Bachelor of Science does not offer a Chemistry major (only Biotechnology and Ecology/Environmental Management) — chemistry appears only as first-year core units. No fashion program.",
     fields: {
@@ -236,6 +288,13 @@ const INSTITUTIONS = [
     lat: -37.8079,
     lng: 144.9762,
     website: "https://www.acu.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 (\"recent secondary education in New Zealand\" generates a selection rank alongside ATAR-equivalent applicants) — no specific credit count published",
+      english: "No NCEA-specific English subject/credit threshold published; general rule requires proof of proficiency only if English wasn't the medium of Year 12+ study in an approved English-speaking country",
+      feeStatus: "Domestic — ACU states domestic status is citizenship-based (NZ citizenship qualifies), with no residency-history requirement.",
+      sourceNote: "acu.edu.au undergraduate entry requirements + uac.edu.au ACU international-students page — neither publishes NZ/NCEA-specific figures.",
+    },
     description:
       "Smaller, faith-based institution known for a supportive learning environment. Business/Commerce is its only clear match among the four fields — no confirmed chemistry major, finance specialisation, or fashion program at the Melbourne campus.",
     fields: {
@@ -261,6 +320,13 @@ const INSTITUTIONS = [
     lat: -37.8195,
     lng: 145.1214,
     website: "https://www.boxhill.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "Not published as NCEA-specific — general \"completed Year 12 or equivalent\" standard; NZ citizens confirmed eligible for Commonwealth Supported Places and Victorian Free TAFE if living in Australia, implying domestic-equivalent treatment",
+      english: "No NCEA English threshold or NZ-specific policy published",
+      feeStatus: "Domestic — NZ citizens eligible for Commonwealth Supported Places and Victorian Free TAFE (for Priority Courses) alongside Australian citizens/PRs.",
+      sourceNote: "No dedicated NCEA admissions page found — recommend contacting Box Hill admissions directly (1300 269 445).",
+    },
     description:
       "Offers genuine Bachelor-level fashion degrees (not just vocational diplomas) — a real alternative to RMIT and Whitehouse at a different fee point, covering business, design thinking, and ethical/sustainable fashion practice.",
     fields: {
@@ -289,6 +355,13 @@ const INSTITUTIONS = [
     lat: -37.8279,
     lng: 144.9922,
     website: "https://www.kangan.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "Not published as NCEA-specific — general \"Australian Year 12 or equivalent overseas qualification\" standard; domestic students without a qualifying certificate may sit an in-house literacy/numeracy assessment instead",
+      english: "No NCEA English threshold published — may default to Kangan's in-house English/maths assessment if no equivalent certificate is presented",
+      feeStatus: "Domestic — NZ citizens recognised as local students (Victorian TAFE sector pattern); some Free TAFE places have extra age/upskilling conditions, but base domestic classification applies.",
+      sourceNote: "No NZ/NCEA-specific admissions page found on kangan.edu.au.",
+    },
     description:
       "Located in Melbourne's fashion/textile precinct with runway facilities, a retail training centre, and a textile manufacturing hub. Diploma-level only (no Bachelor degree) — a lower-cost vocational entry pathway rather than a degree.",
     fields: {
@@ -319,6 +392,13 @@ const INSTITUTIONS = [
     lng: 144.9569,
     website: "https://www.whitehouse-design.edu.au",
     compare: { fashion: 4.5, sciTech: 1, business: 3, note: "Excellent if she becomes fully committed to fashion design specifically; not the pick while she's still intellectually interested in chemistry/science." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "General \"Year 12 (HSC/equivalent) completed within past 2 years\" standard, plus a mandatory portfolio review — the dominant selection factor. No NCEA-specific credit threshold published",
+      english: "No separate NCEA English threshold — a literacy assessment (1000-word written task) applies mainly to adjustment/work-experience/international applicants, not stated as required for NZ/NCEA applicants",
+      feeStatus: "Domestic — Whitehouse explicitly defines a domestic student as including New Zealand citizens.",
+      sourceNote: "whitehouse-design.edu.au/apply-now/domestic-application-requirements — explicit NZ-as-domestic statement; portfolio quality is the dominant factor over academic credit thresholds.",
+    },
     description:
       "Specialist private design college in the historic Royal Mail Exchange Building. Accelerated 2-year, trimester-based, industry-styled and portfolio-driven pedagogy — a strong option for a design-first fashion pathway rather than a broad university degree.",
     fields: {
@@ -344,6 +424,13 @@ const INSTITUTIONS = [
     lat: -37.8497,
     lng: 144.9916,
     website: "https://www.melbournepolytechnic.edu.au",
+    entryRequirements: {
+      ncealLevel: "L2",
+      academic: "No NCEA-specific credit figure published, but NZ citizens are explicitly classified as \"local students\" (not international), so the general local-student Year 12/equivalent standard applies",
+      english: "No separate English proficiency evidence required — NZ passport holders are explicitly exempted (grouped with UK/US/Canada/Ireland passport holders)",
+      feeStatus: "Domestic (\"local student\") — the clearest, most explicit official statement found among all Melbourne TAFEs/colleges researched.",
+      sourceNote: "melbournepolytechnic.edu.au/study/how-to-enrol/international-admissions/international-entry-requirements/ — explicitly states NZ citizens are local students and NZ passport holders are exempt from English proficiency evidence.",
+    },
     description:
       "Vocational-level fashion and textile courses (e.g. costume) at the Prahran campus — a lower-cost, lower-commitment entry point than RMIT, Whitehouse, or Box Hill, but no Bachelor-level fashion degree.",
     fields: {
@@ -369,6 +456,13 @@ const INSTITUTIONS = [
     lat: -37.818,
     lng: 144.9671,
     website: "https://www.torrens.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 is recognised as an accepted qualification, but Torrens' UAC page states overseas-qualification applicants must contact the university directly to discuss eligibility before applying — no fully self-service NCEA pathway",
+      english: "No NCEA-specific English threshold found. General requirement is IELTS 6.0 overall (min 5.5/band) for undergrad, applied to \"overseas secondary/tertiary qualifications from non-English-instruction countries\" — unclear whether NZ schooling is exempted",
+      feeStatus: "Domestic (resolved — earlier research showed conflicting signals). Torrens states directly: eligible NZ citizens and permanent residents can enrol as Commonwealth Supported students, with FEE-HELP available to NZ SCV holders who meet standard residency requirements. The earlier ambiguity likely came from Torrens' international-facing marketing pages being indexed alongside its domestic-fee pages — no evidence NZ citizens are pushed into the international pathway.",
+      sourceNote: "torrens.edu.au/how-to-apply/fees-scholarships/tuition-fees; torrens.edu.au/studying-with-us/faqs.",
+    },
     description:
       "Private university opposite Flinders Street Station, positioned as a flexible, career-focused alternative to public universities. On-campus, online or blended study modes, including a 2-year accelerated option.",
     fields: {
@@ -394,6 +488,13 @@ const INSTITUTIONS = [
     lat: -37.8853,
     lng: 145.0784,
     website: "https://www.holmesglen.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "Not published — Holmesglen's official admissions/policies page is silent on NZ/NCEA, focusing only on VCE/ATAR pathways",
+      english: "Not published — page states \"English language proficiency\" is an assessment criterion but gives no NCEA threshold, IELTS score, or NZ exemption",
+      feeStatus: "Likely domestic (Victorian TAFE sector pattern, consistent with Box Hill/Kangan/Melbourne Polytechnic) — not independently confirmed on Holmesglen's own site.",
+      sourceNote: "holmesglen.edu.au higher-education admissions/policies page — genuinely silent on NZ/NCEA specifics.",
+    },
     description:
       "TAFE offering a genuine Bachelor-level fashion degree, with purpose-built patternmaking studios and manufacturing rooms reflecting industry environments — comparable to Box Hill, and design-focused rather than enterprise/business-focused.",
     fields: {
@@ -420,6 +521,13 @@ const INSTITUTIONS = [
     lat: -37.8033,
     lng: 144.9857,
     website: "https://melbourne.lcieducation.com",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "General \"satisfactory completion of Australian Year 12 or equivalent\" standard; Bachelor of Business and Innovation references an ATAR ≥60 (68+ guarantees entry) — no NCEA-specific credit count or NZ equivalence statement published",
+      english: "No NCEA-specific threshold found. Published international-student requirement is IELTS 6.0 overall (no band below 5.5) — whether this applies to NZ applicants depends on domestic/international classification (see fee status)",
+      feeStatus: "Likely domestic (moderate confidence, not ironclad). LCI is CRICOS-registered and offers FEE-HELP (a domestic-only scheme) plus a VTAC application pathway (Victoria's domestic admissions system) for its fashion degree — consistent with domestic treatment. However, unlike RMIT/ACU/Whitehouse, no LCI page explicitly states \"New Zealand citizens are domestic students.\" Recommend a direct email/call to LCI Melbourne admissions for written confirmation before relying on this.",
+      sourceNote: "melbourne.lcieducation.com/en/admission-and-aid/loans-scholarships; teqsa.gov.au provider listing (CRICOS 02201G).",
+    },
     description:
       "Part of the international LCI Education network (French-origin design school group). Purpose-built fashion labs, runway/gallery space, and industry internships — smaller and less well-known than RMIT/Whitehouse but a legitimate specialist option.",
     fields: {
@@ -454,6 +562,13 @@ const INSTITUTIONS = [
     lat: -37.8103,
     lng: 144.9721,
     website: "https://www.holmes.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "Not found — this institution now appears to operate under \"The Masters Institute of Creative Education\" (tmice.edu.au); no published entry-requirements page specifies academic prerequisites in any detail",
+      english: "Not found — no IELTS/TOEFL threshold, NCEA English requirement, or NZ-specific admissions information located",
+      feeStatus: "Not found.",
+      sourceNote: "Even the current institutional branding is ambiguous (Melbourne School of Fashion vs Fashionmasters vs Holmes Institute Fashion vs The Masters Institute) — strongly recommend contacting directly (hello@tmice.edu.au / +61 3 9945 9522) before relying on this listing at all.",
+    },
     description:
       "Established 1991, a smaller specialist provider next to the Princess Theatre. Its Bachelor of Fashion and Business unusually blends fashion and business coursework directly — worth a look for a student wanting both in one degree. Less internationally recognised than RMIT/Whitehouse; confirm current accreditation status directly.",
     fields: {
@@ -482,6 +597,13 @@ const INSTITUTIONS = [
     lat: -33.8886,
     lng: 151.1873,
     website: "https://www.sydney.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 — Sydney calculates an ATAR-equivalent from NCEA Level 3 results (via NZQA/UAC), consistent with NZ University Entrance",
+      english: "No NCEA-specific English subject/credit threshold — NZ/NCEA doesn't appear at all in Sydney's or UAC's English Language Proficiency tables (which cover IELTS/TOEFL/PTE/IB etc.), suggesting proficiency is satisfied automatically via NZ schooling rather than itemised",
+      feeStatus: "Domestic — CSP places available to eligible NZ citizens who reside in Australia for the duration of study.",
+      sourceNote: "sydney.edu.au recognised-qualifications page (NCEA→ATAR conversion); uac.edu.au Sydney ELP page (no NZ/NCEA row); sydney.edu.au CSP eligibility page.",
+    },
     description:
       "Sandstone Group of Eight university. Business School ranked ~29th globally for Accounting & Finance (QS 2025). No dedicated fashion program.",
     fields: {
@@ -508,6 +630,14 @@ const INSTITUTIONS = [
     lng: 151.2313,
     website: "https://www.unsw.edu.au",
     compare: { fashion: 3.5, sciTech: 5, business: 4, note: "Best academic hedge — strongest choice if she wants to stay broadly technical/scientific while keeping fashion/textiles as a substantial design focus, rather than committing to fashion as the primary identity." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 accepted as an equivalent Year 12 qualification — NZQA calculates and forwards an ATAR to UAC once NZQA's own University Entrance requirements are met (same mechanism as UTS). No prerequisites and no assumed knowledge required for the Bachelor of Design (Honours).",
+      english: "No separate English proficiency proof required for Year-12-graduate-equivalent applicants (extends to NZ NCEA L3/UE completers) — distinct from the international/non-English-background IELTS/TOEFL pathway. Exact NCEA English credit count not separately published.",
+      portfolio: "Optional but advantageous, not a strict gate — the ADA Portfolio Entry pathway offers an Early Conditional Offer with an adjusted selection rank up to 10 points below standard, as a bonus pathway alongside normal ATAR-rank admission (unlike Swinburne, where portfolio is mandatory and determinative).",
+      feeStatus: "Domestic — standard UNSW domestic classification (NZ/AU citizens, AU PRs); domestic applicants apply through UAC.",
+      sourceNote: "unsw.edu.au Bachelor of Design (Honours) course page publishes exact current-year figures directly: 2026 lowest selection rank 83.0, lowest ATAR 65.0 — the clearest published cutoff of any institution in this dataset.",
+    },
     description:
       "Group of Eight university with a strong STEM and finance reputation across Asia-Pacific (Business School ranked ~10th globally for Accounting & Finance). Fashion isn't a dedicated program — the Art & Design campus in Paddington leans fine art/design — but its broad Bachelor of Design lets students combine textiles/fashion with computational or industrial design.",
     fields: {
@@ -541,6 +671,14 @@ const INSTITUTIONS = [
     lng: 151.1994,
     website: "https://www.uts.edu.au",
     compare: { fashion: 5, sciTech: 4.5, business: 4.5, note: "Excellent alternative to RMIT — very innovative, with the most direct fashion+business and fashion+innovation combined degrees of any Sydney school." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 — NZQA calculates an ATAR-equivalent (Interstate Transfer Index) submitted to UAC, contingent on meeting NZQA's own University Entrance requirements. NZ NCEA L3 is treated as a recognised qualification for UTS's standard domestic admission pathway.",
+      english: "No NCEA-specific English credit threshold confirmed — UTS domestic admission via UAC generally relies on the NZQA-calculated ATAR (which already incorporates UE English/literacy) rather than a separately stated credit count.",
+      portfolio: "Splits by program. Bachelor of Design in Fashion and Textiles: eligible under UTS's Design Portfolio Scheme — NZ citizens can apply via portfolio+interview if not completing NCEA in the current admissions year (a 6-page digital PDF portfolio plus a 150-200 word written submission is the general Design-course format). Bachelor of Fashion Business (in UTS Business, not Design): no portfolio found — appears to be standard ATAR/selection-rank academic entry only.",
+      feeStatus: "Domestic — NZ citizens are explicitly eligible as domestic applicants, including via the Design Portfolio Scheme.",
+      sourceNote: "uts.edu.au (course pages, Design Portfolio Scheme, admissions-stats-tool); uac.edu.au. Selection rank/ATAR for the specific fashion programs wasn't pinned to an exact figure — check UTS's live admissions-stats-tool.",
+    },
     description:
       "Sydney's standout choice for fashion — ranked 28th globally for undergraduate fashion (Business of Fashion 2026), with purpose-built design facilities (3D printing, seamless knitting, digital design tech). Chemistry is not a UTS strength. Particularly notable for combining fashion directly with business and innovation degrees rather than treating them as separate faculties.",
     fields: {
@@ -580,6 +718,13 @@ const INSTITUTIONS = [
     lat: -33.7739,
     lng: 151.1128,
     website: "https://www.mq.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 — current NZ students completing it apply via UAC and are assessed on that basis",
+      english: "Unconfirmed. One search snippet suggested \"Level 3 University Entrance approved English\" credits, but this could not be verified on an official Macquarie or UAC page (key page returned a 403). May actually refer to the general NCEA University Entrance literacy standard (10 literacy credits at Level 2+) rather than a Macquarie-specific rule.",
+      feeStatus: "Depends on visa/residency category — NZ citizens are domestic-classified for admission, but Macquarie has a dedicated \"Eligibility for New Zealand citizens\" fees page splitting NZ SCV holders who meet long-term residency (HELP-loan-eligible, can defer fees) from other NZ citizens who must pay fees fully upfront each period.",
+      sourceNote: "mq.edu.au English requirements page returned 403 on fetch — recommend the parent access it directly or contact Macquarie admissions. Fee-status split: mq.edu.au/study/admissions-and-entry/fees-and-costs/eligibility-for-new-zealand-citizens.",
+    },
     description:
       "No dedicated fashion program. Macquarie Business School is well regarded for finance, co-located with a major business/tech precinct of 300+ companies for strong industry connections.",
     fields: {
@@ -607,6 +752,13 @@ const INSTITUTIONS = [
     lat: -33.8148,
     lng: 151.0011,
     website: "https://www.westernsydney.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 — NZ students apply via UAC International; admission is merit-based using an NZQA-calculated ATAR-equivalent",
+      english: "Unconfirmed — the official Entry Qualifications PDF couldn't be parsed for NZ-specific detail. A general \"IELTS 6.5 (no band below 6.0)\" figure was found but appears to be the general international-student requirement rather than an NCEA-specific rule; unclear if NZ-schooled applicants are exempted.",
+      feeStatus: "Depends on visa/residency category — domestic/CSP status is available to NZ citizens, but deferring fees via HECS-HELP/FEE-HELP requires the long-term residency test (8 of last 10 years + 18 of last 24 months in Australia); those who don't qualify pay the domestic contribution upfront rather than being pushed to international rates.",
+      sourceNote: "westernsydney.edu.au official Entry Qualifications PDF (text extraction failed — recommend opening directly) and \"Changes to fees for New Zealand Citizens\" page. Verify directly with Western Sydney admissions.",
+    },
     description:
       "Technically Greater Western Sydney rather than inner Sydney — worth flagging given commute distance. Strong applied/industry focus. No fashion or standalone chemistry major at the Sydney-proper campuses.",
     fields: {
@@ -631,6 +783,13 @@ const INSTITUTIONS = [
     lat: -33.8388,
     lng: 151.2073,
     website: "https://www.acu.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NZ NCEA Level 3 is explicitly listed by UAC as a recognised qualification, used to calculate a selection rank alongside other applicant types (course-specific minimum ranks apply)",
+      english: "No NCEA-specific English subject/credit threshold found. General policy requires proficiency evidence only if English wasn't the applicant's first language or they didn't complete Year 12+ in English in an approved English-speaking country — likely exempts NZ-schooled applicants, but not explicitly stated for NZ.",
+      feeStatus: "Domestic — ACU states domestic status is citizenship-based (NZ citizenship qualifies), with no residency-history requirement to be classed domestic.",
+      sourceNote: "uac.edu.au ACU international-students page; acu.edu.au undergraduate entry requirements — neither names New Zealand/NCEA explicitly for English proficiency. Fee status: acu.edu.au/study-at-acu/fees-and-scholarships.",
+    },
     description:
       "Smaller Catholic university with boutique class sizes. Business is the clearly relevant offering here; chemistry only appears incidentally via Biomedical/Nutrition Science units rather than as a standalone major — a weak/secondary match only. No fashion program.",
     fields: {
@@ -656,6 +815,13 @@ const INSTITUTIONS = [
     lat: -33.883,
     lng: 151.1998,
     website: "https://www.notredame.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3, treated as broadly equivalent to Australian Year 12 under the Australia–NZ mutual recognition arrangement (via ACTAC). If standard requirements aren't met, Notre Dame's Tertiary Pathway Program (offered at the Sydney campus) is an alternative entry route.",
+      english: "No separate NCEA English threshold — Notre Dame's policy explicitly states applicants whose primary/secondary education was taught and assessed solely in English in a recognised country (New Zealand named explicitly) meet the English proficiency requirement automatically, no separate test or NCEA English subject/credit rule required. Note: some disciplines (Education, Nursing) have additional accrediting-body English requirements regardless.",
+      feeStatus: "Domestic — CSP eligibility explicitly includes \"a New Zealand citizen, who will live and study in Australia for the whole course.\"",
+      sourceNote: "notredame.edu.au English language proficiency requirements page (403 on direct fetch, relayed via search snippet — recommend verifying directly or calling 1800 878 916). Fee status: notredame.edu.au/study/fees-costs-and-scholarships.",
+    },
     description:
       "Small, boutique Catholic university with strong ethics focus and small class sizes. Genuinely offers chemistry as part of its Bachelor of Science (not research-intensive like the Go8s). No fashion program.",
     fields: {
@@ -756,29 +922,6 @@ const INSTITUTIONS = [
       openDayUrl: "https://www.billyblue.edu.au",
       tours: "No dedicated self-serve tour page found — managed via the Torrens University enrolment/domestic team; open days are the primary in-person visit mechanism.",
       toursUrl: "https://www.torrens.edu.au",
-    },
-  },
-  {
-    id: "raffles",
-    city: "sydney",
-    name: "Raffles College of Design and Commerce",
-    type: "Private College",
-    location: "Parramatta — Greater Western Sydney",
-    lat: -33.8151,
-    lng: 151.0035,
-    website: "https://www.raffles.edu.au",
-    description:
-      "One of Sydney's longest-established private art/design schools (founded 1978). Relocated from North Sydney to Parramatta in 2015 — some directories still list the old address. Its Bachelor of Commerce with a Finance major is a genuine match for the finance interest alongside its fashion programs, which is unusual for a design college.",
-    fields: {
-      fashion: ["Bachelor of Design — Fashion Design or Fashion Marketing major"],
-      business: ["Bachelor of Commerce — Design Management, Management, or Marketing major"],
-      finance: ["Bachelor of Commerce — Finance major"],
-    },
-    visit: {
-      openDay: "Not confirmed — check raffles.edu.au directly for 2026 dates",
-      openDayUrl: "https://www.raffles.edu.au",
-      tours: "Not confirmed — likely via direct enquiry.",
-      toursUrl: "https://www.raffles.edu.au",
     },
   },
   {
