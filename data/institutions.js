@@ -848,6 +848,14 @@ const INSTITUTIONS = [
     lng: 151.1989,
     website: "https://www.tafensw.edu.au",
     compare: { fashion: 5, sciTech: 1, business: 2.5, note: "Fantastic pure-fashion option with a distinguished industry pedigree (Australian Fashion Week showcase since 1999) — but weak for a science/tech hedge." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "\"NSW HSC or equivalent\" — NCEA Level 3 would be assessed as the equivalent pathway (not explicitly named). Diploma of Fashion only needs HSC/equivalent or Certificate IV, a lower bar than the Bachelor.",
+      english: "Not explicitly stated for domestic NZ-schooled applicants — the international entry page has IELTS-style thresholds, but domestic applicants aren't addressed; likely satisfied automatically via NZ schooling but unconfirmed in writing.",
+      portfolio: "Yes, for the Bachelor of Fashion Design — 12 examples of original fashion design work (max A3), a 550-word essay comparing two designers, plus a pre-admission interview. The Diploma of Fashion does not require a portfolio.",
+      feeStatus: "Domestic — TAFE NSW's domestic-eligibility criteria explicitly list \"Australian or New Zealand citizen\" alongside PR/humanitarian visa holders, provided the applicant lives/works in NSW at enrolment. HELP-style loan deferral separately requires the long-term-residency test.",
+      sourceNote: "tafensw.edu.au HE20506V02 course page; TAFE NSW domestic-eligibility criteria (general, not fashion-specific). No TAFE NSW page directly names NCEA — recommend confirming with TAFE NSW Student Services (131 601).",
+    },
     description:
       "A specialist fashion school since 1955 — the only Australian fashion school with a standing showcase at Australian Fashion Week (since 1999). Pure design/garment-construction training with a distinguished industry pedigree, but little surrounding science/maths ecosystem.",
     fields: {
@@ -882,6 +890,14 @@ const INSTITUTIONS = [
     lng: 151.2094,
     website: "https://www.whitehouse-design.edu.au",
     compare: { fashion: 4.5, sciTech: 1, business: 3, note: "Whitehouse's headquarters campus — excellent if she becomes fully committed to fashion design specifically; not the pick while she's still intellectually interested in chemistry/science." },
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "No NCEA-specific level or credit count published. General guidance: an ATAR of ~67.95 is \"desirable if applying with secondary education only, but not the only criterion\" — also assessed on portfolio, motivational statement and academic results generally.",
+      english: "Not explicitly addressed for NZ/domestic applicants — likely satisfied automatically via NZ schooling but unconfirmed in writing.",
+      portfolio: "Yes — a creative portfolio of 6-8 pieces (any medium: illustration, digital design, photography, film, textile design, fine art), plus a motivational statement and interview.",
+      feeStatus: "Domestic — confirmed. Whitehouse's site-wide Domestic Application Requirements page (covering Sydney, Melbourne and Brisbane on one page) states verbatim: \"A domestic student is an Australian or New Zealand citizen, an Australian permanent resident or a holder of an Australian permanent humanitarian visa.\" HELP-loan access separately requires the Special Category Visa long-term-residency test.",
+      sourceNote: "whitehouse-design.edu.au/apply-now/domestic-application-requirements (site-wide policy, same as the Melbourne campus); whitehouse-design.edu.au/courses/bachelor-of-design/fashion-design for portfolio detail.",
+    },
     description:
       "Whitehouse's headquarters/original campus, in Sydney's fashion and design precinct in Surry Hills. Well regarded specifically for fashion design and creative direction/styling — a strong specialist option distinct from UTS's more business-hybrid offering. Excellent if she becomes fully committed to fashion design; doesn't offer a science/chemistry ecosystem.",
     fields: {
@@ -909,6 +925,14 @@ const INSTITUTIONS = [
     lat: -33.8806,
     lng: 151.1978,
     website: "https://www.billyblue.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "\"Completion of an Australian Year 12 or equivalent, including the IB\" per general Torrens/UAC admission criteria — NCEA isn't named; overseas secondary qualifications from the last 2 years go to Torrens' International Admissions team for an equivalency review against NOOSR/NARIC guidelines (this applies even though NZ applicants are domestic for fee purposes — an academic-review/fee-status split).",
+      english: "Not NCEA/NZ-specific. Torrens' general rule requires proficiency evidence only for overseas qualifications from non-English-instruction countries — NZ schooling wouldn't trigger this, so effectively satisfied automatically, though not stated as an explicit NZ carve-out.",
+      portfolio: "Conditional, not blanket-required. If the ATAR-equivalent entry requirement is met, no portfolio is needed; if not met, evidence of industry/work experience or prior study can substitute, otherwise a 6-10 piece portfolio of original creative work is required.",
+      feeStatus: "Domestic, consistent with Torrens Melbourne — Billy Blue shares the same Torrens admissions/fees infrastructure. NZ citizens/SCV holders are Commonwealth Supported Place-eligible but must pay their student contribution upfront by census date unless they separately qualify under the long-term-residency test.",
+      sourceNote: "uac.edu.au Torrens admission-criteria page (covers Billy Blue); billyblue.edu.au portfolio-and-interviews page (redirects to the shared Torrens framework). No page names \"New Zealand\" specifically for Billy Blue — inferred via the shared Torrens policy already confirmed for Melbourne; recommend a quick confirmation call if certainty matters.",
+    },
     description:
       "Part of Torrens University Australia. Practical, industry-oriented programs with a reported 94% graduate employment within 12 months. Ultimo is specifically the Design/Technology campus (business/hospitality Torrens courses are taught at a separate Surry Hills campus).",
     fields: {
@@ -933,6 +957,14 @@ const INSTITUTIONS = [
     lat: -33.8654,
     lng: 151.2058,
     website: "https://kent.edu.au",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "\"A formal qualification considered equivalent to an Australian Year 12\" — no NCEA-specific level or credit count published; minimum age 18 at commencement.",
+      english: "No NCEA-specific rule. General standard is IELTS (Academic) 6.0 overall, no band below 5.5, \"or equivalent.\" Kent's domestic application form asks whether the applicant completed secondary/tertiary study with English as the language of instruction — a \"yes\" appears to be an accepted route NZ-schooled applicants would meet, though not stated as an explicit NCEA carve-out.",
+      portfolio: "No — Kent is a business/IT/community-services college with no design/creative programs, so no portfolio requirement applies.",
+      feeStatus: "Domestic — corrected from earlier ambiguity. Kent's public Fees page wording (\"Domestic (Australian)\" / \"International\") looks NZ-blind, but the actual official Application for Admission Form (Domestic Students only) explicitly lists \"New Zealand Citizen\" as one of four domestic citizenship categories, alongside Australian Citizen, Australian PR, and Permanent Humanitarian Visa Holder — so NZ applicants do use the domestic pathway. HELP-loan deferral still depends on the separate long-term-residency test.",
+      sourceNote: "kent.edu.au official domestic Application for Admission Form (PDF, Version 17, 13 Feb 2026) — directly confirms the NZ Citizen checkbox; kent.edu.au/admission-criteria/. Recommend Kent admissions confirm the domestic fee schedule applies at the same rate to NZ citizens, since the fees page wording alone wouldn't have surfaced this.",
+    },
     description:
       "A modest-profile private business college (est. 1989) — the weakest match on this list. Genuinely offers business but no distinct finance major, no chemistry, and no fashion. Included for completeness but not distinguished compared to the university options.",
     fields: {
