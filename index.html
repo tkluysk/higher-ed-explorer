@@ -64,6 +64,7 @@
       <button class="view-toggle active" id="view-list-btn" aria-pressed="true">List</button>
       <button class="view-toggle" id="view-map-btn" aria-pressed="false">Map</button>
       <button class="view-toggle" id="view-compare-btn" aria-pressed="false">Compare</button>
+      <button class="view-toggle" id="view-pathways-btn" aria-pressed="false">Pathways</button>
     </div>
   </section>
 
@@ -83,6 +84,15 @@
     </p>
     <div class="compare-table-wrap">
       <table class="compare-table" id="compare-table"></table>
+    </div>
+  </section>
+
+  <section id="pathways-view" class="pathways-view" hidden>
+    <p class="pathways-intro">
+      Trace a path from Year 13 entry requirements through an undergraduate degree to a rough career direction — or work backwards from a career to see which schools and prep lead there. Click any node to highlight its connections; click again to clear. Use the <strong>Field</strong> filter above to narrow the middle column — with all fields shown the graph gets dense fast.
+    </p>
+    <div class="pathways-graph-wrap">
+      <svg id="pathways-graph" class="pathways-graph"></svg>
     </div>
   </section>
 </main>

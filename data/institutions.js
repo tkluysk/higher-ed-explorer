@@ -5,6 +5,29 @@
 // Each institution lists only the fields (fashion/chemistry/business/finance)
 // it is actually strong in; `fields[x]` is an array of specific program names.
 // `city` is a lowercase slug used by the city filter in the UI.
+//
+// CITY_APPLICATION_PROCESS holds admissions-portal info shared by every
+// institution in a city (e.g. VTAC covers all Victorian universities), so it
+// isn't repeated per institution. An institution can still set its own
+// `entryRequirements.applicationProcess` to override this default.
+const CITY_APPLICATION_PROCESS = {
+  melbourne:
+    "Applications go through VTAC (Victorian Tertiary Admissions Centre), the shared domestic admissions portal for Victorian universities and colleges — not a direct application to the institution. Register and apply at vtac.edu.au; standard round closes ~Sept/Oct for the following academic year.",
+};
+
+// Shared NZ-citizen caveat for MD (medical degree) pathways: NZ citizens on
+// an ordinary Special Category Visa (subclass 444) are domestic-equivalent
+// for standard CSP medicine places, but NOT eligible for Bonded Medical
+// Places (a subset of most CSP medicine cohorts) unless they hold Australian
+// permanent residency. Confirmed via health.gov.au/our-work/bonded-medical-program.
+// Once an MD is completed, the postgraduate specialist-college pathway (e.g.
+// RANZCOG for O&G, RACS for surgery/ENT) is identical regardless of which
+// university awarded the MD — confirmed via surgeons.org's generic
+// eligibility criteria (citizenship/PR + AHPRA registration + exam, no
+// mention of originating medical school).
+const MD_NZ_CAVEAT =
+  "NZ citizens on a standard Special Category Visa (444) are domestic-equivalent for regular CSP medicine places, but are NOT eligible for Bonded Medical Places (a subset of most CSP medicine cohorts) unless they hold Australian permanent residency. Once the MD is completed, the pathway into a specialty college (e.g. RANZCOG for O&G, RACS for surgery/ENT) is the same nationally-standardised process regardless of which university awarded the MD.";
+
 const INSTITUTIONS = [
   {
     id: "unimelb",
@@ -20,7 +43,18 @@ const INSTITUTIONS = [
       academic: "NCEA Level 3, minimum 80 credits overall",
       english: "18 Level 3 credits in English (10+ at Merit or above)",
       feeStatus: "Domestic — CSPs available to eligible NZ citizens; must reside in Australia for duration of study. HELP loan access depends on long-term residency.",
-      sourceNote: "study.unimelb.edu.au NCEA equivalency pages; ask.unimelb.edu.au.",
+      ncealScoring:
+        "UniMelb converts NCEA to a rank score comparable to ATAR (not a direct NCEA-Level/ATAR lookup table): your best 80 Level 3 credits from up to 5 approved subjects are selected — Excellence credits weighted 4 points each, Merit 3 points, Achieved 2 points — summed to a score out of a maximum 320. All Excellence credits count first (up to 80), then Merit, then Achieved, until 80 credits are reached. This rank score is compared against the per-degree \"Lowest Selection Rank\" (e.g. Biomedicine ~90, Commerce ~92, Agriculture ~72 for 2026 domestic entry) — selection ranks vary a lot by degree, so there's no single blanket NCEA target. The exact step converting the /320 raw score to the ~0–99.95 selection-rank scale wasn't independently confirmed here (source pages block automated fetching) — use UniMelb's own calculator via ask.unimelb.edu.au or the NCEA entry-scores page, entering actual subject results, for a reliable number.",
+      sourceNote: "study.unimelb.edu.au — NCEA entry-scores page (recognised-vce-equivalent-qualifications/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea) and how-youre-selected-applicants-with-ncea page; ask.unimelb.edu.au; vtac.edu.au.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Doctor of Medicine (MD), graduate-entry.",
+      entry:
+        "Standard route is graduate-entry only (apply after a completed bachelor's via GEMSAS). A guaranteed school-leaver pathway also exists: \"Chancellor's Scholars\" — students who enter UniMelb undergrad (e.g. Bachelor of Biomedicine) with ATAR ≥99.90 and stay within ~18 months of that entry are guaranteed an MD place, still subject to passing the MMI interview \"to a satisfactory standard.\"",
+      requirements:
+        "GAMSAT ≥50 in each of the three sections; GPA ≥5.0/7.0 (calculated on final 3 years, weighted 1:2:2); MMI interview. Selection weighting: Interview 50% / GPA 25% / GAMSAT 25%.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "handbook.unimelb.edu.au/2026/courses/mc-dmed/entry-participation-requirements; study.unimelb.edu.au/find/courses/graduate/doctor-of-medicine/entry-requirements.",
     },
     description:
       "Australia's #1 ranked university (QS/THE) and a Group of Eight member. No undergraduate fashion program, but the Faculty of Science and Faculty of Business & Economics are among the most selective and research-strong in the country.",
@@ -49,6 +83,16 @@ const INSTITUTIONS = [
       openDayUrl: "https://study.unimelb.edu.au/openday",
       tours: "Free 1-hour guided walking tours of Parkville led by student ambassadors (school groups Yr 10–12, book 6+ weeks ahead); self-guided virtual tour available anytime.",
       toursUrl: "https://www.unimelb.edu.au/campustour",
+      webinar:
+        "\"Discover Melbourne\" webinar series, 13–16 Oct 2026 (AEDT, Melbourne time): Tue 13 — The Essentials 7:30–8pm, How to apply (international) 8–8:30pm, Discover STEM 8:30–9:15pm; Wed 14 — Discover Creative Fields 8–8:45pm, Discover Humanities & Social Science 9–10:15pm; Thu 15 (repeats) — Discover STEM 9:30–10:15am, The Essentials 10:30–11am, How to apply (international) 11–11:30am; Fri 16 (repeats) — Discover Creative Fields 9:30–10:15am, Discover Humanities & Social Science 10:30–11:15am. Register via the booking link.",
+      webinarUrl: "https://study.unimelb.edu.au/student-life/events/discover-melbourne-webinar-series-october-sessions",
+      webinarBookingUrl: "https://bookings.events.unimelb.edu.au/M1Z5a3",
+      webinarVideos: [
+        "https://www.youtube.com/watch?v=-_LBokgBW6c",
+        "https://www.youtube.com/watch?v=n-LuWnudq5Q",
+      ],
+      notes:
+        "NZ citizens should attend \"How to apply as a domestic student\" (VTAC session), not \"How to apply as an international student\" — per study.unimelb.edu.au/student-life/events/international-webinar. Date/time for the domestic/VTAC session not yet confirmed for the Oct 2026 series; check study.unimelb.edu.au/student-life/events/interstate-webinars or booking link bookings.events.unimelb.edu.au/ug-web-vtac closer to the date.",
     },
   },
   {
@@ -66,6 +110,15 @@ const INSTITUTIONS = [
       english: "18 credit points at NCEA Level 3 in English or an approved \"English-rich\" subject — Level 2 English does not satisfy this requirement",
       feeStatus: "Domestic — NZ citizens on SCV 444 charged domestic fees; HELP loan needs the standard 10-year long-term residency test.",
       sourceNote: "monash.edu/admissions/entry-requirements/nz-ncea; monash.edu/students/admin/enrolments/government-support/residency-requirements.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Bachelor of Medical Science/Doctor of Medicine (M6011), one of the few Australian med schools offering direct undergraduate entry.",
+      entry:
+        "Both undergraduate-direct and graduate entry exist. Direct entry (M6011) is a 5-year combined degree straight from Year 12, restricted to applicants within 2 years of Year 12 with no prior tertiary study.",
+      requirements:
+        "ATAR ≥90 minimum, competitive offers ~99; UCAT ANZ required; Chemistry ≥30, English ≥30 (or EAL ≥35); three-stage selection on ATAR/UCAT/MMI interview.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "monash.edu/study/courses/find-a-course/medical-science-and-medicine-direct-entry-m6011; monash.edu 2026 Entry Schemes for Domestic Students PDF.",
     },
     description:
       "Group of Eight member and Australia's largest university. Strong science and business reputation. Fashion appears only as a design strand within the Bachelor of Design at Caulfield — not a dedicated fashion school like RMIT or Whitehouse.",
@@ -168,6 +221,14 @@ const INSTITUTIONS = [
       feeStatus: "Domestic — Deakin's Commonwealth-supported eligibility explicitly lists NZ citizens (alongside PR/humanitarian/PEV visa holders) who study the whole course while in Australia.",
       sourceNote: "deakin.edu.au NCEA equivalency pages.",
     },
+    mdPathway: {
+      hasProgram: "Yes — Doctor of Medicine (MD), graduate-entry only.",
+      entry: "No school-leaver/direct-entry route found — apply after a completed bachelor's via GEMSAS.",
+      requirements:
+        "GAMSAT ≥50 in each section and overall; GPA ≥5.0/7.0 (2026 intake averaged GPA 6.72, GAMSAT 65.9 — highly competitive in practice); MMI interview (6 stations). MCAT accepted as an alternative for international applicants.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "deakin.edu.au Doctor of Medicine course pages; GEMSAS.",
+    },
     description:
       "Large multi-campus university based at Burwood for Melbourne undergraduates. RACI-accredited chemistry and a CFA-recognised finance major. Only offers fashion at postgraduate level (Master of Fashion Design/Merchandising), so not an undergraduate fashion option.",
     fields: {
@@ -260,6 +321,14 @@ const INSTITUTIONS = [
       feeStatus: "Domestic — NZ citizens confirmed as domestic students.",
       sourceNote: "latrobe.custhelp.com (confirms domestic status); uac.edu.au La Trobe pages (no NCEA-specific detail). Recommend contacting La Trobe (1300 135 045) for a precise figure.",
     },
+    mdPathway: {
+      hasProgram: "No — La Trobe has no medical school of its own.",
+      entry:
+        "Feeder pathway only: Bachelor of Biomedical Science (Medical) at La Trobe → if WAM ≥70, guaranteed provisional entry to the University of Melbourne's Doctor of Medicine via its Rural Pathway.",
+      requirements: "WAM ≥70 in the La Trobe Bachelor of Biomedical Science (Medical); UniMelb's MD entry requirements then apply (see UniMelb entry).",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "Findings reconstructed from search-engine snippets (WebFetch of the primary La Trobe/UniMelb pathway page was not obtained) — verify current WAM threshold and pathway name directly with La Trobe before relying on it.",
+    },
     description:
       "Main Melbourne undergraduate campus at Bundoora, with a CBD campus (Collins Street) for postgraduate business, health and law only. Around 70 major/minor combinations available in Commerce. No fashion program.",
     fields: {
@@ -334,6 +403,15 @@ const INSTITUTIONS = [
       english: "No NCEA-specific English subject/credit threshold published; general rule requires proof of proficiency only if English wasn't the medium of Year 12+ study in an approved English-speaking country",
       feeStatus: "Domestic — ACU states domestic status is citizenship-based (NZ citizenship qualifies), with no residency-history requirement.",
       sourceNote: "acu.edu.au undergraduate entry requirements + uac.edu.au ACU international-students page — neither publishes NZ/NCEA-specific figures.",
+    },
+    mdPathway: {
+      hasProgram: "No — ACU has no medical school of its own.",
+      entry:
+        "Feeder pathway: Bachelor of Biomedical Science on-campus at ACU → Facilitated Interview Pathway to Notre Dame Sydney's MD, guaranteeing an interview (not an offer). The published eligibility wording says \"on-campus at ACU\" without naming a specific campus, and ACU runs Biomedical Science on-campus at Melbourne (Fitzroy), Brisbane and North Sydney — so this likely extends to Melbourne graduates too, but that wasn't confirmed against a directly-fetched Notre Dame page (site blocked automated fetches).",
+      requirements:
+        "GPA ≥6.0/7.0, GAMSAT ≥55 overall, Casper test, ranked in the top 5 of ACU Biomedical Science applicants who didn't already secure an interview via standard GEMSAS, and must list Notre Dame Sydney as first GEMSAS preference.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "Search-derived, not fully primary-source-verified for the Melbourne campus specifically (confirmed directly for ACU North Sydney) — see notredame.edu.au/study/applications-and-admissions/pathways/pathways-to-medicine.",
     },
     description:
       "Smaller, faith-based institution known for a supportive learning environment. No confirmed chemistry major, finance specialisation, or fashion program at the Melbourne campus — Business/Commerce and Biomedical Science are its clearest matches.",
@@ -647,6 +725,14 @@ const INSTITUTIONS = [
       feeStatus: "Domestic — CSP places available to eligible NZ citizens who reside in Australia for the duration of study.",
       sourceNote: "sydney.edu.au recognised-qualifications page (NCEA→ATAR conversion); uac.edu.au Sydney ELP page (no NZ/NCEA row); sydney.edu.au CSP eligibility page.",
     },
+    mdPathway: {
+      hasProgram: "Yes — Doctor of Medicine (MD), graduate-entry only.",
+      entry: "No school-leaver/direct-entry route — apply after a completed bachelor's.",
+      requirements:
+        "GAMSAT ≥50 in all 3 sections (from a defined list of eligible recent sittings); GPA ≥5.0/7.0. No interview for standard applicants since 2021 — GAMSAT score alone decides offers. Note: 2026-entry applications had already closed by mid-2026, with March 2026 GAMSAT as the final eligible sitting — a point-in-time detail, not a permanent structural limitation.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "sydney.edu.au Doctor of Medicine course/admissions pages.",
+    },
     description:
       "Sandstone Group of Eight university. Business School ranked ~29th globally for Accounting & Finance (QS 2025). No dedicated fashion program.",
     fields: {
@@ -686,6 +772,14 @@ const INSTITUTIONS = [
       portfolio: "Optional but advantageous, not a strict gate — the ADA Portfolio Entry pathway offers an Early Conditional Offer with an adjusted selection rank up to 10 points below standard, as a bonus pathway alongside normal ATAR-rank admission (unlike Swinburne, where portfolio is mandatory and determinative).",
       feeStatus: "Domestic — standard UNSW domestic classification (NZ/AU citizens, AU PRs); domestic applicants apply through UAC.",
       sourceNote: "unsw.edu.au Bachelor of Design (Honours) course page publishes exact current-year figures directly: 2026 lowest selection rank 83.0, lowest ATAR 65.0 — the clearest published cutoff of any institution in this dataset.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Bachelor of Medical Studies/Doctor of Medicine (BMed/MD), undergraduate-direct entry (6-year combined degree at Kensington, straight from Year 12).",
+      entry: "Undergraduate-direct only — no separate graduate-entry stream found in this research.",
+      requirements:
+        "ATAR ≥96.00 general entry, without EAS adjustments (EAS points don't lower this 96.00 bar — they apply only after it's independently met). A separate, lower ATAR ≥91.00 threshold applies to the distinct Rural Entry Pathway and Gateway Entry Scheme, not general entry. UCAT ANZ required; interview offers based on academic rank + UCAT score only.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "unsw.edu.au/medicine-health/study-with-us/undergraduate/domestic-applicants — directly fetched and verified.",
     },
     description:
       "Group of Eight university with a strong STEM and finance reputation across Asia-Pacific (Business School ranked ~10th globally for Accounting & Finance). Fashion isn't a dedicated program — the Art & Design campus in Paddington leans fine art/design — but its broad Bachelor of Design lets students combine textiles/fashion with computational or industrial design.",
@@ -736,6 +830,13 @@ const INSTITUTIONS = [
       portfolio: "Splits by program. Bachelor of Design in Fashion and Textiles: eligible under UTS's Design Portfolio Scheme — NZ citizens can apply via portfolio+interview if not completing NCEA in the current admissions year (a 6-page digital PDF portfolio plus a 150-200 word written submission is the general Design-course format). Bachelor of Fashion Business (in UTS Business, not Design): no portfolio found — appears to be standard ATAR/selection-rank academic entry only.",
       feeStatus: "Domestic — NZ citizens are explicitly eligible as domestic applicants, including via the Design Portfolio Scheme.",
       sourceNote: "uts.edu.au (course pages, Design Portfolio Scheme, admissions-stats-tool); uac.edu.au. Selection rank/ATAR for the specific fashion programs wasn't pinned to an exact figure — check UTS's live admissions-stats-tool.",
+    },
+    mdPathway: {
+      hasProgram: "No — UTS has no medical school (confirmed).",
+      entry: "N/A — no MD/MBBS program or named guaranteed-pathway feeder scheme was found for UTS.",
+      requirements: "N/A",
+      nzNote: "",
+      sourceNote: "Confirmed via search that UTS's Bachelor of Medical Science/Biotechnology are science degrees only, not a route to a clinical MD.",
     },
     description:
       "Sydney's standout choice for fashion — ranked 28th globally for undergraduate fashion (Business of Fashion 2026), with purpose-built design facilities (3D printing, seamless knitting, digital design tech). Chemistry is not a UTS strength. Particularly notable for combining fashion directly with business and innovation degrees rather than treating them as separate faculties.",
@@ -790,6 +891,15 @@ const INSTITUTIONS = [
       feeStatus: "Depends on visa/residency category — NZ citizens are domestic-classified for admission, but Macquarie has a dedicated \"Eligibility for New Zealand citizens\" fees page splitting NZ SCV holders who meet long-term residency (HELP-loan-eligible, can defer fees) from other NZ citizens who must pay fees fully upfront each period.",
       sourceNote: "mq.edu.au English requirements page returned 403 on fetch — recommend the parent access it directly or contact Macquarie admissions. Fee-status split: mq.edu.au/study/admissions-and-entry/fees-and-costs/eligibility-for-new-zealand-citizens.",
     },
+    mdPathway: {
+      hasProgram: "Yes — Macquarie MD (4-year graduate-entry degree), with an undergraduate feeder pathway.",
+      entry:
+        "Both graduate-entry (standard route, open to any bachelor's holder) and an undergraduate pathway: Bachelor of Clinical Science (2 years) → Macquarie MD (4 years) = 6 years total for school leavers. This is an \"advantaged\" pathway, not a full guarantee — a GEMSAS application is still required after finishing the Bachelor of Clinical Science.",
+      requirements:
+        "Standard graduate-entry needs GPA/GAMSAT + MMI via GEMSAS. Bachelor of Clinical Science graduates get a +3% GPA bonus and 20 reserved MMI interview places when applying to the Macquarie MD, but still compete rather than being guaranteed a place.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "mq.edu.au course pages (Bachelor of Clinical Science, Doctor of Medicine); GEMSAS.",
+    },
     description:
       "No dedicated fashion program. Macquarie Business School is well regarded for finance, co-located with a major business/tech precinct of 300+ companies for strong industry connections.",
     fields: {
@@ -829,6 +939,14 @@ const INSTITUTIONS = [
       feeStatus: "Depends on visa/residency category — domestic/CSP status is available to NZ citizens, but deferring fees via HECS-HELP/FEE-HELP requires the long-term residency test (8 of last 10 years + 18 of last 24 months in Australia); those who don't qualify pay the domestic contribution upfront rather than being pushed to international rates.",
       sourceNote: "westernsydney.edu.au official Entry Qualifications PDF (text extraction failed — recommend opening directly) and \"Changes to fees for New Zealand Citizens\" page. Verify directly with Western Sydney admissions.",
     },
+    mdPathway: {
+      hasProgram: "Yes — Bachelor of Clinical Science (Medicine)/Doctor of Medicine (MD), undergraduate-direct entry is the primary route.",
+      entry:
+        "Direct entry from Year 12 (or with an incomplete prior degree). Confirmed via direct fetch of westernsydney.edu.au: entry categories are General school-leaver ATAR entry, Rural Entry Admission Scheme, Aboriginal and Torres Strait Islander pathway, GWS subquota, and transfer for students already enrolled elsewhere in medicine. No named guaranteed/provisional pathway (of the UniMelb Chancellor's Scholars or Notre Dame Assured Pathway type) for graduates of a separate feeder degree exists here.",
+      requirements: "ATAR ≥95.5 standard / 93.5 Greater Western Sydney subquota / 91.5 Rural Entry Admission Scheme; UCAT ANZ required; interview. Selection = academic merit + UCAT + interview.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "westernsydney.edu.au/future/study/how-to-apply/md-applicants — directly fetched and verified.",
+    },
     description:
       "Technically Greater Western Sydney rather than inner Sydney — worth flagging given commute distance. Strong applied/industry focus. No fashion or standalone chemistry major at the Sydney-proper campuses.",
     fields: {
@@ -862,6 +980,15 @@ const INSTITUTIONS = [
       english: "No NCEA-specific English subject/credit threshold found. General policy requires proficiency evidence only if English wasn't the applicant's first language or they didn't complete Year 12+ in English in an approved English-speaking country — likely exempts NZ-schooled applicants, but not explicitly stated for NZ.",
       feeStatus: "Domestic — ACU states domestic status is citizenship-based (NZ citizenship qualifies), with no residency-history requirement to be classed domestic.",
       sourceNote: "uac.edu.au ACU international-students page; acu.edu.au undergraduate entry requirements — neither names New Zealand/NCEA explicitly for English proficiency. Fee status: acu.edu.au/study-at-acu/fees-and-scholarships.",
+    },
+    mdPathway: {
+      hasProgram: "No — ACU has no medical school of its own.",
+      entry:
+        "Feeder pathway: Bachelor of Biomedical Science at ACU North Sydney → Facilitated Interview Pathway to Notre Dame Sydney's MD. Guarantees an interview, not an admission offer.",
+      requirements:
+        "GPA ≥6.0/7.0, GAMSAT ≥55 overall, Casper test, ranked in the top 5 of ACU Biomedical Science applicants who didn't already secure an interview via standard GEMSAS, and must list Notre Dame Sydney as first GEMSAS preference.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "notredame.edu.au/study/applications-and-admissions/pathways/pathways-to-medicine (search-verified; direct fetch blocked with 403).",
     },
     description:
       "Smaller Catholic university with boutique class sizes. Business and Biomedical Science are the clearest matches here; chemistry only appears incidentally via Biomedical/Nutrition Science units rather than as a standalone major. No fashion program.",
@@ -897,6 +1024,15 @@ const INSTITUTIONS = [
       english: "No separate NCEA English threshold — Notre Dame's policy explicitly states applicants whose primary/secondary education was taught and assessed solely in English in a recognised country (New Zealand named explicitly) meet the English proficiency requirement automatically, no separate test or NCEA English subject/credit rule required. Note: some disciplines (Education, Nursing) have additional accrediting-body English requirements regardless.",
       feeStatus: "Domestic — CSP eligibility explicitly includes \"a New Zealand citizen, who will live and study in Australia for the whole course.\"",
       sourceNote: "notredame.edu.au English language proficiency requirements page (403 on direct fetch, relayed via search snippet — recommend verifying directly or calling 1800 878 916). Fee status: notredame.edu.au/study/fees-costs-and-scholarships.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Doctor of Medicine (MD), the clearest true guaranteed school-leaver pathway of all 12 universities researched.",
+      entry:
+        "Both undergraduate and graduate routes, explicitly named. (1) \"Assured Pathway\": top school leavers admitted to the Bachelor of Biomedical Science (Assured) are guaranteed an MD place on completion, provided GPA ≥2.5 every semester — up to 10 places reserved for rural entry and 10 for Indigenous students (2026 intake). (2) Standard graduate-entry: 4-year MD open to holders of any bachelor's (within 10 years, or final year).",
+      requirements:
+        "Assured Pathway: UCAT + interview at entry to the Bachelor of Biomedical Science (Assured); GPA ≥2.5/semester to keep the guaranteed place. Standard graduate-entry: GPA + GAMSAT + Casper + interview, cutoffs advertised annually.",
+      nzNote: MD_NZ_CAVEAT,
+      sourceNote: "notredame.edu.au/programs/school-of-health-sciences/undergraduate/bachelor-of-biomedical-science-assured — directly fetched and verified.",
     },
     description:
       "Small, boutique Catholic university with strong ethics focus and small class sizes. Genuinely offers chemistry as part of its Bachelor of Science (not research-intensive like the Go8s). No fashion program.",

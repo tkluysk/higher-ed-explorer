@@ -503,6 +503,19 @@ body {
   margin: 8px 0 0;
   line-height: 1.5;
 }
+.entry-row p, .entry-source-note p { margin: 0; }
+.prose-bullets {
+  margin: 4px 0 0;
+  padding-left: 1.1em;
+}
+.prose-bullets li { margin-bottom: 4px; }
+.prose-bullets li:last-child { margin-bottom: 0; }
+.entry-row a, .entry-source-note a {
+  color: var(--field-medicalSciences, #4a6fa5);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.entry-row a:hover, .entry-source-note a:hover { text-decoration-color: currentColor; }
 
 .modal-website {
   display: inline-block;
@@ -520,6 +533,87 @@ body {
   font-size: 0.78rem;
   padding: 20px;
 }
+
+.pathways-intro {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  max-width: 780px;
+  margin: 0 0 16px;
+}
+.pathways-graph-wrap {
+  overflow: auto;
+  max-height: 75vh;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-1);
+  padding: 8px;
+}
+.pathways-graph { display: block; }
+.pathways-col-header {
+  fill: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pathways-link {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  transition: stroke 0.15s, opacity 0.15s;
+}
+.pathways-link.active { stroke: var(--field-medicalSciences); stroke-width: 2.25; }
+.pathways-link.dim { opacity: 0.15; }
+
+.pathways-node { cursor: pointer; }
+.pathways-node rect {
+  fill: var(--page-plane);
+  stroke: var(--border);
+  stroke-width: 1;
+  transition: stroke 0.15s, fill 0.15s, opacity 0.15s;
+}
+.pathways-node text {
+  fill: var(--text-primary);
+  font-size: 12.5px;
+  font-family: inherit;
+}
+.pathways-node:hover rect { stroke: var(--border-strong); }
+.pathways-node.selected rect { stroke: var(--field-medicalSciences); stroke-width: 2; }
+.pathways-node.dim { opacity: 0.3; }
+.pathways-node:focus-visible rect { outline: 2px solid var(--field-medicalSciences); outline-offset: 1px; }
+
+.pathways-node .field-accent { opacity: 0.9; }
+.pathways-node.field-fashion .field-accent { fill: var(--field-fashion); }
+.pathways-node.field-chemistry .field-accent { fill: var(--field-chemistry); }
+.pathways-node.field-biology .field-accent { fill: var(--field-biology); }
+.pathways-node.field-business .field-accent { fill: var(--field-business); }
+.pathways-node.field-finance .field-accent { fill: var(--field-finance); }
+.pathways-node.field-entrepreneurship .field-accent { fill: var(--field-entrepreneurship); }
+.pathways-node.field-medicalSciences .field-accent { fill: var(--field-medicalSciences); }
+
+.pathways-detail {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--page-plane);
+  max-width: 780px;
+}
+.pathways-detail-label { font-weight: 700; margin: 0 0 6px; color: var(--text-primary); }
+.pathways-detail-text { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+.pathways-detail-open {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--field-business);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.pathways-detail-open:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
   .controls { flex-direction: column; align-items: stretch; }
