@@ -324,6 +324,37 @@
       ${items}`;
   }
 
+  // Each question may carry `links` to the page it relates to, and `gap: true`
+  // when it targets something the dataset couldn't confirm — the answer is
+  // worth noting down and feeding back into institutions.js.
+  function renderQuestionList(questions) {
+    const items = questions
+      .map((item) => {
+        const gap = item.gap ? ` <span class="question-gap" title="Not confirmed in our data — note the answer">gap</span>` : "";
+        const links = (item.links || [])
+          .map((l) => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`)
+          .join("");
+        const linkRow = links ? `<span class="question-links">${links}</span>` : "";
+        return `<li>${item.q}${gap}${linkRow}</li>`;
+      })
+      .join("");
+    return `<ul class="question-list">${items}</ul>`;
+  }
+
+  function renderVisitQuestionsSection(vq) {
+    const group = (label, questions) =>
+      questions && questions.length
+        ? `<p class="question-group-label">${label}</p>${renderQuestionList(questions)}`
+        : "";
+    return `
+      <div class="modal-section-title">Questions to ask on a visit</div>
+      <div class="entry-block question-block">
+        ${group("As the student", vq.student)}
+        ${group("As a parent", vq.parent)}
+        ${group("Anywhere", GENERAL_VISIT_QUESTIONS)}
+      </div>`;
+  }
+
   function openModal(id) {
     const inst = INSTITUTIONS.find((i) => i.id === id);
     if (!inst) return;
@@ -345,6 +376,7 @@
       .join("");
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
+    const visitQuestionsSection = inst.visitQuestions ? renderVisitQuestionsSection(inst.visitQuestions) : "";
     const hybridSection = inst.hybrid && inst.hybrid.length ? renderHybridSection(inst.hybrid) : "";
     const entrySection = inst.entryRequirements
       ? renderEntryRequirementsSection(inst.entryRequirements, inst.city)
@@ -383,6 +415,7 @@
       ${mdPathwaySection}
       ${otherNotesSection}
       ${visitSection}
+      ${visitQuestionsSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
     modalBody.querySelectorAll(".status-btn").forEach((btn) => {

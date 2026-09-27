@@ -517,6 +517,24 @@ body {
 }
 .entry-row a:hover, .entry-source-note a:hover { text-decoration-color: currentColor; }
 
+.question-group-label { font-weight: 600; font-size: 0.86rem; color: var(--text-primary); margin: 10px 0 4px; }
+.question-group-label:first-child { margin-top: 0; }
+.question-list { margin: 0 0 4px; padding-left: 1.1em; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5; }
+.question-list li { margin-bottom: 8px; }
+.question-list li:last-child { margin-bottom: 0; }
+.question-gap {
+  display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; padding: 0 6px; border-radius: 4px; vertical-align: 1px;
+  color: var(--field-fashion); border: 1px solid currentColor;
+}
+.question-links { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 3px; font-size: 0.8rem; }
+.question-links a {
+  color: var(--field-medicalSciences, #4a6fa5);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.question-links a:hover { text-decoration-color: currentColor; }
+
 .modal-website {
   display: inline-block;
   margin-top: 6px;

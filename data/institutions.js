@@ -15,6 +15,15 @@ const CITY_APPLICATION_PROCESS = {
     "Applications go through VTAC (Victorian Tertiary Admissions Centre), the shared domestic admissions portal for Victorian universities and colleges — not a direct application to the institution. Register and apply at vtac.edu.au; standard round closes ~Sept/Oct for the following academic year.",
 };
 
+// Campus-visit questions that apply to any institution, shown beneath each
+// institution's own `visitQuestions` in the detail view.
+const GENERAL_VISIT_QUESTIONS = [
+  { q: "If you only had time to see one lab or studio today, which should it be?" },
+  { q: "Can we sit in on a class, or talk to a current student in this area?" },
+  { q: "What do students wish they'd known before starting?" },
+];
+
+
 // Shared NZ-citizen caveat for MD (medical degree) pathways: NZ citizens on
 // an ordinary Special Category Visa (subclass 444) are domestic-equivalent
 // for standard CSP medicine places, but NOT eligible for Bonded Medical
@@ -93,6 +102,27 @@ const INSTITUTIONS = [
       ],
       notes:
         "NZ citizens should attend \"How to apply as a domestic student\" (VTAC session), not \"How to apply as an international student\" — per study.unimelb.edu.au/student-life/events/international-webinar. Date/time for the domestic/VTAC session not yet confirmed for the Oct 2026 series; check study.unimelb.edu.au/student-life/events/interstate-webinars or booking link bookings.events.unimelb.edu.au/ug-web-vtac closer to the date.",
+    },
+    visitQuestions: {
+      student: [
+        { q: "Biomedicine vs Science: which is the better base if I'm undecided between medicine, research and medtech?", links: [{ label: "Bachelor of Biomedicine", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/" }, { label: "Biomedicine structure", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/structure/" }] },
+        { q: "Can I do the Biomedical Engineering Systems major without Specialist Maths? What are the prerequisites?", links: [{ label: "Biomedical Engineering Systems major", url: "https://study.unimelb.edu.au/find/courses/major/biomedical-engineering-systems/structure/" }, { label: "Biomedicine entry requirements", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/entry-requirements/" }] },
+        { q: "Melbourne Model breadth: could I take Commerce or entrepreneurship subjects as breadth?", links: [{ label: "Breadth subjects", url: "https://students.unimelb.edu.au/course-admin/planning-your-course-and-subjects/breadth-subjects" }, { label: "Commerce as breadth", url: "https://fbe.unimelb.edu.au/study/commerce-as-breadth" }] },
+        { q: "Entrepreneurship is postgrad-only as a course — what's there for undergrads (clubs, hackathons, accelerator)?", links: [{ label: "Entrepreneurship study options", url: "https://study.unimelb.edu.au/find/study-areas/entrepreneurship/" }, { label: "Melbourne Entrepreneurial Centre", url: "https://www.unimelb.edu.au/mec" }, { label: "MAP Accelerator", url: "https://www.unimelb.edu.au/mec/MECPrograms/melbourne-accelerator-program" }] },
+        { q: "What's the real workload, and how big are first-year lectures?", links: [{ label: "Biomedicine student experience", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/student-experience/" }] },
+        { q: "How do undergrads get research experience — summer research, lab placements?", links: [{ label: "UROP (Biomedicine)", url: "https://biomedicalsciences.unimelb.edu.au/study/current-student-information/plan-your-bachelor-of-biomedicine/urop" }, { label: "Science research subjects", url: "https://science.unimelb.edu.au/students/research-project-subjects" }] },
+        { q: "If I'm aiming for the MD later, what do successful applicants do during the bachelor's? Any GAMSAT/MMI support?", links: [{ label: "How to become a doctor", url: "https://study.unimelb.edu.au/find/pathways/doctor/" }, { label: "MD entry requirements", url: "https://study.unimelb.edu.au/find/courses/graduate/doctor-of-medicine/entry-requirements/" }] },
+      ],
+      parent: [
+        { q: "NCEA rank: walk us through the /320 → selection-rank conversion with a worked example using her actual subjects.", gap: true, links: [{ label: "How you're selected (NCEA)", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/entry-requirements/how-youre-selected-applicants-with-ncea" }, { label: "NCEA entry scores", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications/entry-requirements/indicative-entry-scores-international-students/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea" }] },
+        { q: "What NCEA-based ranks have actually got people into Biomedicine (~90) and Commerce (~92) recently?", links: [{ label: "Biomedicine entry requirements", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/entry-requirements/" }, { label: "Bachelor of Commerce", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-commerce/" }] },
+        { q: "MD for NZ citizens: CSP or full-fee? (NZ citizens can't take Bonded Medical Places.) Can an NCEA rank qualify for Chancellor's Scholar status?", links: [{ label: "MD fees", url: "https://study.unimelb.edu.au/find/courses/graduate/doctor-of-medicine/fees/" }, { label: "Chancellor's Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-chancellors-scholarship" }, { label: "Graduate course guarantees", url: "https://scholarships.unimelb.edu.au/about-scholarships/melbourne-chancellors-scholarship/graduate-course-guarantees" }] },
+        { q: "CSP requires living in Australia while studying — what exactly does that mean, and what's the HELP loan position for an NZ citizen?", links: [{ label: "Undergrad fees (domestic)", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/fees-and-payments" }, { label: "Student contribution amounts", url: "https://study.unimelb.edu.au/how-to-apply/fees/student-contribution-amounts" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+        { q: "Confirm NZ applicants apply via VTAC as domestic — and the key dates for a 2027 start.", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }, { label: "Domestic entry requirements", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/entry-requirements" }] },
+        { q: "First-year housing: is it guaranteed? College vs university housing — cost per year?", links: [{ label: "Student accommodation", url: "https://study.unimelb.edu.au/accommodation" }, { label: "Residential colleges FAQ", url: "https://www.colleges.unimelb.edu.au/frequently-asked-questions/" }] },
+        { q: "Which scholarships can NZ citizens apply for (merit, relocation, access)?", links: [{ label: "Find a scholarship", url: "https://scholarships.unimelb.edu.au/" }] },
+        { q: "How easy is it to switch between Science, Biomedicine and Commerce after first year?", links: [{ label: "Course transfers", url: "https://study.unimelb.edu.au/how-to-apply/transferring-courses" }] },
+      ],
     },
   },
   {
@@ -303,6 +333,29 @@ const INSTITUTIONS = [
       tours: "45-minute student-ambassador-led guided tours of Hawthorn (incl. Sky Lounge/Sky Garden), bookable online; 360° virtual tour also available.",
       toursUrl: "https://www.swinburne.edu.au/forms/campus-tour/",
       notes: "School groups can request study-area-specific workshop visits outside Open Day.",
+    },
+    visitQuestions: {
+      student: [
+        { q: "Portfolio: what makes a 10-page portfolio stand out? Can I see strong past examples — and do they want finished pieces or process/sketch work?", gap: true, links: [{ label: "Fashion course — how to apply", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-design-fashion/" }, { label: "How to become a fashion designer", url: "https://www.swinburne.edu.au/courses/find-a-course/design/fashion-design/how-to-become-a-fashion-designer/" }] },
+        { q: "How much weight does the 250-word written response carry versus the portfolio itself?", links: [{ label: "Fashion course page", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-design-fashion/" }] },
+        { q: "Can I combine Fashion with Business or Entrepreneurship — double degree or minor? (Only confirmed for the general Bachelor of Design.)", gap: true, links: [{ label: "Fashion handbook", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-design-fashion/handbook/" }, { label: "Business / Applied Innovation", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-business-bachelor-of-applied-innovation/" }] },
+        { q: "The fashion degree is new — where have the first students ended up, and which industry partners take them?", links: [{ label: "Course launch (2024)", url: "https://www.swinburne.edu.au/news/2024/07/the-future-of-fashion-Swinburne-launches-groundbreaking-tech-focused-fashion-course/" }, { label: "Student work (2025)", url: "https://www.swinburne.edu.au/news/2025/06/Swinburnes-fashion-students-stitch-together-future-ready-skills/" }] },
+        { q: "When do I get hands-on access to the ProtoLAB and wearable-tech studios — first year or later?", links: [{ label: "ProtoLAB", url: "https://www.swinburne.edu.au/research/facilities-equipment/protolab/" }] },
+        { q: "Work Integrated Learning: do you find my placement or do I? Is it paid? Could it be at a startup?", links: [{ label: "WIL overview", url: "https://www.swinburne.edu.au/life-at-swinburne/work-integrated-learning/" }, { label: "Placements", url: "https://www.swinburne.edu.au/life-at-swinburne/work-integrated-learning/placements/" }] },
+        { q: "Medtech: what's day-to-day like in AI & Digital Health vs Biomedical Engineering? Do I need Specialist Maths or Physics for the engineering one?", links: [{ label: "AI & Digital Health major", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-health-science/artificial-intelligence-and-digital-health/" }, { label: "Biomedical Engineering major", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-engineering-honours/biomedical/" }] },
+        { q: "How big are first-year classes, and how much is project-based vs exam-based?" },
+        { q: "Is there a student entrepreneurship program or incubator I can join as an undergrad?", links: [{ label: "Entrepreneurship major", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-business/entrepreneurship/" }, { label: "Innovation Precinct", url: "https://www.swinburne.edu.au/innovation-precinct/" }, { label: "Pre-accelerator", url: "https://www.swinburne.edu.au/innovation-precinct/get-involved/pre-accelerator-program/" }] },
+      ],
+      parent: [
+        { q: "NCEA: confirm NCEA L3 + UE is sufficient, and that NCEA English credits satisfy the English requirement.", gap: true, links: [{ label: "How to apply (local)", url: "https://www.swinburne.edu.au/courses/applying/how-to-apply-local/" }] },
+        { q: "Fees: as an NZ citizen, will she get a CSP? What's the real annual cost — and is HECS-HELP available, or is it upfront? (HELP for NZ citizens needs 10+ years' residency from childhood.)", links: [{ label: "Fees for local students", url: "https://www.swinburne.edu.au/courses/fees/fees-for-local-students/" }, { label: "HECS-HELP at Swinburne", url: "https://www.swinburne.edu.au/courses/fees/loans-discounts-local-students/hecs-help-loan/" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+        { q: "Timeline: VTAC or direct application? When is the portfolio due?", links: [{ label: "Swinburne on VTAC", url: "https://www.swinburne.edu.au/courses/applying/information-on-vtac/" }, { label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }] },
+        { q: "Housing for first-years moving from overseas/interstate — options, cost, is a place guaranteed?", links: [{ label: "On-campus residences", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/on-campus-accommodation/" }, { label: "Compare options & costs", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/compare-your-options/" }] },
+        { q: "What support is there for students living away from home — mentoring, wellbeing, first-year transition?", links: [{ label: "Find a student mentor", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/find-a-mentor/" }, { label: "Support services", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/" }] },
+        { q: "Graduate employment rates at 4 months — specifically for design/fashion?", links: [{ label: "ComparED (QILT)", url: "https://www.compared.edu.au/" }] },
+        { q: "How easy is it to switch degree if fashion isn't the one?", links: [{ label: "Changing course (student stories)", url: "https://www.swinburne.edu.au/news/2026/03/course-changers-meet-students-who-found-their-path-by-changing-their-studies/" }] },
+        { q: "Which scholarships are open to NZ citizens?", links: [{ label: "Scholarships", url: "https://www.swinburne.edu.au/study/options/scholarships/" }] },
+      ],
     },
   },
   {
