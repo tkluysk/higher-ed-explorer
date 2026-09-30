@@ -638,3 +638,94 @@ body {
   .view-toggle-group { margin-left: 0; }
   #map { height: 460px; }
 }
+
+/* ---- Accommodation page ---- */
+.back-link { margin: 0 0 8px; font-size: 0.85rem; }
+.back-link a, .header-link a { color: var(--field-business); text-decoration: none; }
+.back-link a:hover, .header-link a:hover { text-decoration: underline; }
+.header-link { margin: 8px 0 0; font-size: 0.88rem; }
+
+.accom-map-view { margin-bottom: 20px; }
+.accom-map-view #map { height: 680px; }
+
+.price-pin-wrap { background: transparent; border: none; }
+.price-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  font: 700 0.72rem/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.price-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+.campus-pin {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: #d03b3b;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  font: 700 0.75rem/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  white-space: nowrap;
+}
+
+.price-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--text-secondary); min-height: 30px; align-items: center; }
+.legend-item { display: inline-flex; align-items: center; }
+.tier-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 0; flex: none; }
+
+.source-tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  vertical-align: 1px;
+}
+
+.accom-popup-price { margin: 6px 0 4px; font-size: 0.88rem; }
+.accom-popup-note { margin: 0 0 4px; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; }
+.accom-travel { list-style: none; padding: 0; margin: 8px 0; font-size: 0.82rem; }
+.accom-travel li { margin: 2px 0; }
+.accom-travel span { display: inline-block; width: 52px; color: var(--text-muted); font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.accom-travel em { font-style: normal; color: var(--text-muted); font-size: 0.76rem; }
+
+.accom-table { min-width: 820px; table-layout: auto; }
+.accom-table td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.accom-table td.num .compare-type { white-space: normal; max-width: 180px; }
+.sort-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.sort-btn.active { color: var(--text-primary); }
+
+.accom-notes { max-width: 780px; margin-top: 20px; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.55; }
+.accom-notes a { color: var(--field-business); }
+
+@media (max-width: 640px) {
+  .accom-map-view #map { height: 420px; }
+}

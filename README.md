@@ -18,6 +18,9 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
   pin, or detail view. Not-interested picks are shaded red; status is saved
   in the browser's `localStorage`, so it persists on the same device but
   doesn't sync across devices (this is a static site with no backend)
+- **RMIT accommodation map** (`accommodation.html`) — the 23 residences RMIT
+  lists, pinned by weekly price, with transit/bike/walk times to the
+  Brunswick campus and a sortable table
 
 ## Running locally
 
@@ -37,6 +40,9 @@ index.html          Page shell and markup
 css/styles.css       Styling (light/dark theme via CSS custom properties)
 js/app.js            Filtering, rendering, map, and status logic
 data/institutions.js Seed dataset — institutions, programs, and visit info
+accommodation.html   RMIT accommodation map page
+js/accommodation.js  Map, filters and table for the accommodation page
+data/accommodation.js Residences, prices and commute times (Sep 2026)
 ```
 
 ## Data
