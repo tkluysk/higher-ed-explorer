@@ -521,6 +521,8 @@ body {
 .question-group-label:first-child { margin-top: 0; }
 .question-list { margin: 0 0 4px; padding-left: 1.1em; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5; }
 .question-list li { margin-bottom: 8px; }
+ol.question-list { padding-left: 1.4em; }
+.meeting-context { margin: 0 0 10px; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; }
 .question-list li:last-child { margin-bottom: 0; }
 .question-gap {
   display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;

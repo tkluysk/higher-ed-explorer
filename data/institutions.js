@@ -103,6 +103,40 @@ const INSTITUTIONS = [
       notes:
         "NZ citizens should attend \"How to apply as a domestic student\" (VTAC session), not \"How to apply as an international student\" — per study.unimelb.edu.au/student-life/events/international-webinar. Date/time for the domestic/VTAC session not yet confirmed for the Oct 2026 series; check study.unimelb.edu.au/student-life/events/interstate-webinars or booking link bookings.events.unimelb.edu.au/ug-web-vtac closer to the date.",
     },
+    // Short, prioritised list for a timed meeting with the Prospective
+    // Students team (admissions/fees/housing — not academic staff). Ordered so
+    // the must-asks fit in the first ~5 minutes. Dates checked 1 Oct 2026.
+    meetingQuestions: {
+      title: "15 minutes with the Prospective Students team",
+      context: "Bring her NCEA Level 2 results and Level 3 subjects so they can run the rank conversion live. VTAC on-time applications closed 28 Sep; late applications are open until 30 Oct ($166), and SEAS/scholarship applications close 9 Oct.",
+      groups: [
+        {
+          label: "Must ask (first 5 min)",
+          questions: [
+            { q: "Using her actual subjects and results, what selection rank would she be on, and how does that compare with Biomedicine, Science and Commerce this year?", gap: true, links: [{ label: "How you're selected (NCEA)", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/entry-requirements/equivalent-qualifications-to-the-vce/how-youre-selected-applicants-with-ncea" }, { label: "NCEA entry scores", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/recognised-vce-equivalent-qualifications/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea" }] },
+            { q: "NCEA results come out in mid-January. Which VTAC offer round will she realistically be in (12 or 27 Jan), and does that put her behind VCE students for places in popular courses?", gap: true, links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }, { label: "Key info for VTAC applicants", url: "https://study.unimelb.edu.au/study-with-us/undergraduate-courses/change-of-preference/key-information-VTAC-applicants" }] },
+            { q: "Do the published ATAR guarantees also apply to an NCEA-based rank, or is NCEA entry always competitive?", gap: true, links: [{ label: "ATAR entry score guide", url: "https://study.unimelb.edu.au/study-with-us/undergraduate-courses/change-of-preference/atar-guarantees" }] },
+            { q: "If we lodge (or change) the VTAC application in the late period before 30 Oct, is there any disadvantage beyond the higher fee? Is there anything she should apply for by the 9 Oct SEAS deadline?", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }] },
+          ],
+        },
+        {
+          label: "Money & housing (next 5 min)",
+          questions: [
+            { q: "As an NZ citizen she'd get a CSP but most likely no HECS-HELP. What would we actually pay upfront per semester for Biomedicine, Science or Commerce, and what does 'residing in Australia' require in practice?", links: [{ label: "Domestic fees", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/fees-and-payments" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+            { q: "The first-year Accommodation Offer for students new to Melbourne is first come, first served. Should we apply now, before she has a course offer? Which rooms go first, and what does a typical year cost?", links: [{ label: "How to apply for accommodation", url: "https://study.unimelb.edu.au/accommodation/how-to-apply" }, { label: "Eligibility", url: "https://study.unimelb.edu.au/accommodation/eligibility" }, { label: "Accommodation FAQs", url: "https://study.unimelb.edu.au/accommodation/faqs" }] },
+            { q: "Which scholarships can an NZ citizen apply for (including accommodation scholarships), and are any of them tied to the 9 Oct SEAS deadline?", links: [{ label: "Find a scholarship", url: "https://scholarships.unimelb.edu.au/" }, { label: "Accommodation Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-university-accommodation-scholarship" }] },
+          ],
+        },
+        {
+          label: "If there's time",
+          questions: [
+            { q: "Can an NCEA rank ever qualify for Chancellor's Scholar status (the guaranteed MD pathway), or is that effectively ATAR-only?", gap: true, links: [{ label: "Chancellor's Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-chancellors-scholarship" }] },
+            { q: "How easy is it to move between Science, Biomedicine and Commerce after first year?", links: [{ label: "Course transfers", url: "https://study.unimelb.edu.au/how-to-apply/transferring-courses" }] },
+            { q: "Who should we contact directly as NZ applicants from here on, and how would an offer and enrolment work for someone arriving from NZ in February?" },
+          ],
+        },
+      ],
+    },
     visitQuestions: {
       student: [
         { q: "Biomedicine vs Science: which is the better base if I'm undecided between medicine, research and medtech?", links: [{ label: "Bachelor of Biomedicine", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/" }, { label: "Biomedicine structure", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/structure/" }] },

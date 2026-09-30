@@ -327,7 +327,7 @@
   // Each question may carry `links` to the page it relates to, and `gap: true`
   // when it targets something the dataset couldn't confirm — the answer is
   // worth noting down and feeding back into institutions.js.
-  function renderQuestionList(questions) {
+  function renderQuestionList(questions, ordered = false) {
     const items = questions
       .map((item) => {
         const gap = item.gap ? ` <span class="question-gap" title="Not confirmed in our data — note the answer">gap</span>` : "";
@@ -338,7 +338,20 @@
         return `<li>${item.q}${gap}${linkRow}</li>`;
       })
       .join("");
-    return `<ul class="question-list">${items}</ul>`;
+    return ordered ? `<ol class="question-list">${items}</ol>` : `<ul class="question-list">${items}</ul>`;
+  }
+
+  // A timed meeting list: numbered, grouped by priority, with a prep note.
+  function renderMeetingQuestionsSection(mq) {
+    const groups = mq.groups
+      .map((g) => `<p class="question-group-label">${g.label}</p>${renderQuestionList(g.questions, true)}`)
+      .join("");
+    return `
+      <div class="modal-section-title">${mq.title}</div>
+      <div class="entry-block question-block">
+        ${mq.context ? `<p class="meeting-context">${mq.context}</p>` : ""}
+        ${groups}
+      </div>`;
   }
 
   function renderVisitQuestionsSection(vq) {
@@ -377,6 +390,7 @@
 
     const visitSection = inst.visit ? renderVisitSection(inst.visit) : "";
     const visitQuestionsSection = inst.visitQuestions ? renderVisitQuestionsSection(inst.visitQuestions) : "";
+    const meetingQuestionsSection = inst.meetingQuestions ? renderMeetingQuestionsSection(inst.meetingQuestions) : "";
     const hybridSection = inst.hybrid && inst.hybrid.length ? renderHybridSection(inst.hybrid) : "";
     const entrySection = inst.entryRequirements
       ? renderEntryRequirementsSection(inst.entryRequirements, inst.city)
@@ -415,6 +429,7 @@
       ${mdPathwaySection}
       ${otherNotesSection}
       ${visitSection}
+      ${meetingQuestionsSection}
       ${visitQuestionsSection}
       <a class="modal-website" href="${inst.website}" target="_blank" rel="noopener noreferrer">Visit website &rarr;</a>
     `;
