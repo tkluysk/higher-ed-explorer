@@ -9,11 +9,11 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<nav id="site-nav"></nav>
 <header class="app-header">
   <div class="header-inner">
-    <h1>Higher Ed Explorer</h1>
-    <p class="subtitle">Universities, TAFEs &amp; colleges for fashion, chemistry, business &amp; finance</p>
-    <p class="header-link"><a href="accommodation.html">Student accommodation map →</a> · <a href="timeline.html">Milestones timeline →</a></p>
+    <h1>Institutions</h1>
+    <p class="subtitle">Melbourne and Sydney universities, TAFEs and colleges for fashion, science, business and medicine. Open any school for entry requirements, fees, visit notes and interview answers.</p>
   </div>
 </header>
 
@@ -100,6 +100,7 @@
 
 <div class="modal-backdrop" id="modal-backdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-expand" id="modal-expand" aria-label="Expand to full page" title="Expand to full page" aria-pressed="false">⤢</button>
     <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
     <div id="modal-body"></div>
   </div>
@@ -110,6 +111,7 @@
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/nav.js"></script>
 <script src="data/institutions.js"></script>
 <script src="js/app.js"></script>
 </body>

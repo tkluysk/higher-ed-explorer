@@ -111,6 +111,8 @@ const INSTITUTIONS = [
     meetingQuestions: {
       title: "Prospective Students meeting — 2 Oct 2026",
       transcriptUrl: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-10-02-unimelb-prospective-students.md",
+      recordingUrl: "https://drive.google.com/file/d/1lrd22IeKZDwsILx8hLW86atebWwBryg5/view",
+      date: "2026-10-02",
       context: "About 30 minutes with the Prospective Students team at Stop 1 (planned as 15). They assumed a 2028 start, so she would apply through VTAC in Aug–Sep 2027. Answers below are what staff said, not official policy.",
       groups: [
         {
@@ -391,6 +393,8 @@ const INSTITUTIONS = [
     meetingQuestions: {
       title: "Student HQ conversation — 28 Sep 2026",
       transcriptUrl: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-09-28-swinburne-student-hq.md",
+      recordingUrl: "https://drive.google.com/file/d/1tM7sur7f_EgvRWHvl-MfjgrKI8Ej2gQQ/view",
+      date: "2026-09-28",
       context: "About 1h 35m with a Student HQ adviser at Hawthorn (no guided tour available that day). They assumed a 2028 start, so she would apply through VTAC in Aug–Dec 2027. Answers below are what staff said, not official policy.",
       groups: [
         {

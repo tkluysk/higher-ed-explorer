@@ -7,7 +7,7 @@
    Run: node scripts/build-timeline.js   (writes timeline.html, then checks it with check.py if present).
    Records live in data/milestones.json. Dates for 2027–28 are projected from the 2026 cycle (marked est.). */
 const TITLE = 'Road to uni — 2028 start';
-const SUBTITLE = '<a href="index.html">← Higher Ed Explorer</a> · application, housing and enrolment milestones for a Semester 1 2028 start';
+const SUBTITLE = 'Application, housing and enrolment milestones for a Semester 1 2028 start';
 const FOOTER = 'Built from <code>data/milestones.json</code>. Dates marked est. are projected from the 2026 VTAC and university cycles; confirm each as it is published. Sources: the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews, vtac.edu.au, NZQA and university pages.';
 /* The headline countdown comes from whichever record carries target: true — see load(). */
 
@@ -108,7 +108,7 @@ function timelinePage() {
 @media(prefers-color-scheme:dark){:root{--ink:#e8ebf0;--ink2:#a3aebf;--ink3:#76818f;--rule:#242a35;--rule2:#1b2029;--bg:#0e1117;--soft:#161b24;--crit:#fb923c;--tgt:#f472b6}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
 main{max-width:1120px;margin:0 auto;padding:0 22px 70px}
-.hd{position:sticky;top:0;z-index:5;background:var(--bg);padding:26px 0 0}
+.hd{position:sticky;top:48px;z-index:5;background:var(--bg);padding:26px 0 0}
 h1{font-size:27px;margin:0 0 4px;letter-spacing:-.02em}.sub{color:var(--ink3);font-size:13px;margin-bottom:14px}.sub a,footer a{color:var(--ink2)}
 .bar{display:flex;gap:14px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--rule);font-size:12px;color:var(--ink2)}
 .key{display:flex;align-items:center;gap:6px}.key i{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -193,7 +193,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--rule);color:v
  .ev .card,.ev.right .card{grid-column:2;text-align:left;padding:2px 0 16px}
  .top,.ev.right .top{justify-content:flex-start}
 }
-</style></head><body><main>
+</style></head><body><nav id="site-nav"></nav><main>
 <div class="hd"><h1>${TITLE}</h1>
 <div class="sub">${SUBTITLE} · generated ${stamp}</div>
 <div class="mm">
@@ -204,6 +204,7 @@ footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--rule);color:v
 <div class="heads"><b>To do</b><span></span><b>Done</b></div></div>
 <ul id="tl">${items.map(li).join('')}</ul>
 <footer>${FOOTER}</footer></main>
+<script src="js/nav.js"></script>
 <script>
 const today=new Date(new Date().toDateString());const day=iso=>{const[y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
 for(const el of document.querySelectorAll('.rel')){const n=Math.round((day(el.dataset.d)-today)/864e5);

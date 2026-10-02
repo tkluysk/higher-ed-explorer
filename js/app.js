@@ -114,6 +114,8 @@
   const modalBackdrop = document.getElementById("modal-backdrop");
   const modalBody = document.getElementById("modal-body");
   const modalClose = document.getElementById("modal-close");
+  const modalExpand = document.getElementById("modal-expand");
+  let openId = null;
 
   let map = null;
   let markers = [];
@@ -255,7 +257,7 @@
       ? `<div class="entry-source-note">${toBullets(entry.sourceNote, { splitOn: /;\s+/ })}</div>`
       : "";
     const feeRow = entry.feeStatus
-      ? `<p class="entry-row"><span class="entry-label">Fees</span> ${linkify(entry.feeStatus)}</p>`
+      ? `<p class="entry-row"><span class="entry-label">Fees</span> ${linkify(entry.feeStatus)} <a class="entry-inline-link" href="fees.html">Estimate costs in the fees calculator →</a></p>`
       : "";
     const subjectsRow = entry.subjectPrerequisites
       ? `<p class="entry-row"><span class="entry-label">Subjects</span> ${linkify(entry.subjectPrerequisites)}</p>`
@@ -447,13 +449,52 @@
         openModal(id);
       });
     });
+    const reopen = openId === id && !modalBackdrop.hidden;
+    openId = id;
     modalBackdrop.hidden = false;
-    modalClose.focus();
+    syncHash();
+    if (!reopen) modalClose.focus();
   }
 
   function closeModal() {
     modalBackdrop.hidden = true;
+    openId = null;
+    setFull(false);
+    syncHash();
   }
+
+  // Expanded = the school's page fills the window. The URL hash records the
+  // open school and whether it's expanded, so a full-page school view can be
+  // bookmarked, shared, or opened from another page (e.g. interviews.html).
+  function setFull(full) {
+    modalBackdrop.classList.toggle("is-full", full);
+    modalExpand.setAttribute("aria-pressed", String(full));
+    modalExpand.textContent = full ? "⤡" : "⤢";
+    modalExpand.title = full ? "Back to pop-up" : "Expand to full page";
+    modalExpand.setAttribute("aria-label", modalExpand.title);
+  }
+
+  function syncHash() {
+    const hash = openId ? `#school=${openId}${modalBackdrop.classList.contains("is-full") ? "&full" : ""}` : "";
+    if (location.hash !== hash) history.replaceState(null, "", hash || location.pathname + location.search);
+  }
+
+  function openFromHash() {
+    const params = new URLSearchParams(location.hash.slice(1));
+    const id = params.get("school");
+    if (id && INSTITUTIONS.some((i) => i.id === id)) {
+      setFull(params.has("full"));
+      openModal(id);
+    } else if (!modalBackdrop.hidden) {
+      closeModal();
+    }
+  }
+
+  modalExpand.addEventListener("click", () => {
+    setFull(!modalBackdrop.classList.contains("is-full"));
+    syncHash();
+  });
+  window.addEventListener("hashchange", openFromHash);
 
   modalClose.addEventListener("click", closeModal);
   modalBackdrop.addEventListener("click", (e) => {
@@ -945,4 +986,5 @@
   });
 
   renderCards();
+  openFromHash();
 })();

@@ -23,6 +23,18 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
   by weekly price, with transit/bike/walk times to RMIT Brunswick, UniMelb
   Parkville and Swinburne Hawthorn, a sortable table, and what each interview
   taught us about housing
+- **Site navigation**: one bar across every page (Institutions, Accommodation,
+  Fees, Timeline, Interviews), rendered by `js/nav.js`
+- **Full-page school view**: the ⤢ button expands a school's detail view to the
+  whole window; the URL (`index.html#school=unimelb&full`) can be bookmarked or
+  shared
+- **Fees calculator** (`fees.html`): tuition by student-contribution band (2026
+  government maximums, indexed to the study year), SSAF, housing from the
+  accommodation data, living costs, flights and setup, per year and per
+  semester, in A$ and NZ$. NZ citizens pay tuition upfront each semester (no
+  HECS-HELP), so it also lists the payment schedule. Inputs persist in the browser
+- **Interviews** (`interviews.html`): every staff interview's questions,
+  answers, open gaps and follow-ups, with transcript and recording links
 - **Milestones timeline** (`timeline.html`): application, housing and
   enrolment deadlines for a 2028 start, built from `data/milestones.json` with
   the `timeline` skill's generator. Rebuild after editing the data with
@@ -49,6 +61,9 @@ data/institutions.js Seed dataset — institutions, programs, and visit info
 accommodation.html   Accommodation map page
 js/accommodation.js  Map, filters and table for the accommodation page
 data/accommodation.js Residences, prices, commute times to 3 campuses, housing notes
+fees.html            Fees calculator (js/fees.js, data/fees.js)
+interviews.html      Interview Q&A (js/interviews.js, from meetingQuestions in data/institutions.js)
+js/nav.js            Site-wide navigation bar
 timeline.html        Milestones timeline (generated; don't edit by hand)
 data/milestones.json Milestones for the timeline
 scripts/             build-timeline.js (generator) and check-timeline.py (geometry check)

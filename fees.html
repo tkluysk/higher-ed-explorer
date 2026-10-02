@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fees Calculator</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav id="site-nav"></nav>
+<header class="app-header">
+  <div class="header-inner">
+    <h1>Fees calculator</h1>
+    <p class="subtitle">What a degree costs an NZ citizen in Melbourne: tuition paid upfront each semester, plus housing and living costs</p>
+  </div>
+</header>
+
+<main class="app-main fees-main">
+  <div class="fees-layout">
+    <form class="fees-form" id="fees-form" autocomplete="off">
+      <fieldset class="fees-group">
+        <legend>Course</legend>
+        <label class="field">Degree
+          <select id="f-course"></select>
+        </label>
+        <p class="field-note" id="f-course-note"></p>
+        <div class="mix" id="f-mix"></div>
+        <p class="field-note" id="f-mix-total"></p>
+        <div class="field-row">
+          <label class="field">Years
+            <input type="number" id="f-years" min="1" max="6" step="1">
+          </label>
+          <label class="field">Study load
+            <select id="f-load">
+              <option value="1">Full-time</option>
+              <option value="0.75">3/4 time</option>
+              <option value="0.5">Half-time</option>
+            </select>
+          </label>
+          <label class="field">Start year
+            <input type="number" id="f-start" min="2027" max="2032" step="1">
+          </label>
+        </div>
+        <label class="check"><input type="checkbox" id="f-ssaf"> Include the Student Services and Amenities Fee (up to $373 a year)</label>
+      </fieldset>
+
+      <fieldset class="fees-group">
+        <legend>Housing</legend>
+        <label class="field">Where she lives
+          <select id="f-home"></select>
+        </label>
+        <div class="field-row">
+          <label class="field">Rent per week (A$)
+            <input type="number" id="f-rent" min="0" step="5">
+          </label>
+          <label class="field">Weeks per year
+            <input type="number" id="f-weeks" min="0" max="52" step="1">
+          </label>
+        </div>
+        <p class="field-note">Contracts run about 40–52 weeks; colleges quote a ~40-week academic year. Prices are the cheapest advertised room from the <a href="accommodation.html">accommodation map</a>.</p>
+      </fieldset>
+
+      <fieldset class="fees-group">
+        <legend>Living costs per week (A$)</legend>
+        <div class="field-row field-row-5">
+          <label class="field">Food<input type="number" id="f-food" min="0" step="5"></label>
+          <label class="field">Transport<input type="number" id="f-transport" min="0" step="5"></label>
+          <label class="field">Phone<input type="number" id="f-phone" min="0" step="5"></label>
+          <label class="field">Study materials<input type="number" id="f-study" min="0" step="5"></label>
+          <label class="field">Other<input type="number" id="f-other" min="0" step="5"></label>
+        </div>
+        <p class="field-note">Defaults from Study Australia's Melbourne ranges. Transport assumes the International Student Travel Pass: NZ citizens can't get the standard PTV student concession.</p>
+      </fieldset>
+
+      <fieldset class="fees-group">
+        <legend>Travel, setup and assumptions</legend>
+        <div class="field-row">
+          <label class="field">Trips home per year<input type="number" id="f-trips" min="0" step="1"></label>
+          <label class="field">Return flight (A$)<input type="number" id="f-flight" min="0" step="50"></label>
+          <label class="field">One-off setup (A$)<input type="number" id="f-setup" min="0" step="50"></label>
+        </div>
+        <div class="field-row">
+          <label class="field">Yearly fee increase (%)<input type="number" id="f-index" min="0" max="15" step="0.5"></label>
+          <label class="field">NZ$ per A$1<input type="number" id="f-fx" min="0.5" max="2" step="0.01"></label>
+        </div>
+        <p class="field-note">Contribution amounts are indexed every year; the 2026 figures grow by this rate to each study year. Check the exchange rate on the day. Setup covers furnishing and moving (bonds are usually refundable, so they're left out).</p>
+        <button type="button" class="chip" id="f-reset">Reset to defaults</button>
+      </fieldset>
+    </form>
+
+    <section class="fees-results" aria-live="polite">
+      <div class="fee-tiles" id="fee-tiles"></div>
+      <h2 class="fees-h2">Year by year</h2>
+      <div class="compare-table-wrap"><table class="compare-table fees-table" id="fee-years"></table></div>
+      <h2 class="fees-h2">Tuition payments</h2>
+      <p class="field-note">Without HECS-HELP, the student contribution is paid upfront each semester, due around weeks 2–3 of teaching (about March and August).</p>
+      <ol class="fee-schedule" id="fee-schedule"></ol>
+    </section>
+  </div>
+
+  <div class="accom-notes">
+    <p><strong>Why upfront?</strong> NZ citizens get a Commonwealth supported place (the government pays part of the cost) but generally can't borrow the rest through HECS-HELP. The exception is a Special Category Visa holder who has lived in Australia since childhood. Both the Swinburne and UniMelb advisers confirmed this.</p>
+    <p><strong>Band mix is an estimate.</strong> Each subject is charged by its own discipline, so electives and breadth subjects can move the total. UniMelb publishes per-subject rates once you choose subjects.</p>
+    <p class="question-links" id="fee-links"></p>
+  </div>
+</main>
+
+<footer class="app-footer">
+  <p>Personal planning tool: estimates only. Contribution amounts are the 2026 government maximums; universities publish the following year's rates around October–November.</p>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="data/accommodation.js"></script>
+<script src="data/fees.js"></script>
+<script src="js/fees.js"></script>
+</body>
+</html>
