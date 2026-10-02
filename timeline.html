@@ -1,0 +1,252 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Road to uni — 2028 start</title><style>
+:root{--ink:#161a22;--ink2:#4a5566;--ink3:#8792a3;--rule:#e4e7ec;--rule2:#eef0f3;--bg:#fff;--soft:#f7f8fa;--crit:#c2410c;--tgt:#b31166}
+@media(prefers-color-scheme:dark){:root{--ink:#e8ebf0;--ink2:#a3aebf;--ink3:#76818f;--rule:#242a35;--rule2:#1b2029;--bg:#0e1117;--soft:#161b24;--crit:#fb923c;--tgt:#f472b6}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:0 22px 70px}
+.hd{position:sticky;top:0;z-index:5;background:var(--bg);padding:26px 0 0}
+h1{font-size:27px;margin:0 0 4px;letter-spacing:-.02em}.sub{color:var(--ink3);font-size:13px;margin-bottom:14px}.sub a,footer a{color:var(--ink2)}
+.bar{display:flex;gap:14px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--rule);font-size:12px;color:var(--ink2)}
+.key{display:flex;align-items:center;gap:6px}.key i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.cd{margin-left:auto;font-weight:720;font-size:13px;color:var(--bg);background:var(--tgt);
+     padding:3px 10px;border-radius:999px;letter-spacing:.01em}
+.cd:empty{display:none}
+/* ---- the minimap ------------------------------------------------------------------------
+   Month labels sit ABOVE the rail, never inside it: in the rail they competed with the ticks
+   for the same strip of pixels and a label landed on top of a dot. */
+.mm{padding:2px 0 10px}
+.axis{position:relative;height:13px}
+.ml{position:absolute;top:0;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);transform:translateX(2px)}
+.rail{position:relative;height:26px;background:var(--soft);border-radius:4px;overflow:hidden}
+/* ⚠️ Explicit layers. Children were otherwise painted in source order, and the elapsed band
+   covered every tick before today — a milestone simply vanished from the rail. */
+.elapsed{position:absolute;top:0;bottom:0;left:0;background:color-mix(in srgb,var(--ink) 5%,transparent);z-index:0;pointer-events:none}
+.gl{position:absolute;top:0;bottom:0;width:1px;background:var(--rule2);z-index:0}
+.scroller{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--ink) 8%,transparent);border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);z-index:3;pointer-events:none;transition:left .12s linear,width .12s linear}
+.nowl{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--crit);z-index:4;pointer-events:none}
+/* Same-day milestones fan upward by --i rather than shifting along the axis, so horizontal
+   position stays honest and a busy day reads as a taller column. */
+.tk{position:absolute;width:7px;height:7px;border-radius:50%;margin-left:-3.5px;background:var(--c);z-index:2;cursor:pointer;
+    top:calc(15px - (var(--i,0) * 6px));transition:transform .15s}
+.tk:hover{transform:scale(2);z-index:5}
+/* The axis break: a hatched seam, so the jump in scale is visible rather than implied. */
+.brk{position:absolute;top:0;bottom:0;width:7px;margin-left:-3.5px;z-index:1;
+     background:repeating-linear-gradient(135deg,transparent 0 2px,var(--rule) 2px 3px)}
+.tk.is-done{background:var(--bg);box-shadow:inset 0 0 0 2px var(--c);opacity:.55}
+.tk.on{transform:scale(1.7)}
+/* The target milestone on the rail: a full-height marker with a flag head, so the deadline is
+   the one thing you can find on the minimap without hovering anything. */
+.tgt{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--tgt);z-index:4;cursor:pointer}
+.tgt b{position:absolute;top:0;left:-4px;width:10px;height:10px;border-radius:2px;background:var(--tgt);
+       box-shadow:0 0 0 2px var(--bg)}
+ul{list-style:none;padding:0;margin:0;position:relative}
+/* One unbroken line down the centre column, behind every dot. Drawn on the list, not per row:
+   a row's dot cell is only as tall as the dot, so per-row segments leave gaps between rows.
+   The grid is symmetric (1fr 150px 1fr), so the spine column's centre is the list's 50%. */
+ul::before{content:"";position:absolute;top:18px;bottom:0;left:50%;width:2px;transform:translateX(-50%);background:var(--rule)}
+.heads{display:grid;grid-template-columns:1fr 150px 1fr;gap:0 10px;padding:4px 0 8px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.heads b:first-child{text-align:right}.heads b:last-child{text-align:left}.heads span{text-align:center}
+/* The spine is the centre column; a row places its card in one outer column and leaves the other empty. */
+.ev{display:grid;grid-template-columns:1fr 150px 1fr;gap:0 10px;align-items:start}
+.ev .card{grid-column:1;text-align:right;padding:10px 0 16px;min-width:0}
+.ev .dot{grid-column:2;position:relative;z-index:1}
+.ev .when{grid-column:3;padding-top:12px;text-align:left}
+.ev.right .card{grid-column:3;text-align:left}
+.ev.right .when{grid-column:1;text-align:right}
+.when time{display:block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--ink3)}
+.rel{font-size:11.5px;font-weight:650;color:var(--c)}
+.dot::after{content:"";position:absolute;left:50%;top:16px;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);background:var(--c);box-shadow:0 0 0 3px var(--bg)}
+.ev.done .dot::after{background:var(--bg);border:2px solid var(--c)}
+/* An achievement is a square on the spine — it reads as a different kind of event, not a date that passed. */
+.ev.right .dot::after{border-radius:2px;width:10px;height:10px;background:var(--c);border:0}
+.top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px;justify-content:flex-end}
+.ev.right .top{justify-content:flex-start}
+.lane{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:3px;padding:1px 6px}
+.own{font-size:11.5px;color:var(--ink3)}
+h3{font-size:15.5px;margin:0;font-weight:640;letter-spacing:-.01em}
+.card p{margin:4px 0 0;color:var(--ink2);font-size:13.5px}
+.card a{color:var(--c)}
+.ev.done.left h3,.ev.done.left .card p{color:var(--ink3)}.ev.done.left h3{font-weight:600}
+/* A gate whose date has passed without being met: the dot stays solid and the date turns red,
+   so a slipped commitment cannot be mistaken for a milestone that was hit. */
+.ev.open.overdue .rel{color:var(--crit)}
+/* The target row: a heavier rule and a label, so it reads as the thing the list is counting
+   down to rather than one more dated row. */
+.ev.target h3{font-size:18px;font-weight:720}
+.ev.target .card{border-top:2px solid var(--tgt);padding-top:10px}
+.tflag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tgt);margin-bottom:4px}
+.ev.target .dot::after{width:15px;height:15px;background:var(--tgt);box-shadow:0 0 0 3px var(--bg),0 0 0 5px color-mix(in srgb,var(--tgt) 35%,transparent)}
+.ev.target .rel{color:var(--tgt);font-weight:720}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink3);font-size:12px}
+/* One column on a phone: everything left-aligns against a spine at the far left. */
+@media(max-width:720px){
+ main{padding:0 16px 60px}h1{font-size:23px}
+ .heads{grid-template-columns:20px 1fr;gap:0 10px}.heads b:first-child,.heads span{display:none}.heads b:last-child{grid-column:2;text-align:left}
+ ul::before{left:10px}
+ .ev{grid-template-columns:20px 1fr;gap:0 10px}
+ .ev .dot,.ev.right .dot{grid-column:1}
+ .ev .when,.ev.right .when{grid-column:2;text-align:left;padding-top:12px}
+ .ev .card,.ev.right .card{grid-column:2;text-align:left;padding:2px 0 16px}
+ .top,.ev.right .top{justify-content:flex-start}
+}
+</style></head><body><main>
+<div class="hd"><h1>Road to uni — 2028 start</h1>
+<div class="sub"><a href="index.html">← Higher Ed Explorer</a> · application, housing and enrolment milestones for a Semester 1 2028 start · generated 2026-10-02</div>
+<div class="mm">
+  <div class="axis"><span class="gl" style="left:0.564%"></span><span class="gl" style="left:6.391%"></span><span class="gl" style="left:12.030%"></span><span class="gl" style="left:17.857%"></span><span class="gl" style="left:23.684%"></span><span class="gl" style="left:28.947%"></span><span class="gl" style="left:34.774%"></span><span class="gl" style="left:40.414%"></span><span class="gl" style="left:46.241%"></span><span class="gl" style="left:51.880%"></span><span class="gl" style="left:57.707%"></span><span class="gl" style="left:63.534%"></span><span class="gl" style="left:69.173%"></span><span class="gl" style="left:75.000%"></span><span class="gl" style="left:80.639%"></span><span class="gl" style="left:86.466%"></span><span class="gl" style="left:92.293%"></span><span class="ml" style="left:0.564%">Oct</span><span class="ml" style="left:6.391%">Nov</span><span class="ml" style="left:12.030%">Dec</span><span class="ml" style="left:17.857%">Jan</span><span class="ml" style="left:23.684%">Feb</span><span class="ml" style="left:28.947%">Mar</span><span class="ml" style="left:34.774%">Apr</span><span class="ml" style="left:40.414%">May</span><span class="ml" style="left:46.241%">Jun</span><span class="ml" style="left:51.880%">Jul</span><span class="ml" style="left:57.707%">Aug</span><span class="ml" style="left:63.534%">Sep</span><span class="ml" style="left:69.173%">Oct</span><span class="ml" style="left:75.000%">Nov</span><span class="ml" style="left:80.639%">Dec</span><span class="ml" style="left:86.466%">Jan</span><span class="ml" style="left:92.293%">Feb</span></div>
+  <div class="rail" id="rail"><div class="elapsed" id="elapsed"></div><span class="tk is-done" style="left:0.000%;--i:0;--c:#4a3aa7" data-d="2026-09-28" data-p="0.000" title="Swinburne Student HQ conversation — 2026-09-28"></span><span class="tk is-done" style="left:0.752%;--i:0;--c:#4a3aa7" data-d="2026-10-02" data-p="0.752" title="UniMelb Prospective Students meeting — 2026-10-02"></span><span class="tk" style="left:2.068%;--i:0;--c:#2a78d6" data-d="2026-10-09" data-p="2.068" title="Reply to the Swinburne adviser's summary email — 2026-10-09"></span><span class="tk" style="left:11.842%;--i:0;--c:#1baf7a" data-d="2026-11-30" data-p="11.842" title="Decide on the maths bridging course — 2026-11-30"></span><span class="tk" style="left:18.421%;--i:0;--c:#1baf7a" data-d="2027-01-04" data-p="18.421" title="Calculus and Probability summer intensive starts (est.) — 2027-01-04"></span><span class="tk" style="left:21.429%;--i:0;--c:#1baf7a" data-d="2027-01-20" data-p="21.429" title="Send NCEA Level 2 results to Swinburne for the English check — 2027-01-20"></span><span class="tk" style="left:23.684%;--i:0;--c:#1baf7a" data-d="2027-02-01" data-p="23.684" title="Year 13 starts — keep English and Chemistry — 2027-02-01"></span><span class="tk" style="left:31.579%;--i:0;--c:#eb6834" data-d="2027-03-15" data-p="31.579" title="Shortlist UniMelb residential colleges (est.) — 2027-03-15"></span><span class="tk" style="left:37.406%;--i:0;--c:#4a3aa7" data-d="2027-04-15" data-p="37.406" title="UniMelb online info sessions for NZ students (est. Apr–May) — 2027-04-15"></span><span class="tk" style="left:51.692%;--i:0;--c:#1baf7a" data-d="2027-06-30" data-p="51.692" title="Fashion portfolio draft ready — 2027-06-30"></span><span class="tk" style="left:51.880%;--i:0;--c:#eb6834" data-d="2027-07-01" data-p="51.880" title="Start housing applications — 2027-07-01"></span><span class="tk" style="left:56.391%;--i:0;--c:#4a3aa7" data-d="2027-07-25" data-p="56.391" title="Swinburne Open Day (est.) — 2027-07-25"></span><span class="tk" style="left:57.707%;--i:0;--c:#eb6834" data-d="2027-08-01" data-p="57.707" title="UniMelb University Accommodation applications open (est.) — 2027-08-01"></span><span class="tk" style="left:57.895%;--i:0;--c:#2a78d6" data-d="2027-08-02" data-p="57.895" title="VTAC applications open (est.) — 2027-08-02"></span><span class="tk" style="left:59.023%;--i:0;--c:#4a3aa7" data-d="2027-08-08" data-p="59.023" title="RMIT Open Day — Brunswick &amp; City (est.) — 2027-08-08"></span><span class="tk" style="left:60.338%;--i:0;--c:#4a3aa7" data-d="2027-08-15" data-p="60.338" title="UniMelb Open Day (est.) — 2027-08-15"></span><span class="tgt" style="left:68.421%" data-d="2027-09-27" data-p="68.421" title="VTAC on-time applications close (est.) — 2027-09-27"><b></b></span><span class="tk" style="left:68.985%;--i:0;--c:#eb6834" data-d="2027-09-30" data-p="68.985" title="Residential colleges largely full — 2027-09-30"></span><span class="tk" style="left:70.489%;--i:0;--c:#2a78d6" data-d="2027-10-08" data-p="70.489" title="VTAC equity schemes &amp; scholarships (SEAS) close (est.) — 2027-10-08"></span><span class="tk" style="left:74.436%;--i:0;--c:#2a78d6" data-d="2027-10-29" data-p="74.436" title="VTAC late applications close (est.) — 2027-10-29"></span><span class="tk" style="left:76.316%;--i:0;--c:#1baf7a" data-d="2027-11-08" data-p="76.316" title="NCEA Level 3 external exams (est. Nov) — 2027-11-08"></span><span class="tk" style="left:88.722%;--i:0;--c:#2a78d6" data-d="2028-01-13" data-p="88.722" title="NCEA results and NZQA ATAR released (est.) — 2028-01-13"></span><span class="tk" style="left:88.910%;--i:0;--c:#2a78d6" data-d="2028-01-14" data-p="88.910" title="Change of preference — reorder with results in hand (est.) — 2028-01-14"></span><span class="tk" style="left:91.165%;--i:0;--c:#2a78d6" data-d="2028-01-26" data-p="91.165" title="VTAC January round 2 offers (est.) — 2028-01-26"></span><span class="tk" style="left:93.421%;--i:0;--c:#c98500" data-d="2028-02-07" data-p="93.421" title="Accept offer, enrol in units, confirm housing — 2028-02-07"></span><span class="tk" style="left:97.368%;--i:0;--c:#c98500" data-d="2028-02-28" data-p="97.368" title="Semester 1 2028 starts (est.) — 2028-02-28"></span><span class="tk" style="left:100.000%;--i:0;--c:#c98500" data-d="2028-03-13" data-p="100.000" title="First semester fees due — paid upfront (est.) — 2028-03-13"></span><div class="scroller" id="scroller"></div><div class="nowl" id="nowl"></div></div>
+</div>
+<div class="bar"><span class="key"><i style="background:#4a3aa7"></i>Visits & info</span><span class="key"><i style="background:#2a78d6"></i>Application</span><span class="key"><i style="background:#1baf7a"></i>Preparation</span><span class="key"><i style="background:#eb6834"></i>Housing</span><span class="key"><i style="background:#c98500"></i>Enrolment & fees</span><span class="cd" id="cd"></span></div>
+<div class="heads"><b>To do</b><span></span><b>Done</b></div></div>
+<ul id="tl"><li class="ev right done" data-s="visit" data-p="0.000" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span></div>
+        <h3>Swinburne Student HQ conversation</h3><p>VTAC process, fashion course, English requirement, fees. <a href="https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-09-28-swinburne-student-hq.md" target="_blank" rel="noopener">Notes</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2026-09-28">2026-09-28</time><span class="rel" data-d="2026-09-28"></span></div></li><li class="ev right done" data-s="visit" data-p="0.752" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span></div>
+        <h3>UniMelb Prospective Students meeting</h3><p>NCEA→ATAR change, maths prerequisite, fees, housing timing. <a href="https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-10-02-unimelb-prospective-students.md" target="_blank" rel="noopener">Notes</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2026-10-02">2026-10-02</time><span class="rel" data-d="2026-10-02"></span></div></li><li class="ev left open" data-s="apply" data-p="2.068" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span><span class="own">Student</span></div>
+        <h3>Reply to the Swinburne adviser's summary email</h3><p>From her own email account: once she's an applicant, Swinburne will only correspond with her. Ask about fashion materials, placement partners and a (virtual) session with the fashion academics.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2026-10-09">2026-10-09</time><span class="rel" data-d="2026-10-09"></span></div></li><li class="ev left open" data-s="prep" data-p="11.842" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Student</span></div>
+        <h3>Decide on the maths bridging course</h3><p>UniMelb Biomedicine needs NCEA Mathematics with Calculus. The Calculus and Probability Online summer intensive (Jan–Feb 2027) clears it before Year 13. Check whether Monash, RMIT and others accept it. <a href="https://ms.unimelb.edu.au/study/undergraduate-studies/student-resources/online-calculus-and-probability" target="_blank" rel="noopener">Calculus and Probability Online</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2026-11-30">2026-11-30</time><span class="rel" data-d="2026-11-30"></span></div></li><li class="ev left open" data-s="prep" data-p="18.421" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Student</span></div>
+        <h3>Calculus and Probability summer intensive starts (est.)</h3><p>About 6 weeks, January–February, online. Optional: only if she takes this route to the maths prerequisite.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-01-04">2027-01-04</time><span class="rel" data-d="2027-01-04"></span></div></li><li class="ev left open" data-s="prep" data-p="21.429" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Parent</span></div>
+        <h3>Send NCEA Level 2 results to Swinburne for the English check</h3><p>The adviser offered to have admissions check whether her English meets the bachelor's prerequisite. Expected answer: take English in Year 13 anyway.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-01-20">2027-01-20</time><span class="rel" data-d="2027-01-20"></span></div></li><li class="ev left open" data-s="prep" data-p="23.684" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Student</span></div>
+        <h3>Year 13 starts — keep English and Chemistry</h3><p>English for the English prerequisite (Swinburne, UniMelb); Chemistry for UniMelb Biomedicine.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-02-01">2027-02-01</time><span class="rel" data-d="2027-02-01"></span></div></li><li class="ev left open" data-s="housing" data-p="31.579" style="--c:#eb6834">
+      <div class="card"><div class="top"><span class="lane">Housing</span><span class="own">Parent</span></div>
+        <h3>Shortlist UniMelb residential colleges (est.)</h3><p>Colleges open applications from about March, run their own interviews and are largely full by September. Fees about $31k–$46k a year, catered. <a href="https://www.colleges.unimelb.edu.au/frequently-asked-questions/" target="_blank" rel="noopener">Colleges FAQ</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-03-15">2027-03-15</time><span class="rel" data-d="2027-03-15"></span></div></li><li class="ev left open" data-s="visit" data-p="37.406" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span><span class="own">Student</span></div>
+        <h3>UniMelb online info sessions for NZ students (est. Apr–May)</h3><p>Ask: the official NCEA→ATAR wording, whether ATAR guarantees apply to NCEA, scholarships for NZ citizens.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-04-15">2027-04-15</time><span class="rel" data-d="2027-04-15"></span></div></li><li class="ev left open" data-s="prep" data-p="51.692" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Student</span></div>
+        <h3>Fashion portfolio draft ready</h3><p>Swinburne: 10-page PDF (at least 5 works, process welcome) + 250 words. RMIT: folio + selection task, assessed in order of submission until places fill. <a href="https://www.swinburne.edu.au/media/swinburneeduau/study-at-swinburne/docs/pdfs/portfolio_guidelines_UG_design.pdf" target="_blank" rel="noopener">Swinburne portfolio guidelines</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-06-30">2027-06-30</time><span class="rel" data-d="2027-06-30"></span></div></li><li class="ev left open" data-s="housing" data-p="51.880" style="--c:#eb6834">
+      <div class="card"><div class="top"><span class="lane">Housing</span><span class="own">Parent</span></div>
+        <h3>Start housing applications</h3><p>UniMelb said to start around July 2027 for a 2028 start. Private residences open bookings about a year ahead. <a href="https://tkluysk.github.io/higher-ed-explorer/accommodation.html" target="_blank" rel="noopener">Accommodation map</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-07-01">2027-07-01</time><span class="rel" data-d="2027-07-01"></span></div></li><li class="ev left open" data-s="visit" data-p="56.391" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span></div>
+        <h3>Swinburne Open Day (est.)</h3><p>Late July, Hawthorn. Fashion studios open and academics available — usually not otherwise. <a href="https://www.swinburne.edu.au/openday/" target="_blank" rel="noopener">Open Day</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-07-25">2027-07-25</time><span class="rel" data-d="2027-07-25"></span></div></li><li class="ev left open" data-s="housing" data-p="57.707" style="--c:#eb6834">
+      <div class="card"><div class="top"><span class="lane">Housing</span><span class="own">Parent</span></div>
+        <h3>UniMelb University Accommodation applications open (est.)</h3><p>Accommodation Offer for students new to Melbourne: first come, first served. You can apply before a course offer. <a href="https://study.unimelb.edu.au/accommodation/how-to-apply" target="_blank" rel="noopener">How to apply</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-08-01">2027-08-01</time><span class="rel" data-d="2027-08-01"></span></div></li><li class="ev left open" data-s="apply" data-p="57.895" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span><span class="own">Student</span></div>
+        <h3>VTAC applications open (est.)</h3><p>One application, up to 8 course preferences (courses, not universities). Required when applying to more than one Victorian provider. <a href="https://vtac.edu.au/dates.html" target="_blank" rel="noopener">VTAC key dates</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-08-02">2027-08-02</time><span class="rel" data-d="2027-08-02"></span></div></li><li class="ev left open" data-s="visit" data-p="59.023" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span></div>
+        <h3>RMIT Open Day — Brunswick &amp; City (est.)</h3><p>Early–mid August. School of Fashion &amp; Textiles at Brunswick.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-08-08">2027-08-08</time><span class="rel" data-d="2027-08-08"></span></div></li><li class="ev left open" data-s="visit" data-p="60.338" style="--c:#4a3aa7">
+      <div class="card"><div class="top"><span class="lane">Visits & info</span></div>
+        <h3>UniMelb Open Day (est.)</h3><p>A Sunday in August, the only time guided tours run and faculty staff are available. <a href="https://study.unimelb.edu.au/openday" target="_blank" rel="noopener">Open Day</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-08-15">2027-08-15</time><span class="rel" data-d="2027-08-15"></span></div></li><li class="ev left open target" data-s="apply" data-p="68.421" style="--c:#2a78d6">
+      <div class="card"><div class="tflag">The deadline</div><div class="top"><span class="lane">Application</span><span class="own">Student</span></div>
+        <h3>VTAC on-time applications close (est.)</h3><p>Late September (28 Sep in 2026). Applying later costs more but is otherwise treated the same, except some equity schemes and arts and music courses. Lodge the RMIT and Swinburne fashion portfolios early too.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-09-27">2027-09-27</time><span class="rel" data-d="2027-09-27"></span></div></li><li class="ev left open" data-s="housing" data-p="68.985" style="--c:#eb6834">
+      <div class="card"><div class="top"><span class="lane">Housing</span></div>
+        <h3>Residential colleges largely full</h3><p>Per UniMelb's Prospective Students team. Have a college decision (or a University Accommodation application) in by now.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-09-30">2027-09-30</time><span class="rel" data-d="2027-09-30"></span></div></li><li class="ev left open" data-s="apply" data-p="70.489" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span><span class="own">Student</span></div>
+        <h3>VTAC equity schemes &amp; scholarships (SEAS) close (est.)</h3><p>Early October (9 Oct in 2026); no late applications. Covers UniMelb's Access Melbourne.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-10-08">2027-10-08</time><span class="rel" data-d="2027-10-08"></span></div></li><li class="ev left open" data-s="apply" data-p="74.436" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span></div>
+        <h3>VTAC late applications close (est.)</h3><p>Higher fee; then a very late window to early December.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-10-29">2027-10-29</time><span class="rel" data-d="2027-10-29"></span></div></li><li class="ev left open" data-s="prep" data-p="76.316" style="--c:#1baf7a">
+      <div class="card"><div class="top"><span class="lane">Preparation</span><span class="own">Student</span></div>
+        <h3>NCEA Level 3 external exams (est. Nov)</h3></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2027-11-08">2027-11-08</time><span class="rel" data-d="2027-11-08"></span></div></li><li class="ev left open" data-s="apply" data-p="88.722" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span></div>
+        <h3>NCEA results and NZQA ATAR released (est.)</h3><p>Mid-January. NZQA computes an ATAR from the best 90 Level 3 credits (max 24 per subject); from 2027 entry UniMelb uses this. <a href="https://www2.nzqa.govt.nz/international/nz-quals-overseas/study-with-ncea/australia/" target="_blank" rel="noopener">NZQA: Study in Australia</a></p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-01-13">2028-01-13</time><span class="rel" data-d="2028-01-13"></span></div></li><li class="ev left open" data-s="apply" data-p="88.910" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span><span class="own">Student</span></div>
+        <h3>Change of preference — reorder with results in hand (est.)</h3></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-01-14">2028-01-14</time><span class="rel" data-d="2028-01-14"></span></div></li><li class="ev left open" data-s="apply" data-p="91.165" style="--c:#2a78d6">
+      <div class="card"><div class="top"><span class="lane">Application</span></div>
+        <h3>VTAC January round 2 offers (est.)</h3><p>With NCEA results arriving mid-January, this is the realistic round (27 Jan in 2027).</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-01-26">2028-01-26</time><span class="rel" data-d="2028-01-26"></span></div></li><li class="ev left open" data-s="fees" data-p="93.421" style="--c:#c98500">
+      <div class="card"><div class="top"><span class="lane">Enrolment & fees</span><span class="own">Student</span></div>
+        <h3>Accept offer, enrol in units, confirm housing</h3><p>Enrol early: electives fill first-come, first-served. Confirm or cancel the housing booking within its withdrawal terms.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-02-07">2028-02-07</time><span class="rel" data-d="2028-02-07"></span></div></li><li class="ev left open" data-s="fees" data-p="97.368" style="--c:#c98500">
+      <div class="card"><div class="top"><span class="lane">Enrolment & fees</span></div>
+        <h3>Semester 1 2028 starts (est.)</h3></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-02-28">2028-02-28</time><span class="rel" data-d="2028-02-28"></span></div></li><li class="ev left open" data-s="fees" data-p="100.000" style="--c:#c98500">
+      <div class="card"><div class="top"><span class="lane">Enrolment & fees</span><span class="own">Parent</span></div>
+        <h3>First semester fees due — paid upfront (est.)</h3><p>NZ citizens get a CSP but no HECS-HELP, so the student contribution is paid each semester (about $4.8k for a science/health load at 2026 rates), plus the SSAF. Due around weeks 2–3; Semester 2 around August.</p></div>
+      <div class="dot"></div>
+      <div class="when"><time datetime="2028-03-13">2028-03-13</time><span class="rel" data-d="2028-03-13"></span></div></li></ul>
+<footer>Built from <code>data/milestones.json</code>. Dates marked est. are projected from the 2026 VTAC and university cycles; confirm each as it is published. Sources: the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews, vtac.edu.au, NZQA and university pages.</footer></main>
+<script>
+const today=new Date(new Date().toDateString());const day=iso=>{const[y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
+for(const el of document.querySelectorAll('.rel')){const n=Math.round((day(el.dataset.d)-today)/864e5);
+ el.textContent=n===0?'today':n>0?'in '+n+' day'+(n===1?'':'s'):(-n)+' day'+(n===-1?'':'s')+' ago';
+ const ev=el.closest('.ev');if(n<0&&!ev.classList.contains('open'))ev.classList.add('done');
+ if(n<0&&ev.classList.contains('open')){el.textContent+=' — not yet met';ev.classList.add('overdue');}}
+(function(){
+ const T0=1790553600000,SPAN=45964800000,T1=1836518400000,AX=100;
+ const pc=ms=>ms>T1?AX:Math.max(0,Math.min(AX,(ms-T0)/SPAN*AX));
+ /* "Now" and the elapsed band are computed in the READER's clock, like every other date here,
+    so the page cannot freeze at the moment it was published. */
+ const now=pc(Date.now());
+ document.getElementById('nowl').style.left=now+'%';
+ document.getElementById('elapsed').style.width=now+'%';
+ /* The countdown's label is the target's own title, shortened at the first dash — titles here are
+    "Trimble Dimensions — the joint session", and the countdown wants the name, not the gloss. */
+ const TG={"date":"2027-09-27","label":"VTAC on-time applications close (est.)"};
+ if(TG){const n=Math.round((day(TG.date)-today)/864e5);
+  document.getElementById('cd').textContent=n>0?n+' days to '+TG.label:n===0?TG.label+' is today':TG.label+' has passed';}
+ /* Map the visible slice of the vertical list onto the horizontal axis. The axis is TIME and the
+    list is SEQUENCE, so interpolate through the events actually on screen rather than using raw
+    scroll fraction, which drifts wherever milestones bunch up. */
+ const evs=[].slice.call(document.querySelectorAll('.ev'));
+ const tks=[].slice.call(document.querySelectorAll('.tk'));
+ const scr=document.getElementById('scroller'),hd=document.querySelector('.hd');
+ function sync(){
+  const top=window.scrollY+hd.getBoundingClientRect().bottom,bot=window.scrollY+innerHeight;
+  let lo=null,hi=null;
+  for(const e of evs){const r=e.getBoundingClientRect(),a=r.top+scrollY,b=r.bottom+scrollY;
+   if(b>top&&a<bot){const v=parseFloat(e.dataset.p);if(lo===null||v<lo)lo=v;if(hi===null||v>hi)hi=v;}}
+  if(lo===null)return;
+  const w=Math.max(hi-lo,1.2);
+  scr.style.left=lo+'%';scr.style.width=w+'%';
+  for(const t of tks){const v=parseFloat(t.dataset.p);t.classList.toggle('on',v>=lo-0.4&&v<=hi+0.4);}
+ }
+ /* Clicking a tick jumps to its milestone — the minimap is the index, not just a picture. */
+ for(const t of tks)t.onclick=()=>{const e=evs.find(e=>e.dataset.p===t.dataset.p);
+  if(e)scrollTo({top:e.getBoundingClientRect().top+scrollY-hd.getBoundingClientRect().height-12,behavior:'smooth'});};
+ let raf=null;const on=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=null;sync();});};
+ addEventListener('scroll',on,{passive:true});addEventListener('resize',on);sync();
+})();
+</script></body></html>

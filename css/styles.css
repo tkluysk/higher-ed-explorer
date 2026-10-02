@@ -683,6 +683,17 @@ ol.question-list { padding-left: 1.4em; }
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
   cursor: pointer;
 }
+.price-dot.is-uni, .tier-dot.is-uni { border-radius: 3px; }
+.price-pin.is-uni { border-radius: 4px; }
+.uni-tag { color: var(--text-secondary); }
+.campus-pin.is-active { background: #d03b3b; }
+.campus-pin:not(.is-active) { background: #52514e; }
+.accom-travel li.is-active { font-weight: 600; }
+.housing-notes { margin-bottom: 16px; }
+.housing-notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 8px; }
+.housing-note { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.housing-note-title { margin: 0 0 6px; font-weight: 600; }
+.housing-note .question-links { margin-top: 8px; }
 .campus-pin {
   display: inline-flex;
   align-items: center;

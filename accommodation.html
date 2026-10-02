@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RMIT Student Accommodation</title>
+<title>Student Accommodation</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="stylesheet" href="css/styles.css">
@@ -12,28 +12,50 @@
 <header class="app-header">
   <div class="header-inner">
     <p class="back-link"><a href="index.html">← Higher Ed Explorer</a></p>
-    <h1>RMIT student accommodation</h1>
-    <p class="subtitle">The 23 residences RMIT lists, with weekly prices and commute times to the Brunswick campus</p>
+    <h1>Student accommodation</h1>
+    <p class="subtitle">RMIT's 23 listed residences plus UniMelb and Swinburne housing, with weekly prices and commute times to each campus</p>
   </div>
 </header>
 
 <main class="app-main">
+  <section class="housing-notes" aria-label="How university housing works">
+    <p class="control-label">What we learned about housing</p>
+    <div class="housing-notes-grid" id="housing-notes"></div>
+  </section>
+
   <section class="controls" aria-label="Filters">
+    <div class="control-group" role="group" aria-label="Campus for travel times">
+      <span class="control-label">Travel times to</span>
+      <div class="chip-row" id="campus-filters">
+        <button class="chip" data-value="rmit" aria-pressed="true">RMIT Brunswick</button>
+        <button class="chip" data-value="unimelb" aria-pressed="false">UniMelb Parkville</button>
+        <button class="chip" data-value="swinburne" aria-pressed="false">Swinburne Hawthorn</button>
+      </div>
+    </div>
+    <div class="control-group" role="group" aria-label="Housing type">
+      <span class="control-label">Type</span>
+      <div class="chip-row" id="kind-filters">
+        <button class="chip chip-all" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-value="private" aria-pressed="false">Private (RMIT list)</button>
+        <button class="chip" data-value="university" aria-pressed="false">University-run</button>
+      </div>
+    </div>
     <div class="control-group" role="group" aria-label="Maximum weekly price">
       <span class="control-label">Max price / week</span>
       <div class="chip-row" id="price-filters">
-        <button class="chip chip-all" data-max="all" aria-pressed="true">Any</button>
-        <button class="chip" data-max="400" aria-pressed="false">Under $400</button>
-        <button class="chip" data-max="500" aria-pressed="false">Under $500</button>
-        <button class="chip" data-max="600" aria-pressed="false">Under $600</button>
+        <button class="chip chip-all" data-value="all" aria-pressed="true">Any</button>
+        <button class="chip" data-value="400" aria-pressed="false">Under $400</button>
+        <button class="chip" data-value="500" aria-pressed="false">Under $500</button>
+        <button class="chip" data-value="600" aria-pressed="false">Under $600</button>
       </div>
     </div>
-    <div class="control-group" role="group" aria-label="Maximum transit time">
-      <span class="control-label">Max transit to Brunswick</span>
+    <div class="control-group" role="group" aria-label="Maximum trip time">
+      <span class="control-label">Max trip</span>
       <div class="chip-row" id="transit-filters">
-        <button class="chip chip-all" data-max="all" aria-pressed="true">Any</button>
-        <button class="chip" data-max="25" aria-pressed="false">≤ 25 min</button>
-        <button class="chip" data-max="30" aria-pressed="false">≤ 30 min</button>
+        <button class="chip chip-all" data-value="all" aria-pressed="true">Any</button>
+        <button class="chip" data-value="20" aria-pressed="false">≤ 20 min</button>
+        <button class="chip" data-value="25" aria-pressed="false">≤ 25 min</button>
+        <button class="chip" data-value="30" aria-pressed="false">≤ 30 min</button>
       </div>
     </div>
     <div class="control-group">
@@ -53,9 +75,9 @@
   </div>
 
   <div class="accom-notes">
-    <p><strong>Prices</strong> are AUD per person per week, compiled 30 Sep 2026. “From” is the cheapest advertised room, which is often a bedroom in a shared apartment or a bunk/twin room. Where a studio price was found it is listed separately. <span class="source-tag">listing</span> means the figure came from a search or aggregator listing and could not be confirmed on the operator's own page (Scape shows prices only after the page's scripts run). Rates move with availability, lease length and promotions, so confirm before booking.</p>
-    <p><strong>Transit</strong> is door-to-door for a weekday ~8:30am departure, from PTV timetables via <a href="https://transitous.org" target="_blank" rel="noopener noreferrer">Transitous</a>, including walking to and from stops. <strong>Bike</strong> and <strong>walk</strong> times are from OpenStreetMap routing. The campus is at 25 Dawson St, next to Jewell station on the Upfield line and a short walk from tram 19 on Sydney Road. Use the “Directions” link on each property for live times.</p>
-    <p>Source list: <a href="https://www.rmit.edu.au/students/student-life/accommodation/student-accommodation" target="_blank" rel="noopener noreferrer">RMIT — Student accommodation</a>.</p>
+    <p><strong>Prices</strong> are AUD per person per week, compiled 30 Sep 2026. “From” is the cheapest advertised room, which is often a bedroom in a shared apartment or a bunk/twin room. Where a studio price was found it is listed separately. <span class="source-tag">listing</span> means the figure came from a search or aggregator listing and could not be confirmed on the operator's own page (Scape shows prices only after the page's scripts run; UniMelb's pages block automated checks). College fees are annual, shown as a weekly equivalent over ~40 weeks. Rates move with availability, lease length and promotions, so confirm before booking.</p>
+    <p><strong>Trip times</strong> are door-to-door for a weekday ~8:30am departure, from PTV timetables via <a href="https://transitous.org" target="_blank" rel="noopener noreferrer">Transitous</a>, including walking to and from stops. Where a residence is within ~20 minutes' walk, the walk is shown instead. <strong>Bike</strong> and <strong>walk</strong> times are from OpenStreetMap routing. RMIT Brunswick is at 25 Dawson St, next to Jewell station (Upfield line) and tram 19 on Sydney Road. Use the “Directions” link on each property for live times.</p>
+    <p>Sources: <a href="https://www.rmit.edu.au/students/student-life/accommodation/student-accommodation" target="_blank" rel="noopener noreferrer">RMIT — Student accommodation</a> · <a href="https://study.unimelb.edu.au/accommodation" target="_blank" rel="noopener noreferrer">UniMelb — Student accommodation</a> · <a href="https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/on-campus-accommodation/" target="_blank" rel="noopener noreferrer">Swinburne — On-campus accommodation</a> · interview notes for <a href="https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-10-02-unimelb-prospective-students.md">UniMelb</a> and <a href="https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-09-28-swinburne-student-hq.md">Swinburne</a>.</p>
   </div>
 </main>
 

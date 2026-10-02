@@ -1,37 +1,83 @@
-// RMIT-listed student accommodation (Melbourne), with pricing and commute
-// times to the RMIT Brunswick campus (School of Fashion & Textiles).
+// Student accommodation for the shortlisted Melbourne campuses, with pricing
+// and commute times to each campus.
 //
-// Property list: the 23 providers RMIT links from
+// Private residences: the 23 providers RMIT links from
 // https://www.rmit.edu.au/students/student-life/accommodation/student-accommodation
-// (checked 30 Sep 2026). RMIT itself lists no prices.
+// (checked 30 Sep 2026). RMIT itself lists no prices and runs no city housing.
+// University-run housing (`kind: "university"`): UniMelb's University
+// Accommodation and residential colleges, and Swinburne's on-campus
+// residences. Added 2 Oct 2026 from the UniMelb (2 Oct) and Swinburne (28 Sep)
+// interviews and the universities' pages.
 //
-// Prices: AUD per person per week, compiled 30 Sep 2026. `priceFrom` is the
-// cheapest advertised room (often a shared-apartment bedroom); `studioFrom`
-// the cheapest private studio where one was found. `priceSource` says where
-// the figure came from — "operator" means the provider's own site or booking
-// portal; "listing" means a search/aggregator snippet that could not be
-// confirmed on the operator's page (Scape and some UniLodge sites load prices
-// client-side). Rates change with availability and term — confirm before booking.
+// Prices: AUD per person per week. `priceFrom` is the cheapest advertised room
+// (often a shared-apartment bedroom); `studioFrom` the cheapest private studio
+// where one was found. `priceSource` says where the figure came from:
+// "operator" means the provider's own site or booking portal; "listing" means a
+// search/aggregator snippet that couldn't be confirmed on the operator's page.
+// College fees are annual, converted to a weekly figure over a ~40-week year.
+// Rates change with availability and term, so confirm before booking.
 //
-// Travel: to RMIT Brunswick, 25 Dawson St, Brunswick (next to Jewell station).
-// `transit` is door-to-door minutes for a weekday ~8:30am departure (Tue 6 Oct
-// 2026), from Transitous (open-data router over PTV GTFS timetables), picking
-// the simplest route within ~4 min of the fastest. `walkMin` is the walking
-// part of that trip. `bike`/`walk` minutes and `km` (cycling distance) come
-// from OpenStreetMap routing (routing.openstreetmap.de). Coordinates for some
+// Travel: `travel[campus]` for each campus in CAMPUSES. `transit` is
+// door-to-door minutes for a weekday ~8:30am departure (Tue 6 Oct 2026), from
+// Transitous (open-data router over PTV GTFS timetables), picking the simplest
+// route within ~4 min of the fastest; `transit: null` with `route: "walk"`
+// means it's a walk of 20 minutes or less. `walkMin` is the walking part of
+// the trip. `bike`/`walk` minutes and `km` (cycling distance) come from
+// OpenStreetMap routing (routing.openstreetmap.de). Coordinates for some
 // Carlton/CBD addresses are placed by hand from the street grid (±150 m).
 
-const RMIT_BRUNSWICK = {
-  name: "RMIT Brunswick campus",
-  address: "25 Dawson Street, Brunswick VIC 3056",
-  lat: -37.772215,
-  lng: 144.957785,
+const CAMPUSES = {
+  rmit: { name: "RMIT Brunswick", short: "RMIT Brunswick", note: "School of Fashion & Textiles", address: "25 Dawson Street, Brunswick VIC 3056", lat: -37.772215, lng: 144.957785 },
+  unimelb: { name: "UniMelb Parkville", short: "UniMelb", note: "Science, Biomedicine, Commerce", address: "Grattan Street, Parkville VIC 3010", lat: -37.7975, lng: 144.961 },
+  swinburne: { name: "Swinburne Hawthorn", short: "Swinburne", note: "Design (Fashion), Science, Biomedical Science", address: "John Street, Hawthorn VIC 3122", lat: -37.8215, lng: 145.0388 },
 };
+
+// How each university's own housing works, from the interviews and official
+// pages. Shown on the accommodation page above the map.
+const HOUSING_NOTES = [
+  {
+    uni: "University of Melbourne",
+    points: [
+      "Accommodation Offer: a guaranteed bed in University Accommodation for commencing students new to Melbourne, subject to availability and first come, first served.",
+      "University Accommodation is three self-catered apartment buildings (Lisa Bellear House, Little Hall and The Lofts, which is graduate-only). Applications open in August and you can apply before a course offer, with a withdrawal date and cancellation/refund process if no offer comes.",
+      "Residential colleges (two run by UniMelb, the rest affiliated) include three meals a day and tutoring, and take many interstate and NZ students. Each runs its own application and interview process; they're largely full by September, and some 2027-round colleges closed in October 2026. Fees are about $31k–$46k a year.",
+      "For a 2028 start, the Prospective Students team said to start looking around July 2027.",
+    ],
+    source: { label: "UniMelb meeting notes (2 Oct 2026)", url: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-10-02-unimelb-prospective-students.md" },
+    links: [
+      { label: "UniMelb: Student accommodation", url: "https://study.unimelb.edu.au/accommodation" },
+      { label: "How to apply", url: "https://study.unimelb.edu.au/accommodation/how-to-apply" },
+      { label: "Colleges FAQ", url: "https://www.colleges.unimelb.edu.au/frequently-asked-questions/" },
+    ],
+  },
+  {
+    uni: "Swinburne",
+    points: [
+      "Swinburne Student Residences at Hawthorn house 600+ students: college rooms, shared apartments and studios, for a semester or a year, at about $315–$460 a week including bills.",
+      "Residences have their own reception and sometimes give informal tours on the spot, depending on staffing (Student HQ, 28 Sep 2026).",
+    ],
+    source: { label: "Swinburne meeting notes (28 Sep 2026)", url: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-09-28-swinburne-student-hq.md" },
+    links: [
+      { label: "Swinburne: On-campus accommodation", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/on-campus-accommodation/" },
+      { label: "Compare options & costs", url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/compare-your-options/" },
+    ],
+  },
+  {
+    uni: "RMIT",
+    points: [
+      "RMIT runs no university housing near the city or Brunswick campuses (its only residence is at Bundoora). It refers students to the private providers on this map.",
+      "Private residences take bookings a year ahead; Semester 1 2027 early-bird offers were already open in September 2026.",
+    ],
+    source: null,
+    links: [{ label: "RMIT: Student accommodation", url: "https://www.rmit.edu.au/students/student-life/accommodation/student-accommodation" }],
+  },
+];
 
 const ACCOMMODATION = [
   {
     id: "unilodge-bundoora",
     name: "UniLodge @ RMIT Bundoora – Walert House",
+    kind: "private",
     operator: "UniLodge",
     area: "Bundoora",
     address: "345 McKimmies Road, Bundoora VIC 3083",
@@ -41,11 +87,16 @@ const ACCOMMODATION = [
     priceFrom: 371, studioFrom: 371,
     priceNote: "Studio Standard $371, Large $380, Extra Large $400 (+$70/wk for couples). 2026 full year was waitlist-only. On RMIT's Bundoora campus — far from Brunswick.",
     priceSource: "operator",
-    travel: { transit: 70, route: "bus 382 → Mernda line train → bus 506", walkMin: 13, bike: 70, walk: 231, km: 17.3 },
+    travel: {
+      rmit: { transit: 70, route: "bus 382 \u2192 Mernda line train \u2192 bus 506", walkMin: 13, bike: 70, walk: 231, km: 17.3 },
+      unimelb: { transit: 81, route: "bus 382 \u2192 Mernda line train \u2192 bus 200", walkMin: 19, bike: 79, walk: 248, km: 19.3 },
+      swinburne: { transit: 82, route: "tram 86 \u2192 Mernda line train \u2192 Lilydale line train", walkMin: 25, bike: 86, walk: 257, km: 22.4 },
+    },
   },
   {
     id: "scape-berkeley-1",
     name: "Scape Berkeley 1",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "105 Berkeley Street, Carlton VIC 3053",
@@ -55,11 +106,16 @@ const ACCOMMODATION = [
     priceFrom: 349, studioFrom: null,
     priceNote: "\"Rooms from $349/wk\" on Scape's Melbourne listing.",
     priceSource: "listing",
-    travel: { transit: 24, route: "tram 19", walkMin: 12, bike: 20, walk: 53, km: 4.0 },
+    travel: {
+      rmit: { transit: 24, route: "tram 19", walkMin: 12, bike: 20, walk: 53, km: 4.0 },
+      unimelb: { transit: null, route: "walk", walkMin: 11, bike: 7, walk: 11, km: 1.0 },
+      swinburne: { transit: 31, route: "tram 6 \u2192 Lilydale line train", walkMin: 15, bike: 41, walk: 107, km: 9.5 },
+    },
   },
   {
     id: "scape-berkeley-2",
     name: "Scape Berkeley 2",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "122–136 Berkeley Street, Carlton VIC 3053",
@@ -69,11 +125,16 @@ const ACCOMMODATION = [
     priceFrom: 409, studioFrom: null,
     priceNote: "\"Rooms from $409/wk\". Signature Plus studios shown as sold out.",
     priceSource: "listing",
-    travel: { transit: 23, route: "tram 19", walkMin: 11, bike: 20, walk: 52, km: 3.9 },
+    travel: {
+      rmit: { transit: 23, route: "tram 19", walkMin: 11, bike: 20, walk: 52, km: 3.9 },
+      unimelb: { transit: null, route: "walk", walkMin: 9, bike: 7, walk: 9, km: 0.9 },
+      swinburne: { transit: 30, route: "Sunbury line train \u2192 Lilydale line train", walkMin: 16, bike: 41, walk: 108, km: 9.6 },
+    },
   },
   {
     id: "scape-carlton",
     name: "Scape Carlton",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "581 Swanston Street, Carlton VIC 3053",
@@ -83,11 +144,16 @@ const ACCOMMODATION = [
     priceFrom: 339, studioFrom: null,
     priceNote: "\"Rooms from $339/wk\".",
     priceSource: "listing",
-    travel: { transit: 30, route: "tram 19", walkMin: 14, bike: 20, walk: 58, km: 4.3 },
+    travel: {
+      rmit: { transit: 30, route: "tram 19", walkMin: 14, bike: 20, walk: 58, km: 4.3 },
+      unimelb: { transit: null, route: "walk", walkMin: 14, bike: 8, walk: 14, km: 1.1 },
+      swinburne: { transit: 25, route: "tram 6 \u2192 Lilydale line train", walkMin: 9, bike: 39, walk: 102, km: 9.1 },
+    },
   },
   {
     id: "scape-cornell",
     name: "Scape Cornell Place",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "502 Swanston Street, Carlton VIC 3053",
@@ -97,11 +163,16 @@ const ACCOMMODATION = [
     priceFrom: 409, studioFrom: null,
     priceNote: "\"Rooms from $409/wk\".",
     priceSource: "listing",
-    travel: { transit: 27, route: "tram 19", walkMin: 12, bike: 21, walk: 60, km: 4.5 },
+    travel: {
+      rmit: { transit: 27, route: "tram 19", walkMin: 12, bike: 21, walk: 60, km: 4.5 },
+      unimelb: { transit: null, route: "walk", walkMin: 16, bike: 9, walk: 16, km: 1.3 },
+      swinburne: { transit: 24, route: "tram 6 \u2192 Lilydale line train", walkMin: 8, bike: 38, walk: 101, km: 9.0 },
+    },
   },
   {
     id: "scape-lincoln",
     name: "Scape Lincoln College",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "562 Swanston Street, Carlton VIC 3053",
@@ -111,11 +182,16 @@ const ACCOMMODATION = [
     priceFrom: 429, studioFrom: null,
     priceNote: "\"Rooms from $429/wk\", breakfast included.",
     priceSource: "listing",
-    travel: { transit: 28, route: "tram 19", walkMin: 16, bike: 20, walk: 56, km: 4.2 },
+    travel: {
+      rmit: { transit: 28, route: "tram 19", walkMin: 16, bike: 20, walk: 56, km: 4.2 },
+      unimelb: { transit: null, route: "walk", walkMin: 12, bike: 8, walk: 12, km: 0.9 },
+      swinburne: { transit: 28, route: "tram 6 \u2192 Lilydale line train", walkMin: 10, bike: 40, walk: 105, km: 9.3 },
+    },
   },
   {
     id: "scape-queensberry",
     name: "Scape Queensberry",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "599 Swanston Street, Carlton VIC 3053",
@@ -125,11 +201,16 @@ const ACCOMMODATION = [
     priceFrom: 399, studioFrom: null,
     priceNote: "\"Rooms from $399/wk\". Reduced-term options on some rooms.",
     priceSource: "listing",
-    travel: { transit: 28, route: "tram 19", walkMin: 16, bike: 20, walk: 58, km: 4.3 },
+    travel: {
+      rmit: { transit: 28, route: "tram 19", walkMin: 16, bike: 20, walk: 58, km: 4.3 },
+      unimelb: { transit: null, route: "walk", walkMin: 14, bike: 8, walk: 14, km: 1.1 },
+      swinburne: { transit: 26, route: "tram 6 \u2192 Lilydale line train", walkMin: 10, bike: 39, walk: 102, km: 9.1 },
+    },
   },
   {
     id: "scape-uni-square",
     name: "Scape Uni Square",
+    kind: "private",
     operator: "Scape",
     area: "Carlton",
     address: "18 Leicester Street, Carlton VIC 3053",
@@ -139,11 +220,16 @@ const ACCOMMODATION = [
     priceFrom: 409, studioFrom: null,
     priceNote: "\"Rooms from $409/wk\".",
     priceSource: "listing",
-    travel: { transit: 30, route: "tram 19", walkMin: 14, bike: 21, walk: 56, km: 4.2 },
+    travel: {
+      rmit: { transit: 30, route: "tram 19", walkMin: 14, bike: 21, walk: 56, km: 4.2 },
+      unimelb: { transit: null, route: "walk", walkMin: 13, bike: 8, walk: 13, km: 1.1 },
+      swinburne: { transit: 33, route: "tram 57 \u2192 Alamein line train", walkMin: 15, bike: 39, walk: 105, km: 9.2 },
+    },
   },
   {
     id: "clv-student-village",
     name: "Student Village Melbourne",
+    kind: "private",
     operator: "Campus Living Villages",
     area: "Carlton",
     address: "108–128 Leicester Street, Carlton VIC 3053",
@@ -153,11 +239,16 @@ const ACCOMMODATION = [
     priceFrom: 427, studioFrom: 541,
     priceNote: "Shared 4-bed $427–$543, studio $541–$730, twin $636–$737, 1-bed $678–$791. Pool and gym on site.",
     priceSource: "operator",
-    travel: { transit: 27, route: "tram 19", walkMin: 15, bike: 21, walk: 55, km: 4.1 },
+    travel: {
+      rmit: { transit: 27, route: "tram 19", walkMin: 15, bike: 21, walk: 55, km: 4.1 },
+      unimelb: { transit: null, route: "walk", walkMin: 10, bike: 7, walk: 10, km: 1.0 },
+      swinburne: { transit: 30, route: "tram 6 \u2192 Lilydale line train", walkMin: 14, bike: 40, walk: 106, km: 9.4 },
+    },
   },
   {
     id: "yugo-berkeley",
     name: "Yugo Infinity Place (now “Yugo Berkeley Street”)",
+    kind: "private",
     operator: "Yugo",
     area: "Carlton",
     address: "145 Berkeley Street, Carlton VIC 3053",
@@ -167,11 +258,16 @@ const ACCOMMODATION = [
     priceFrom: 409, studioFrom: 639,
     priceNote: "6-bed townhouse from $409, 3-bed from $459, studio from $639, 1-bed from $819. RMIT's Infinity Place link now lands on Yugo Berkeley Street.",
     priceSource: "operator",
-    travel: { transit: 24, route: "tram 19", walkMin: 12, bike: 20, walk: 51, km: 3.9 },
+    travel: {
+      rmit: { transit: 24, route: "tram 19", walkMin: 12, bike: 20, walk: 51, km: 3.9 },
+      unimelb: { transit: null, route: "walk", walkMin: 8, bike: 6, walk: 8, km: 0.8 },
+      swinburne: { transit: 31, route: "Sunbury line train \u2192 Lilydale line train", walkMin: 17, bike: 41, walk: 109, km: 9.7 },
+    },
   },
   {
     id: "yugo-uni-square",
     name: "Yugo University Square",
+    kind: "private",
     operator: "Yugo",
     area: "Carlton",
     address: "85 Barry Street, Carlton VIC 3053",
@@ -181,11 +277,16 @@ const ACCOMMODATION = [
     priceFrom: 299, studioFrom: 629,
     priceNote: "6-bed bunk cabin from $299, twin studio $399, 4-bed $449, studio $629, 1-bed $799.",
     priceSource: "operator",
-    travel: { transit: 24, route: "tram 19", walkMin: 12, bike: 21, walk: 53, km: 4.0 },
+    travel: {
+      rmit: { transit: 24, route: "tram 19", walkMin: 12, bike: 21, walk: 53, km: 4.0 },
+      unimelb: { transit: null, route: "walk", walkMin: 10, bike: 7, walk: 10, km: 1.0 },
+      swinburne: { transit: 30, route: "Sunbury line train \u2192 Lilydale line train", walkMin: 16, bike: 41, walk: 107, km: 9.5 },
+    },
   },
   {
     id: "iglu-flagstaff-gardens",
     name: "Iglu Flagstaff Gardens",
+    kind: "private",
     operator: "Iglu",
     area: "West Melbourne",
     address: "7 Batman Street, West Melbourne VIC 3003",
@@ -195,11 +296,16 @@ const ACCOMMODATION = [
     priceFrom: 635, studioFrom: 635,
     priceNote: "Single studio from $635, standard studio from $655 (12-month lease; 6-month costs more).",
     priceSource: "operator",
-    travel: { transit: 27, route: "bus 216 → Upfield line train", walkMin: 15, bike: 25, walk: 64, km: 4.8 },
+    travel: {
+      rmit: { transit: 27, route: "bus 216 \u2192 Upfield line train", walkMin: 15, bike: 25, walk: 64, km: 4.8 },
+      unimelb: { transit: 23, route: "tram 58", walkMin: 20, bike: 13, walk: 26, km: 2.0 },
+      swinburne: { transit: 30, route: "Lilydale line train", walkMin: 14, bike: 44, walk: 114, km: 9.0 },
+    },
   },
   {
     id: "iglu-melbourne-central",
     name: "Iglu Melbourne Central",
+    kind: "private",
     operator: "Iglu",
     area: "Melbourne CBD",
     address: "167 Little Lonsdale Street, Melbourne VIC 3000",
@@ -209,11 +315,16 @@ const ACCOMMODATION = [
     priceFrom: 635, studioFrom: 635,
     priceNote: "Standard studio from $635, premium from $665.",
     priceSource: "listing",
-    travel: { transit: 34, route: "tram 19", walkMin: 15, bike: 25, walk: 69, km: 5.1 },
+    travel: {
+      rmit: { transit: 34, route: "tram 19", walkMin: 15, bike: 25, walk: 69, km: 5.1 },
+      unimelb: { transit: 19, route: "bus 207", walkMin: 12, bike: 13, walk: 24, km: 2.0 },
+      swinburne: { transit: 25, route: "tram 6 \u2192 Lilydale line train", walkMin: 12, bike: 35, walk: 95, km: 7.4 },
+    },
   },
   {
     id: "iglu-melbourne-city",
     name: "Iglu Melbourne City",
+    kind: "private",
     operator: "Iglu",
     area: "Melbourne CBD",
     address: "229 Franklin Street, Melbourne VIC 3000",
@@ -223,11 +334,16 @@ const ACCOMMODATION = [
     priceFrom: 515, studioFrom: 675,
     priceNote: "6-share bedroom from $515 (operator page), studio from $675 (listing). Weekday breakfast included.",
     priceSource: "operator",
-    travel: { transit: 30, route: "tram 19", walkMin: 14, bike: 24, walk: 63, km: 4.7 },
+    travel: {
+      rmit: { transit: 30, route: "tram 19", walkMin: 14, bike: 24, walk: 63, km: 4.7 },
+      unimelb: { transit: 21, route: "tram 19", walkMin: 15, bike: 11, walk: 22, km: 1.9 },
+      swinburne: { transit: 30, route: "Lilydale line train", walkMin: 14, bike: 41, walk: 109, km: 8.6 },
+    },
   },
   {
     id: "scape-franklin",
     name: "Scape Franklin",
+    kind: "private",
     operator: "Scape",
     area: "Melbourne CBD",
     address: "99 Franklin Street, Melbourne VIC 3000",
@@ -237,11 +353,16 @@ const ACCOMMODATION = [
     priceFrom: 469, studioFrom: null,
     priceNote: "\"Rooms from $469/wk\".",
     priceSource: "listing",
-    travel: { transit: 26, route: "tram 19", walkMin: 11, bike: 23, walk: 61, km: 4.6 },
+    travel: {
+      rmit: { transit: 26, route: "tram 19", walkMin: 11, bike: 23, walk: 61, km: 4.6 },
+      unimelb: { transit: null, route: "walk", walkMin: 18, bike: 10, walk: 18, km: 1.6 },
+      swinburne: { transit: 26, route: "tram 6 \u2192 Lilydale line train", walkMin: 11, bike: 38, walk: 102, km: 9.0 },
+    },
   },
   {
     id: "scape-melbourne-central",
     name: "Scape Melbourne Central",
+    kind: "private",
     operator: "Scape",
     area: "Melbourne CBD",
     address: "316 La Trobe Street, Melbourne VIC 3000",
@@ -251,11 +372,16 @@ const ACCOMMODATION = [
     priceFrom: 319, studioFrom: null,
     priceNote: "\"Rooms from $319/wk\" — the cheapest Scape in Melbourne.",
     priceSource: "listing",
-    travel: { transit: 26, route: "tram 19", walkMin: 8, bike: 24, walk: 64, km: 4.8 },
+    travel: {
+      rmit: { transit: 26, route: "tram 19", walkMin: 8, bike: 24, walk: 64, km: 4.8 },
+      unimelb: { transit: 18, route: "tram 19", walkMin: 9, bike: 11, walk: 21, km: 1.7 },
+      swinburne: { transit: 27, route: "Lilydale line train", walkMin: 9, bike: 39, walk: 103, km: 8.1 },
+    },
   },
   {
     id: "unilodge-flagstaff",
     name: "UniLodge Melbourne Flagstaff",
+    kind: "private",
     operator: "UniLodge",
     area: "Melbourne CBD",
     address: "17 Wills Street, Melbourne VIC 3000",
@@ -265,11 +391,16 @@ const ACCOMMODATION = [
     priceFrom: 559, studioFrom: 559,
     priceNote: "Studio Standard from $559, Superior $569, up to ~$579.",
     priceSource: "listing",
-    travel: { transit: 28, route: "Frankston line train → Upfield line train", walkMin: 14, bike: 25, walk: 66, km: 4.9 },
+    travel: {
+      rmit: { transit: 28, route: "Frankston line train \u2192 Upfield line train", walkMin: 14, bike: 25, walk: 66, km: 4.9 },
+      unimelb: { transit: 20, route: "tram 58", walkMin: 15, bike: 13, walk: 27, km: 2.1 },
+      swinburne: { transit: 26, route: "Lilydale line train", walkMin: 10, bike: 41, walk: 110, km: 8.6 },
+    },
   },
   {
     id: "unilodge-melbourne-central",
     name: "UniLodge Melbourne Central",
+    kind: "private",
     operator: "UniLodge",
     area: "Melbourne CBD",
     address: "293 La Trobe Street, Melbourne VIC 3000",
@@ -279,11 +410,16 @@ const ACCOMMODATION = [
     priceFrom: 485, studioFrom: 485,
     priceNote: "Standard studio from $485, Studio Long from $539, Premium from $579.",
     priceSource: "listing",
-    travel: { transit: 26, route: "tram 19", walkMin: 8, bike: 25, walk: 65, km: 4.8 },
+    travel: {
+      rmit: { transit: 26, route: "tram 19", walkMin: 8, bike: 25, walk: 65, km: 4.8 },
+      unimelb: { transit: 18, route: "tram 19", walkMin: 9, bike: 12, walk: 22, km: 1.8 },
+      swinburne: { transit: 27, route: "Lilydale line train", walkMin: 9, bike: 38, walk: 104, km: 8.1 },
+    },
   },
   {
     id: "unilodge-melbourne-city",
     name: "UniLodge Melbourne City",
+    kind: "private",
     operator: "UniLodge",
     area: "Melbourne CBD",
     address: "480 Elizabeth Street, Melbourne VIC 3000",
@@ -293,11 +429,16 @@ const ACCOMMODATION = [
     priceFrom: 399, studioFrom: 539,
     priceNote: "Accessible twin from $399, studio king single from $539, Superior $589, Large $684.",
     priceSource: "listing",
-    travel: { transit: 24, route: "tram 19", walkMin: 9, bike: 23, walk: 59, km: 4.4 },
+    travel: {
+      rmit: { transit: 24, route: "tram 19", walkMin: 9, bike: 23, walk: 59, km: 4.4 },
+      unimelb: { transit: null, route: "walk", walkMin: 17, bike: 10, walk: 17, km: 1.5 },
+      swinburne: { transit: 30, route: "Lilydale line train", walkMin: 12, bike: 39, walk: 104, km: 9.1 },
+    },
   },
   {
     id: "dwell-village",
     name: "dwell Village Melbourne City",
+    kind: "private",
     operator: "dwell",
     area: "North Melbourne",
     address: "5–17 Flemington Road, North Melbourne VIC 3051",
@@ -307,11 +448,16 @@ const ACCOMMODATION = [
     priceFrom: 548, studioFrom: null,
     priceNote: "$548–$568/wk on current promo (listed $584–$604). Room-type split not shown.",
     priceSource: "operator",
-    travel: { transit: 22, route: "tram 19", walkMin: 11, bike: 20, walk: 50, km: 3.8 },
+    travel: {
+      rmit: { transit: 22, route: "tram 19", walkMin: 11, bike: 20, walk: 50, km: 3.8 },
+      unimelb: { transit: null, route: "walk", walkMin: 12, bike: 7, walk: 12, km: 0.9 },
+      swinburne: { transit: 32, route: "Sunbury line train \u2192 Lilydale line train", walkMin: 18, bike: 44, walk: 114, km: 10.0 },
+    },
   },
   {
     id: "scape-peel",
     name: "Scape Peel",
+    kind: "private",
     operator: "Scape",
     area: "North Melbourne",
     address: "247 Peel Street, North Melbourne VIC 3051",
@@ -321,11 +467,16 @@ const ACCOMMODATION = [
     priceFrom: 399, studioFrom: null,
     priceNote: "\"Rooms from $399/wk\".",
     priceSource: "listing",
-    travel: { transit: 23, route: "tram 19", walkMin: 11, bike: 20, walk: 52, km: 3.9 },
+    travel: {
+      rmit: { transit: 23, route: "tram 19", walkMin: 11, bike: 20, walk: 52, km: 3.9 },
+      unimelb: { transit: null, route: "walk", walkMin: 13, bike: 8, walk: 13, km: 1.0 },
+      swinburne: { transit: 31, route: "tram 58 \u2192 Lilydale line train", walkMin: 8, bike: 42, walk: 110, km: 9.7 },
+    },
   },
   {
     id: "unilodge-royal-melbourne",
     name: "UniLodge Royal Melbourne",
+    kind: "private",
     operator: "UniLodge",
     area: "North Melbourne",
     address: "15–27 Wreckyn Street, North Melbourne VIC 3051",
@@ -335,11 +486,16 @@ const ACCOMMODATION = [
     priceFrom: 479, studioFrom: 479,
     priceNote: "2027 full year: studio $479, with terrace $484, large $499 (half-year +$30).",
     priceSource: "operator",
-    travel: { transit: 24, route: "tram 19", walkMin: 13, bike: 20, walk: 51, km: 3.8 },
+    travel: {
+      rmit: { transit: 24, route: "tram 19", walkMin: 13, bike: 20, walk: 51, km: 3.8 },
+      unimelb: { transit: null, route: "walk", walkMin: 12, bike: 8, walk: 12, km: 0.9 },
+      swinburne: { transit: 32, route: "Sunbury line train \u2192 Lilydale line train", walkMin: 18, bike: 45, walk: 117, km: 10.2 },
+    },
   },
   {
     id: "iglu-south-yarra",
     name: "Iglu South Yarra",
+    kind: "private",
     operator: "Iglu",
     area: "South Yarra",
     address: "8 Claremont Street, South Yarra VIC 3141",
@@ -349,6 +505,110 @@ const ACCOMMODATION = [
     priceFrom: 555, studioFrom: 665,
     priceNote: "6-share bedroom from $555, single studio from $665, premium studio $715.",
     priceSource: "operator",
-    travel: { transit: 39, route: "Frankston line train → Upfield line train", walkMin: 14, bike: 46, walk: 127, km: 9.5 },
+    travel: {
+      rmit: { transit: 39, route: "Frankston line train \u2192 Upfield line train", walkMin: 14, bike: 46, walk: 127, km: 9.5 },
+      unimelb: { transit: 26, route: "Frankston line train \u2192 Sunbury line train", walkMin: 14, bike: 34, walk: 84, km: 6.5 },
+      swinburne: { transit: 19, route: "Frankston line train \u2192 Alamein line train", walkMin: 11, bike: 29, walk: 78, km: 6.0 },
+    },
+  },
+  {
+    id: "unimelb-lisa-bellear",
+    name: "Lisa Bellear House",
+    kind: "university",
+    university: "UniMelb",
+    operator: "University of Melbourne",
+    area: "Parkville",
+    address: "303 Royal Parade, Parkville VIC 3052",
+    lat: -37.786271, lng: 144.958324,
+    url: "https://study.unimelb.edu.au/accommodation/lisa-bellear-house",
+    roomTypes: "Twin studios; 3- to 5-bedroom apartments (self-catered)",
+    priceFrom: 459, studioFrom: null,
+    priceNote: "2027: twin studio $459, 5-bed $498, 4-bed $518, 3-bed $536, 4-bed ensuite $562, up to $639. Utilities and Wi-Fi included. Covered by UniMelb's Accommodation Offer for students new to Melbourne. On tram 19's route, so it's about 16 min to RMIT Brunswick as well as UniMelb.",
+    priceSource: "listing",
+    travel: {
+      rmit: { transit: 16, route: "tram 19", walkMin: 11, bike: 10, walk: 27, km: 2.1 },
+      unimelb: { transit: 17, route: "tram 19", walkMin: 12, bike: 10, walk: 22, km: 1.7 },
+      swinburne: { transit: 41, route: "tram 19 \u2192 Lilydale line train", walkMin: 12, bike: 45, walk: 130, km: 10.6 },
+    },
+  },
+  {
+    id: "unimelb-little-hall",
+    name: "Little Hall",
+    kind: "university",
+    university: "UniMelb",
+    operator: "University of Melbourne",
+    area: "Carlton",
+    address: "625\u2013631 Swanston Street, Carlton VIC 3053",
+    lat: -37.803554, lng: 144.963173,
+    url: "https://study.unimelb.edu.au/accommodation/little-hall",
+    roomTypes: "Twin studios, studios, 2- to 5-bedroom apartments (self-catered)",
+    priceFrom: 481, studioFrom: 744,
+    priceNote: "2027: twin studio $481, 4-bed $525, 2-bed $576, 5-bed $590, 4-bed ensuite $615, studio $744. Utilities and Wi-Fi included. Up to 669 students, with an academic and enrichment program.",
+    priceSource: "listing",
+    travel: {
+      rmit: { transit: 28, route: "tram 19", walkMin: 16, bike: 20, walk: 56, km: 4.2 },
+      unimelb: { transit: null, route: "walk", walkMin: 12, bike: 8, walk: 12, km: 1.0 },
+      swinburne: { transit: 27, route: "tram 6 \u2192 Lilydale line train", walkMin: 11, bike: 40, walk: 103, km: 9.2 },
+    },
+  },
+  {
+    id: "unimelb-wilam-hall",
+    name: "Wilam Hall",
+    kind: "university",
+    university: "UniMelb",
+    operator: "University of Melbourne",
+    area: "Carlton",
+    address: "48\u201356 Drummond Street, Carlton VIC 3053",
+    lat: -37.805761, lng: 144.967989,
+    url: "https://study.unimelb.edu.au/accommodation/wilam-hall",
+    roomTypes: "Catered rooms in a heritage manor (60 students)",
+    priceFrom: 870, studioFrom: null,
+    priceNote: "2027: $17,518 a semester or $34,812 for the full 40-week year (about $870\u2013$922 a week), including three meals a day, bills and college programs. Financial support available.",
+    priceSource: "listing",
+    travel: {
+      rmit: { transit: 36, route: "tram 19", walkMin: 20, bike: 23, walk: 63, km: 4.8 },
+      unimelb: { transit: null, route: "walk", walkMin: 20, bike: 11, walk: 20, km: 1.7 },
+      swinburne: { transit: 32, route: "tram 6 \u2192 Lilydale line train", walkMin: 16, bike: 36, walk: 96, km: 8.7 },
+    },
+  },
+  {
+    id: "unimelb-colleges",
+    name: "UniMelb residential colleges",
+    kind: "university",
+    university: "UniMelb",
+    operator: "Affiliated colleges (e.g. Ormond, Trinity, Queen's, University College)",
+    area: "Parkville",
+    address: "College Crescent, Parkville VIC 3052",
+    lat: -37.793062, lng: 144.96054,
+    url: "https://www.colleges.unimelb.edu.au/frequently-asked-questions/",
+    roomTypes: "Catered single rooms; tutoring, meals and activities included",
+    priceFrom: 775, studioFrom: null,
+    priceNote: "About $31k\u2013$46k for the academic year (Trinity 2027: $45,310 plus $3,600 first-year fees), roughly $775\u2013$1,150 a week over ~40 weeks. Each college runs its own application and interview; most are full by September, and some 2027-round colleges closed in October 2026. Pin shows Ormond on College Crescent.",
+    priceSource: "operator",
+    travel: {
+      rmit: { transit: 18, route: "tram 19", walkMin: 10, bike: 14, walk: 39, km: 2.9 },
+      unimelb: { transit: null, route: "walk", walkMin: 12, bike: 6, walk: 12, km: 0.9 },
+      swinburne: { transit: 37, route: "tram 19 \u2192 Lilydale line train", walkMin: 11, bike: 42, walk: 125, km: 10.0 },
+    },
+  },
+  {
+    id: "swinburne-residences",
+    name: "Swinburne Student Residences",
+    kind: "university",
+    university: "Swinburne",
+    operator: "Swinburne University",
+    area: "Hawthorn",
+    address: "24\u201332 Wakefield Street, Hawthorn VIC 3122",
+    lat: -37.821235, lng: 145.037869,
+    url: "https://www.swinburne.edu.au/life-at-swinburne/student-support-services/accommodation/on-campus-accommodation/",
+    roomTypes: "College rooms, 2\u20134 person shared apartments, studios",
+    priceFrom: 315, studioFrom: null,
+    priceNote: "About $315\u2013$460 a week including bills, internet and laundry, for a semester or a year (exact rates are in Swinburne's fee schedule PDF). 600+ students. The reception sometimes gives informal tours.",
+    priceSource: "operator",
+    travel: {
+      rmit: { transit: 46, route: "tram 16 \u2192 Lilydale line train \u2192 Upfield line train", walkMin: 18, bike: 49, walk: 149, km: 12.0 },
+      unimelb: { transit: 33, route: "tram 16 \u2192 Lilydale line train \u2192 Sunbury line train", walkMin: 18, bike: 40, walk: 113, km: 9.1 },
+      swinburne: { transit: null, route: "walk", walkMin: 2, bike: 2, walk: 2, km: 0.2 },
+    },
   },
 ];

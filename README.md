@@ -18,9 +18,15 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
   pin, or detail view. Not-interested picks are shaded red; status is saved
   in the browser's `localStorage`, so it persists on the same device but
   doesn't sync across devices (this is a static site with no backend)
-- **RMIT accommodation map** (`accommodation.html`) — the 23 residences RMIT
-  lists, pinned by weekly price, with transit/bike/walk times to the
-  Brunswick campus and a sortable table
+- **Student accommodation map** (`accommodation.html`): RMIT's 23 listed
+  private residences plus UniMelb and Swinburne university-run housing, pinned
+  by weekly price, with transit/bike/walk times to RMIT Brunswick, UniMelb
+  Parkville and Swinburne Hawthorn, a sortable table, and what each interview
+  taught us about housing
+- **Milestones timeline** (`timeline.html`): application, housing and
+  enrolment deadlines for a 2028 start, built from `data/milestones.json` with
+  the `timeline` skill's generator. Rebuild after editing the data with
+  `node scripts/build-timeline.js && python3 scripts/check-timeline.py timeline.html`
 
 ## Running locally
 
@@ -40,9 +46,13 @@ index.html          Page shell and markup
 css/styles.css       Styling (light/dark theme via CSS custom properties)
 js/app.js            Filtering, rendering, map, and status logic
 data/institutions.js Seed dataset — institutions, programs, and visit info
-accommodation.html   RMIT accommodation map page
+accommodation.html   Accommodation map page
 js/accommodation.js  Map, filters and table for the accommodation page
-data/accommodation.js Residences, prices and commute times (Sep 2026)
+data/accommodation.js Residences, prices, commute times to 3 campuses, housing notes
+timeline.html        Milestones timeline (generated; don't edit by hand)
+data/milestones.json Milestones for the timeline
+scripts/             build-timeline.js (generator) and check-timeline.py (geometry check)
+transcripts/         Interview transcripts with sourced findings
 ```
 
 ## Meeting recordings and transcripts

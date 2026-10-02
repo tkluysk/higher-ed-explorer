@@ -12,7 +12,7 @@
 // `entryRequirements.applicationProcess` to override this default.
 const CITY_APPLICATION_PROCESS = {
   melbourne:
-    "Applications go through VTAC (Victorian Tertiary Admissions Centre), the shared domestic admissions portal for Victorian universities and colleges — not a direct application to the institution. Register and apply at vtac.edu.au; standard round closes ~Sept/Oct for the following academic year.",
+    "Applications go through VTAC (Victorian Tertiary Admissions Centre), the shared domestic admissions portal for Victorian universities and colleges. Applying to more than one Victorian provider means applying through VTAC: Swinburne and RMIT push direct applicants with a VTAC account back to VTAC. One fee covers up to 8 course preferences (courses, not universities). For a 2028 start she applies during NZ Year 13: applications open early August 2027 and the on-time window closes late September. Late applications cost more but are otherwise treated the same, except some equity schemes (e.g. Access Melbourne) and arts and music courses. NCEA results reach VTAC in January, so she'll be in the January offer rounds, and preferences can be changed after results. NZ citizens are domestic and get a Commonwealth supported place, but without HECS-HELP the student contribution is paid upfront each semester. Confirmed by both the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews; dates from vtac.edu.au.",
 };
 
 // Campus-visit questions that apply to any institution, shown beneath each
