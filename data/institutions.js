@@ -404,7 +404,7 @@ const INSTITUTIONS = [
         {
           label: "Money",
           questions: [
-            { q: "What would we pay, and can fees be deferred?", answer: "Domestic CSP rates as an NZ citizen living in Australia. No HECS-HELP without a Special Category Visa, so fees are paid upfront each semester (around March and August), plus the separate Student Services and Amenities Fee.", links: [{ label: "Fees for local students", url: "https://www.swinburne.edu.au/courses/fees/fees-for-local-students/" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+            { q: "What would we pay, and can fees be deferred?", answer: "Domestic CSP rates as an NZ citizen living in Australia — Fashion is $9,537 a year (2026). No HECS-HELP without a Special Category Visa, so fees are paid upfront each semester (around March and August), plus the separate Student Services and Amenities Fee.", links: [{ label: "Fees for local students", url: "https://www.swinburne.edu.au/courses/fees/fees-for-local-students/" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
             { q: "Which scholarships are open to NZ citizens or fashion students?", gap: true, answer: "Over 100 scholarships with varying eligibility — some via VTAC, some direct, some only once enrolled. The adviser couldn't confirm fashion- or NZ-specific ones; link to follow by email. Also look for NZ scholarships.", links: [{ label: "Scholarships", url: "https://www.swinburne.edu.au/study/options/scholarships/" }] },
           ],
         },
