@@ -31,7 +31,7 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
 - **Fees calculator** (`fees.html`): tuition by student-contribution band (2026
   government maximums, indexed to the study year), SSAF, housing from the
   accommodation data, living costs, flights and setup, per year and per
-  semester, in A$ and NZ$. NZ citizens pay tuition upfront each semester (no
+  semester, with an A$/NZ$ switch (the AUD→NZD rate is fetched live on every page load from the ECB via Frankfurter, falling back to ExchangeRate-API). NZ citizens pay tuition upfront each semester (no
   HECS-HELP), so it also lists the payment schedule. Inputs persist in the browser
 - **Interviews** (`interviews.html`): every staff interview's questions,
   answers, open gaps and follow-ups, with transcript and recording links

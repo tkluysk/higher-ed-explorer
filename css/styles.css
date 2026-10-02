@@ -799,7 +799,6 @@ ol.question-list { padding-left: 1.4em; }
 .fee-tile-label { margin: 0; font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
 .fee-tile-value { margin: 4px 0 2px; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .fee-tile-sub { margin: 0; font-size: 0.74rem; color: var(--text-muted); }
-.nzd { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .fees-h2 { font-size: 0.95rem; margin: 8px 0 0; }
 .fees-table { min-width: 640px; table-layout: auto; }
 .fees-table td.num, .fees-table th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -824,3 +823,5 @@ ol.question-list { padding-left: 1.4em; }
 @media (max-width: 640px) { .interview-card { padding: 16px; } }
 
 .entry-inline-link { color: var(--field-business); white-space: nowrap; }
+.currency-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.currency-bar .field-note { flex: 1; min-width: 200px; }

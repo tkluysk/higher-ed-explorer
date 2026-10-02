@@ -19,8 +19,16 @@
     flight: 500,
     setup: 1500,
     index: 3,
-    fx: 1.1,
+    currency: "AUD",
   };
+
+  // Exchange rate: fetched fresh on every page load (ECB reference rate via
+  // Frankfurter, falling back to open.er-api.com). If both fail, the last rate
+  // this browser fetched is used, then a dated constant, and the page says so.
+  const FX_FALLBACK = { rate: 1.2378, date: "2026-10-01", source: "ECB via Frankfurter (built-in fallback)" };
+  const FX_KEY = "fees-calculator-fx";
+  let fx = FX_FALLBACK;
+  let fxLive = false;
 
   const $ = (id) => document.getElementById(id);
   const fmt = (n) => "$" + Math.round(n).toLocaleString("en-AU");
@@ -68,7 +76,7 @@
   $("fee-links").innerHTML = FEE_LINKS.map((l) => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join("");
 
   const NUM_FIELDS = { years: "f-years", start: "f-start", rent: "f-rent", weeks: "f-weeks", food: "f-food", transport: "f-transport",
-    phone: "f-phone", study: "f-study", other: "f-other", trips: "f-trips", flight: "f-flight", setup: "f-setup", index: "f-index", fx: "f-fx" };
+    phone: "f-phone", study: "f-study", other: "f-other", trips: "f-trips", flight: "f-flight", setup: "f-setup", index: "f-index" };
 
   function fillForm() {
     $("f-course").value = state.course;
@@ -77,6 +85,8 @@
     $("f-ssaf").checked = state.ssaf;
     $("f-home").value = state.home;
     Object.entries(NUM_FIELDS).forEach(([k, id]) => ($(id).value = state[k]));
+    document.querySelectorAll("#currency-switch .chip").forEach((c) =>
+      c.setAttribute("aria-pressed", String(c.dataset.cur === state.currency)));
     document.querySelectorAll("#f-mix input").forEach((inp) => {
       inp.value = Math.round((state.mix[inp.dataset.band] || 0) * 1000) / 10;
     });
@@ -108,7 +118,8 @@
   }
 
   // ---- rendering ------------------------------------------------------------
-  const nz = (n) => `<span class="nzd">NZ${fmt(n * state.fx)}</span>`;
+  // Every amount is calculated in A$ and converted for display.
+  const money = (aud) => (state.currency === "NZD" ? "NZ" + fmt(aud * fx.rate) : fmt(aud));
 
   function render() {
     const r = calculate(state);
@@ -124,21 +135,21 @@
       { label: "Tuition only, whole degree", value: r.totals.tuition + r.totals.ssaf, sub: "student contribution + SSAF" },
     ];
     $("fee-tiles").innerHTML = tiles
-      .map((t) => `<div class="fee-tile"><p class="fee-tile-label">${t.label}</p><p class="fee-tile-value">${fmt(t.value)}</p><p class="fee-tile-sub">${nz(t.value)} · ${t.sub}</p></div>`)
+      .map((t) => `<div class="fee-tile"><p class="fee-tile-label">${t.label}</p><p class="fee-tile-value">${money(t.value)}</p><p class="fee-tile-sub">${t.sub}</p></div>`)
       .join("");
 
     const cols = [["tuition", "Tuition"], ["ssaf", "SSAF"], ["housing", "Housing"], ["living", "Living"], ["travel", "Flights"], ["setup", "Setup"], ["total", "Total"]];
-    const head = `<thead><tr><th>Year</th>${cols.map(([, l]) => `<th class="num">${l}</th>`).join("")}<th class="num">Total NZ$</th></tr></thead>`;
+    const head = `<thead><tr><th>Year</th>${cols.map(([, l]) => `<th class="num">${l}</th>`).join("")}</tr></thead>`;
     const rows = r.years
-      .map((y) => `<tr><td>${y.year}</td>${cols.map(([k]) => `<td class="num${k === "total" ? " strong" : ""}">${fmt(y[k])}</td>`).join("")}<td class="num">${fmt(y.total * state.fx)}</td></tr>`)
+      .map((y) => `<tr><td>${y.year}</td>${cols.map(([k]) => `<td class="num${k === "total" ? " strong" : ""}">${money(y[k])}</td>`).join("")}</tr>`)
       .join("");
-    const foot = `<tfoot><tr><td>Total</td>${cols.map(([k]) => `<td class="num strong">${fmt(r.totals[k])}</td>`).join("")}<td class="num strong">${fmt(r.totals.total * state.fx)}</td></tr></tfoot>`;
+    const foot = `<tfoot><tr><td>Total</td>${cols.map(([k]) => `<td class="num strong">${money(r.totals[k])}</td>`).join("")}</tr></tfoot>`;
     $("fee-years").innerHTML = head + `<tbody>${rows}</tbody>` + foot;
 
     $("fee-schedule").innerHTML = r.years
       .flatMap((y) => [
-        `<li><span>~March ${y.year}</span> ${fmt((y.tuition + y.ssaf) / 2)} ${nz((y.tuition + y.ssaf) / 2)}</li>`,
-        `<li><span>~August ${y.year}</span> ${fmt((y.tuition + y.ssaf) / 2)} ${nz((y.tuition + y.ssaf) / 2)}</li>`,
+        `<li><span>~March ${y.year}</span> ${money((y.tuition + y.ssaf) / 2)}</li>`,
+        `<li><span>~August ${y.year}</span> ${money((y.tuition + y.ssaf) / 2)}</li>`,
       ])
       .join("");
   }
@@ -193,6 +204,57 @@
       update();
     })
   );
+  $("currency-switch").addEventListener("click", (e) => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    state.currency = btn.dataset.cur;
+    fillForm();
+    update();
+  });
+
+  function showFx() {
+    const when = new Date(fx.date + "T00:00:00").toLocaleDateString("en-NZ", { day: "numeric", month: "short", year: "numeric" });
+    $("fx-status").textContent = fxLive
+      ? `A$1 = NZ$${fx.rate.toFixed(4)} · ${fx.source}, ${when}`
+      : `A$1 = NZ$${fx.rate.toFixed(4)} · live rate unavailable, using ${fx.source} from ${when}`;
+  }
+
+  async function fetchJson(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(res.status);
+    return res.json();
+  }
+
+  async function loadFx() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(FX_KEY));
+      if (saved && saved.rate) fx = { ...saved, source: saved.source + " (last fetched)" };
+    } catch (e) { /* storage unavailable */ }
+    showFx();
+    const sources = [
+      async () => {
+        const d = await fetchJson("https://api.frankfurter.dev/v1/latest?base=AUD&symbols=NZD");
+        return { rate: d.rates.NZD, date: d.date, source: "ECB reference rate via Frankfurter" };
+      },
+      async () => {
+        const d = await fetchJson("https://open.er-api.com/v6/latest/AUD");
+        return { rate: d.rates.NZD, date: new Date(d.time_last_update_unix * 1000).toISOString().slice(0, 10), source: "ExchangeRate-API" };
+      },
+    ];
+    for (const get of sources) {
+      try {
+        const live = await get();
+        if (!(live.rate > 0)) continue;
+        fx = live;
+        fxLive = true;
+        try { localStorage.setItem(FX_KEY, JSON.stringify(live)); } catch (e) { /* ignore */ }
+        break;
+      } catch (e) { /* try the next source */ }
+    }
+    showFx();
+    render();
+  }
+
   $("f-reset").addEventListener("click", () => {
     try { localStorage.removeItem(STORE_KEY); } catch (e) { /* ignore */ }
     state = load();
@@ -203,4 +265,5 @@
   if (state.rent == null) state.rent = (residence(state.home) || {}).priceFrom || 400;
   fillForm();
   render();
+  loadFx();
 })();
