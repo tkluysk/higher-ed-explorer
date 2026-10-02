@@ -48,13 +48,14 @@ data/accommodation.js Residences, prices and commute times (Sep 2026)
 ## Meeting recordings and transcripts
 
 Conversations with university staff are recorded, transcribed locally
-(Whisper `medium`), and summarised with each finding linked to the official
+(Whisper or WhisperX `medium`; WhisperX adds speaker labels), and summarised with each finding linked to the official
 university or government page that backs it up. Transcripts are committed
 under [`transcripts/`](transcripts/). The audio is too large for git and is
 filed on Google Drive (private; owner access only).
 
 | Date | Meeting | Transcript | Recording |
 |---|---|---|---|
+| 28 Sep 2026 | Swinburne — Student HQ conversation (Hawthorn) | [Transcript & findings](transcripts/2026-09-28-swinburne-student-hq.md) | [Swinburne student HQ.m4a](https://drive.google.com/file/d/1tM7sur7f_EgvRWHvl-MfjgrKI8Ej2gQQ/view) |
 | 2 Oct 2026 | University of Melbourne — Prospective Students Q&A (Stop 1, Parkville) | [Transcript & findings](transcripts/2026-10-02-unimelb-prospective-students.md) | [UOM Q&A.m4a](https://drive.google.com/file/d/1lrd22IeKZDwsILx8hLW86atebWwBryg5/view) |
 
 ## Data

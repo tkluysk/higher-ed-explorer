@@ -347,9 +347,9 @@ const INSTITUTIONS = [
     entryRequirements: {
       ncealLevel: "L3",
       academic: "Not a hard ATAR/NCEA-score gate — admission is portfolio-based. General completion of Year 12 or equivalent (which NCEA Level 3/UE satisfies) is the baseline eligibility check, not a specific credit threshold. No ATAR needed to apply.",
-      english: "Not separately specified for NZ/NCEA applicants — likely satisfied by the NCEA UE English component, not independently confirmed against a Swinburne-published NCEA page.",
+      english: "Bachelor's prerequisites are a VCE English study score (20 for most courses, 25 for professional degrees), with NZ equivalents assessed via VTAC. Student HQ (28 Sep 2026) strongly expects NZ Year 12 UE Literacy will NOT be enough — plan on an English subject in Year 13 and send the end-of-2026 results transcript for an admissions check. The NCEA Level 2 English rule on Swinburne's admissions page is for UniLink diplomas only.",
       portfolio: "Yes — the primary and determinative selection mechanism: a 10-page portfolio of creative work plus a 250-word written response on the applicant's passion for design and fashion career goals. Portfolio quality matters more than grades for this program.",
-      feeStatus: "Domestic — NZ/AU citizens and AU permanent residents classed as local students.",
+      feeStatus: "Domestic (local) student: an NZ citizen living in Australia for the whole course is eligible for a Commonwealth supported place. No HECS-HELP without a Special Category Visa, so fees are paid upfront each semester (due ~weeks 2–3, around March and August), plus the separate Student Services and Amenities Fee. An NZ permanent resident who is not a citizen is international.",
       sourceNote: "swinburne.edu.au Bachelor of Design (Fashion) course page + \"How to Become a Fashion Designer\" guide. Structurally different from RMIT/UTS/UNSW — worth noting since it changes the whole admissions calculus (portfolio-first rather than ATAR/selection-rank-anchored).",
     },
     description:
@@ -363,10 +363,12 @@ const INSTITUTIONS = [
       medicalSciences: [
         "Bachelor of Engineering (Honours) — Biomedical Engineering major (medical device design, imaging, prosthetics)",
         "Bachelor of Health Science — Artificial Intelligence and Digital Health major",
+        "Bachelor of Biomedical Science — standalone degree, set structure (anatomy, physiology, biochemistry); a route to graduate-entry medicine elsewhere (Swinburne has no medical school)",
+        "Bachelor of Health Science — Biomedical Science major (more flexible alternative to the standalone degree)",
       ],
     },
     biologyNote:
-      "No general \"Biology\" major — closest options are Biochemistry or Biotechnology majors within Bachelor of Science; broader biology only appears within the separate Bachelor of Health Science (Biomedical Science).",
+      "No general \"Biology\" major — the closest options are the Biochemistry or Biotechnology majors in the Bachelor of Science (science-only, no humanities breadth; Biotechnology and Biochemistry can't be combined as a double major), or the Bachelor of Biomedical Science / Health Science (Biomedical Science) for human biology.",
     hybrid: [
       {
         label: "Fashion + Technology",
@@ -385,6 +387,49 @@ const INSTITUTIONS = [
       tours: "45-minute student-ambassador-led guided tours of Hawthorn (incl. Sky Lounge/Sky Garden), bookable online; 360° virtual tour also available.",
       toursUrl: "https://www.swinburne.edu.au/forms/campus-tour/",
       notes: "School groups can request study-area-specific workshop visits outside Open Day.",
+    },
+    meetingQuestions: {
+      title: "Student HQ conversation — 28 Sep 2026",
+      transcriptUrl: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-09-28-swinburne-student-hq.md",
+      context: "About 1h 35m with a Student HQ adviser at Hawthorn (no guided tour available that day). They assumed a 2028 start, so she would apply through VTAC in Aug–Dec 2027. Answers below are what staff said, not official policy.",
+      groups: [
+        {
+          label: "Admission & English",
+          questions: [
+            { q: "When and how does she apply?", answer: "During NZ Year 13, through VTAC (Aug–Dec 2027) for a 2028 start. Applying to several universities means VTAC, not a direct application. 8 course preferences; apply without results and change preferences once NZ results arrive in January.", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }, { label: "Swinburne on VTAC", url: "https://www.swinburne.edu.au/courses/applying/information-on-vtac/" }] },
+            { q: "Does NCEA Year 12 UE Literacy satisfy the English requirement?", gap: true, answer: "Probably not — the adviser strongly expects she'll need an English subject in Year 13. Send the end-of-2026 results transcript and they'll have admissions check it.", links: [{ label: "Admission requirements", url: "https://www.swinburne.edu.au/courses/planning-your-future/admission-requirements/" }] },
+            { q: "Portfolio: what stands out, and can we see past examples?", gap: true, answer: "No example entry portfolios (confidential). For inspiration, look at graduate work in the School of Design's GradX exhibition. Selection weighs the portfolio with results; there's no published ATAR, and the course hasn't been capped so far.", links: [{ label: "Fashion course page", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-design-fashion/" }, { label: "GradX", url: "https://www.swinburne.edu.au/news/2022/11/2022-gradx-evolve-showcases-design-and-architecture-talent/" }] },
+          ],
+        },
+        {
+          label: "Money",
+          questions: [
+            { q: "What would we pay, and can fees be deferred?", answer: "Domestic CSP rates as an NZ citizen living in Australia. No HECS-HELP without a Special Category Visa, so fees are paid upfront each semester (around March and August), plus the separate Student Services and Amenities Fee.", links: [{ label: "Fees for local students", url: "https://www.swinburne.edu.au/courses/fees/fees-for-local-students/" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+            { q: "Which scholarships are open to NZ citizens or fashion students?", gap: true, answer: "Over 100 scholarships with varying eligibility — some via VTAC, some direct, some only once enrolled. The adviser couldn't confirm fashion- or NZ-specific ones; link to follow by email. Also look for NZ scholarships.", links: [{ label: "Scholarships", url: "https://www.swinburne.edu.au/study/options/scholarships/" }] },
+          ],
+        },
+        {
+          label: "The fashion course",
+          questions: [
+            { q: "Can she add business or entrepreneurship?", answer: "Yes, through the 8 electives (100 credit points): a co-major, two minors, an advanced minor, a placement or study abroad. Some electives have prerequisites, and popular ones fill first-come, first-served.", links: [{ label: "Fashion handbook", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-design-fashion/handbook/" }, { label: "Co-majors", url: "https://www.swinburne.edu.au/courses/co-majors/" }] },
+            { q: "The course is new — what's the track record?", answer: "First intake 2025, first graduates end of 2027, so no outcome data yet. It sits in the long-established School of Design and Architecture. Industry briefs so far include the Woolmark Performance Challenge and Rising festival merchandise; hands-on with industrial machines from day one, with a strong wearable-tech focus.", links: [{ label: "Woolmark Performance Challenge", url: "https://www.woolmarkchallenge.com/" }] },
+            { q: "How do placements work?", answer: "Every bachelor's includes at least one Work Integrated Learning experience (placement, internship or industry project). A 12-month placement adds a year, usually between years 2 and 3; eligible after 150 credit points. Start applying early — finding one can take 6–12 months. Which companies take fashion students wasn't known.", links: [{ label: "Placements", url: "https://www.swinburne.edu.au/life-at-swinburne/work-integrated-learning/placements/" }] },
+            { q: "Who pays for materials and fabric?", gap: true, answer: "Not known — the adviser noted it to ask the school." },
+          ],
+        },
+        {
+          label: "Science & medicine",
+          questions: [
+            { q: "Which degrees suit a later move into medicine?", answer: "Swinburne has no medical school, so staff can't officially say any degree leads there. The adviser pointed to the Bachelor of Biomedical Science or Health Science (Biomedical Science major); work backwards from each medical school's prerequisites. Biochemistry and Biotechnology are Bachelor of Science majors.", links: [{ label: "Biomedical Science", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-biomedical-science/" }, { label: "Biochemistry major", url: "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-science/biochemistry/" }] },
+          ],
+        },
+      ],
+      followUps: [
+        "Watch for the adviser's summary email (within ~5 days) and reply from her own account",
+        "Send the end-of-2026 NCEA results transcript for the English check",
+        "Book a (virtual) session with the fashion academics: materials, placements, comparison with RMIT",
+        "Plan to pay fees upfront each semester",
+      ],
     },
     visitQuestions: {
       student: [
