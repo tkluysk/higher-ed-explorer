@@ -51,17 +51,18 @@ const INSTITUTIONS = [
       ncealLevel: "L3",
       academic: "NCEA Level 3, minimum 80 credits overall",
       english: "18 Level 3 credits in English (10+ at Merit or above)",
-      feeStatus: "Domestic — CSPs available to eligible NZ citizens; must reside in Australia for duration of study. HELP loan access depends on long-term residency.",
+      subjectPrerequisites: "Bachelor of Biomedicine: English, Mathematics (NCEA Mathematics with Calculus) and Chemistry, all three mandatory. Bachelor of Science: the same, except the science subject can be any one of Biology, Chemistry or Physics. Without Calculus, the maths prerequisite can be met through a pre-approved online course instead: UniLearn Senior Mathematics (self-paced, ~18–26 weeks, with exams), the Calculus and Probability online subject (~9 weeks, or a 6-week summer intensive Jan–Feb), or the University of Queensland's Pure Mathematics online bridging program. Passing one of these satisfies the prerequisite on its own. Whether other universities accept them is not confirmed, so check each (Prospective Students team, 2 Oct 2026).",
+      feeStatus: "Domestic. Bachelor's degrees are Commonwealth supported (CSP) for NZ citizens. Science and health subjects mostly sit in band 2: $1,192 per standard subject, about $9,537 a year full-time (2026 student contribution table; the 2027 table is due around Oct–Nov). Staff said students not on a Special Category Visa pay this upfront each semester; HELP loan access depends on visa and long-term residency. Without a CSP it would be about $5k per subject. Must reside in Australia for the duration of study.",
       ncealScoring:
-        "UniMelb converts NCEA to a rank score comparable to ATAR (not a direct NCEA-Level/ATAR lookup table): your best 80 Level 3 credits from up to 5 approved subjects are selected — Excellence credits weighted 4 points each, Merit 3 points, Achieved 2 points — summed to a score out of a maximum 320. All Excellence credits count first (up to 80), then Merit, then Achieved, until 80 credits are reached. This rank score is compared against the per-degree \"Lowest Selection Rank\" (e.g. Biomedicine ~90, Commerce ~92, Agriculture ~72 for 2026 domestic entry) — selection ranks vary a lot by degree, so there's no single blanket NCEA target. The exact step converting the /320 raw score to the ~0–99.95 selection-rank scale wasn't independently confirmed here (source pages block automated fetching) — use UniMelb's own calculator via ask.unimelb.edu.au or the NCEA entry-scores page, entering actual subject results, for a reliable number.",
-      sourceNote: "study.unimelb.edu.au — NCEA entry-scores page (recognised-vce-equivalent-qualifications/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea) and how-youre-selected-applicants-with-ncea page; ask.unimelb.edu.au; vtac.edu.au.",
+        "Changing from 2027 entry, so it applies to a 2028 start: UniMelb will assess NCEA applicants on the converted ATAR that VTAC receives, rather than its own calculation. Subject prerequisites stay the same. Staff mentioned the conversion uses the best 90 credits, following NZQA's ranking for Australian universities, but this was still being confirmed with admissions and the website had not been updated yet (2 Oct 2026). UniMelb runs online information sessions for NZ students around April–May, which are worth registering for. Previous method (up to 2026 entry): best 80 Level 3 credits from up to 5 approved subjects, Excellence 4 points, Merit 3, Achieved 2, giving a score out of 320 that UniMelb converted itself. Lowest selection ranks for 2026 domestic entry were roughly Biomedicine 90, Commerce 92 and Agriculture 72.",
+      sourceNote: "Prospective Students team, Stop 1, Parkville — in-person meeting 2 Oct 2026 (NCEA change, prerequisites, maths alternatives, fees); study.unimelb.edu.au — NCEA entry-scores page (recognised-vce-equivalent-qualifications/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea) and how-youre-selected-applicants-with-ncea page; ask.unimelb.edu.au; vtac.edu.au.",
     },
     mdPathway: {
       hasProgram: "Yes — Doctor of Medicine (MD), graduate-entry.",
       entry:
-        "Standard route is graduate-entry only (apply after a completed bachelor's via GEMSAS). A guaranteed school-leaver pathway also exists: \"Chancellor's Scholars\" — students who enter UniMelb undergrad (e.g. Bachelor of Biomedicine) with ATAR ≥99.90 and stay within ~18 months of that entry are guaranteed an MD place, still subject to passing the MMI interview \"to a satisfactory standard.\"",
+        "Standard route is graduate-entry only: apply after any completed bachelor's degree via GEMSAS. UniMelb accepts any bachelor's, even Arts, though a science degree builds the foundation for the GAMSAT. Biomedicine students aiming for medicine are often also targeting dentistry or optometry. A guaranteed school-leaver pathway (\"Chancellor's Scholars\") exists for students entering with an ATAR of 99.90 or above, but only after completing Australian Year 12 or the IB in Australia. It is NOT available to NCEA applicants (confirmed by Prospective Students, 2 Oct 2026). MD fees: CSP $13,558 a year (about $52k over 4 years). Postgraduate CSP places are merit-based, and applicants not competitive for one are offered a full-fee place. After the MD comes provisional registration and a one-year hospital internship. For NZ registration, check with the Medical Council of New Zealand.",
       requirements:
-        "GAMSAT ≥50 in each of the three sections; GPA ≥5.0/7.0 (calculated on final 3 years, weighted 1:2:2); MMI interview. Selection weighting: Interview 50% / GPA 25% / GAMSAT 25%.",
+        "GAMSAT ≥50 in each of the three sections; GPA ≥5.0/7.0 (calculated on final 3 years, weighted 1:2:2); MMI interview. Selection weighting: Interview 50% / GPA 25% / GAMSAT 25%. (Staff described GPA and GAMSAT as weighted 50/50 to shortlist for the MMI, with offers then made on MMI performance.)",
       nzNote: MD_NZ_CAVEAT,
       sourceNote: "handbook.unimelb.edu.au/2026/courses/mc-dmed/entry-participation-requirements; study.unimelb.edu.au/find/courses/graduate/doctor-of-medicine/entry-requirements.",
     },
@@ -103,38 +104,54 @@ const INSTITUTIONS = [
       notes:
         "NZ citizens should attend \"How to apply as a domestic student\" (VTAC session), not \"How to apply as an international student\" — per study.unimelb.edu.au/student-life/events/international-webinar. Date/time for the domestic/VTAC session not yet confirmed for the Oct 2026 series; check study.unimelb.edu.au/student-life/events/interstate-webinars or booking link bookings.events.unimelb.edu.au/ug-web-vtac closer to the date.",
     },
-    // Short, prioritised list for a timed meeting with the Prospective
-    // Students team (admissions/fees/housing — not academic staff). Ordered so
-    // the must-asks fit in the first ~5 minutes. Dates checked 1 Oct 2026.
+    // Prioritised list prepared for a timed meeting with the Prospective
+    // Students team, with the answers given at the meeting (2 Oct 2026,
+    // Stop 1, Parkville). `answer` records what staff said; `gap` stays on
+    // questions that weren't answered.
     meetingQuestions: {
-      title: "15 minutes with the Prospective Students team",
-      context: "Bring her NCEA Level 2 results and Level 3 subjects so they can run the rank conversion live. VTAC on-time applications closed 28 Sep; late applications are open until 30 Oct ($166), and SEAS/scholarship applications close 9 Oct.",
+      title: "Prospective Students meeting — 2 Oct 2026",
+      context: "About 30 minutes with the Prospective Students team at Stop 1 (planned as 15). They assumed a 2028 start, so she would apply through VTAC in Aug–Sep 2027. Answers below are what staff said, not official policy.",
       groups: [
         {
-          label: "Must ask (first 5 min)",
+          label: "Must ask",
           questions: [
-            { q: "Using her actual subjects and results, what selection rank would she be on, and how does that compare with Biomedicine, Science and Commerce this year?", gap: true, links: [{ label: "How you're selected (NCEA)", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/entry-requirements/equivalent-qualifications-to-the-vce/how-youre-selected-applicants-with-ncea" }, { label: "NCEA entry scores", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/recognised-vce-equivalent-qualifications/qualifications/new-zealand-national-certificate-in-educational-achievement-ncea" }] },
-            { q: "NCEA results come out in mid-January. Which VTAC offer round will she realistically be in (12 or 27 Jan), and does that put her behind VCE students for places in popular courses?", gap: true, links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }, { label: "Key info for VTAC applicants", url: "https://study.unimelb.edu.au/study-with-us/undergraduate-courses/change-of-preference/key-information-VTAC-applicants" }] },
-            { q: "Do the published ATAR guarantees also apply to an NCEA-based rank, or is NCEA entry always competitive?", gap: true, links: [{ label: "ATAR entry score guide", url: "https://study.unimelb.edu.au/study-with-us/undergraduate-courses/change-of-preference/atar-guarantees" }] },
-            { q: "If we lodge (or change) the VTAC application in the late period before 30 Oct, is there any disadvantage beyond the higher fee? Is there anything she should apply for by the 9 Oct SEAS deadline?", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }] },
+            { q: "Using her actual subjects and results, what selection rank would she be on, and how does that compare with Biomedicine, Science and Commerce?", gap: true, answer: "Not calculated. NCEA assessment changes from 2027 entry: UniMelb will use the converted ATAR VTAC receives (reportedly the best 90 credits; being confirmed). Register for the NZ online info sessions around April–May 2027.", links: [{ label: "Biomedicine entry requirements", url: "https://study.unimelb.edu.au/find/courses/undergraduate/bachelor-of-biomedicine/entry-requirements/" }] },
+            { q: "NCEA results come out in mid-January. Which VTAC offer round would she realistically be in, and does that put her behind VCE students?", gap: true, answer: "Results arrive early to mid-January. Staff didn't say whether that costs places; after results there's a change-of-preference window. The earliest offers students wait on are in December.", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }] },
+            { q: "Do the published ATAR guarantees also apply to an NCEA-based rank?", gap: true, answer: "Not answered directly. With the switch to a VTAC-converted ATAR, ask again at the NZ info session.", links: [{ label: "ATAR entry score guide", url: "https://study.unimelb.edu.au/study-with-us/undergraduate-courses/change-of-preference/atar-guarantees" }] },
+            { q: "Is a late VTAC application a disadvantage beyond the higher fee?", answer: "Generally not. The exceptions are Fine Arts and Music, which must be in the timely window, and the Access Melbourne equity scheme, which must also be submitted in that window. One VTAC fee covers up to 8 preferences.", links: [{ label: "VTAC key dates", url: "https://vtac.edu.au/dates.html" }] },
           ],
         },
         {
-          label: "Money & housing (next 5 min)",
+          label: "Money & housing",
           questions: [
-            { q: "As an NZ citizen she'd get a CSP but most likely no HECS-HELP. What would we actually pay upfront per semester for Biomedicine, Science or Commerce, and what does 'residing in Australia' require in practice?", links: [{ label: "Domestic fees", url: "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/domestic-applications/fees-and-payments" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
-            { q: "The first-year Accommodation Offer for students new to Melbourne is first come, first served. Should we apply now, before she has a course offer? Which rooms go first, and what does a typical year cost?", links: [{ label: "How to apply for accommodation", url: "https://study.unimelb.edu.au/accommodation/how-to-apply" }, { label: "Eligibility", url: "https://study.unimelb.edu.au/accommodation/eligibility" }, { label: "Accommodation FAQs", url: "https://study.unimelb.edu.au/accommodation/faqs" }] },
-            { q: "Which scholarships can an NZ citizen apply for (including accommodation scholarships), and are any of them tied to the 9 Oct SEAS deadline?", links: [{ label: "Find a scholarship", url: "https://scholarships.unimelb.edu.au/" }, { label: "Accommodation Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-university-accommodation-scholarship" }] },
+            { q: "What would we actually pay for Biomedicine, Science or Commerce as an NZ citizen?", answer: "Bachelor's degrees are CSP. Science and health subjects are mostly band 2: $1,192 per subject, about $9,537 a year (2026 table). Staff said that without a Special Category Visa it's paid upfront each semester. Full fee would be about $5k per subject. A medicine CSP is $13,558 a year.", links: [{ label: "Student contribution amounts", url: "https://study.unimelb.edu.au/how-to-apply/fees/student-contribution-amounts" }, { label: "Study Assist: non-citizens", url: "https://www.studyassist.gov.au/loan-eligibility/non-australian-citizens" }] },
+            { q: "University housing: when should we apply, and can we apply before a course offer?", answer: "Start around July 2027 for a 2028 start. Residential colleges are largely full by September and interview shortlisted applicants. You can secure a room before a course offer (many do), with a withdrawal date and a cancellation/refund process if no offer comes. University Accommodation is three self-catered apartment houses. The colleges (two run by UniMelb, the rest affiliated) include three meals a day and tutoring, and take many interstate and NZ students.", links: [{ label: "Student accommodation", url: "https://study.unimelb.edu.au/accommodation" }, { label: "How to apply", url: "https://study.unimelb.edu.au/accommodation/how-to-apply" }] },
+            { q: "Which scholarships can an NZ citizen apply for?", gap: true, answer: "Not covered beyond the Access Melbourne equity scheme (timely VTAC window).", links: [{ label: "Find a scholarship", url: "https://scholarships.unimelb.edu.au/" }] },
           ],
         },
         {
           label: "If there's time",
           questions: [
-            { q: "Can an NCEA rank ever qualify for Chancellor's Scholar status (the guaranteed MD pathway), or is that effectively ATAR-only?", gap: true, links: [{ label: "Chancellor's Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-chancellors-scholarship" }] },
-            { q: "How easy is it to move between Science, Biomedicine and Commerce after first year?", links: [{ label: "Course transfers", url: "https://study.unimelb.edu.au/how-to-apply/transferring-courses" }] },
-            { q: "Who should we contact directly as NZ applicants from here on, and how would an offer and enrolment work for someone arriving from NZ in February?" },
+            { q: "Can an NCEA rank qualify for Chancellor's Scholar status (the guaranteed MD pathway)?", answer: "No. It requires an ATAR of 99.90 or above from Australian Year 12 or the IB completed in Australia. NCEA applicants take the standard route: any bachelor's, then GPA plus GAMSAT, then the MMI.", links: [{ label: "Chancellor's Scholarship", url: "https://scholarships.unimelb.edu.au/awards/melbourne-chancellors-scholarship" }] },
+            { q: "How easy is it to move between Science, Biomedicine and Commerce after first year?", answer: "Through an internal transfer after at least one semester and three completed subjects. It's assessed on the ATAR, prerequisites and first-semester results, and isn't guaranteed. Most moves are between Biomedicine and Science.", links: [{ label: "Course transfers", url: "https://study.unimelb.edu.au/how-to-apply/transferring-courses" }] },
+            { q: "Who should we contact from here on?", answer: "Call the Stop 1 number and choose 'future/prospective student' to reach the same team, or email an enquiry. Guided tours only run on Open Day (a Sunday in August); self-guided walks anytime. Science and Biomedicine are both at Parkville." },
           ],
         },
+        {
+          label: "Also learned",
+          questions: [
+            { q: "Biomedicine vs Science: majors largely overlap. Public Health and Epidemiology is Biomedicine-only. Biomedicine is a smaller, more structured cohort with electives limited to the degree; Science allows wider electives plus breadth subjects in other faculties (languages, design, arts)." },
+            { q: "Biomedicine prerequisites: English, NCEA Mathematics with Calculus, and Chemistry. Science accepts Biology, Chemistry or Physics as the science subject. Without Calculus, a pre-approved online maths course satisfies the prerequisite (see 'Subjects' under entry requirements)." },
+          ],
+        },
+      ],
+      followUps: [
+        "Consider the Calculus and Probability summer intensive (Jan–Feb 2027) to clear the maths prerequisite before Year 13",
+        "Check whether other universities (Monash, RMIT etc.) accept the same maths bridging courses",
+        "Register for UniMelb's NZ online information sessions (~April–May 2027)",
+        "Check the official NCEA→ATAR conversion once the website is updated (best 80 vs 90 credits)",
+        "Plan housing applications from ~July 2027; colleges fill by September",
+        "Open Day is a Sunday in August 2027, the only time guided tours and faculty staff are available",
       ],
     },
     visitQuestions: {

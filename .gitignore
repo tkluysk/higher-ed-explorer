@@ -1,0 +1,3 @@
+# Meeting recordings and transcripts stay local (large, and the site is public)
+*.m4a
+*transcript*.txt

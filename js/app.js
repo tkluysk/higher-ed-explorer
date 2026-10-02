@@ -335,14 +335,19 @@
           .map((l) => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`)
           .join("");
         const linkRow = links ? `<span class="question-links">${links}</span>` : "";
-        return `<li>${item.q}${gap}${linkRow}</li>`;
+        const answer = item.answer ? `<span class="question-answer">${linkify(item.answer)}</span>` : "";
+        return `<li>${item.q}${gap}${answer}${linkRow}</li>`;
       })
       .join("");
     return ordered ? `<ol class="question-list">${items}</ol>` : `<ul class="question-list">${items}</ul>`;
   }
 
-  // A timed meeting list: numbered, grouped by priority, with a prep note.
+  // A timed meeting list: numbered, grouped by priority, with a prep note,
+  // the answers given (once the meeting has happened) and follow-ups.
   function renderMeetingQuestionsSection(mq) {
+    const followUps = mq.followUps && mq.followUps.length
+      ? `<p class="question-group-label">Follow-ups</p><ul class="question-list">${mq.followUps.map((f) => `<li>${f}</li>`).join("")}</ul>`
+      : "";
     const groups = mq.groups
       .map((g) => `<p class="question-group-label">${g.label}</p>${renderQuestionList(g.questions, true)}`)
       .join("");
@@ -351,6 +356,7 @@
       <div class="entry-block question-block">
         ${mq.context ? `<p class="meeting-context">${mq.context}</p>` : ""}
         ${groups}
+        ${followUps}
       </div>`;
   }
 
