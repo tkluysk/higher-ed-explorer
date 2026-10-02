@@ -110,6 +110,7 @@ const INSTITUTIONS = [
     // questions that weren't answered.
     meetingQuestions: {
       title: "Prospective Students meeting — 2 Oct 2026",
+      transcriptUrl: "https://github.com/tkluysk/higher-ed-explorer/blob/main/transcripts/2026-10-02-unimelb-prospective-students.md",
       context: "About 30 minutes with the Prospective Students team at Stop 1 (planned as 15). They assumed a 2028 start, so she would apply through VTAC in Aug–Sep 2027. Answers below are what staff said, not official policy.",
       groups: [
         {

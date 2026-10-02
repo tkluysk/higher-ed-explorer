@@ -1,3 +1,2 @@
-# Meeting recordings and transcripts stay local (large, and the site is public)
+# Meeting recordings stay local; they are filed on Google Drive (see README)
 *.m4a
-*transcript*.txt

@@ -355,6 +355,7 @@
       <div class="modal-section-title">${mq.title}</div>
       <div class="entry-block question-block">
         ${mq.context ? `<p class="meeting-context">${mq.context}</p>` : ""}
+        ${mq.transcriptUrl ? `<p class="question-links meeting-transcript"><a href="${mq.transcriptUrl}" target="_blank" rel="noopener noreferrer">Transcript and sourced findings</a></p>` : ""}
         ${groups}
         ${followUps}
       </div>`;
