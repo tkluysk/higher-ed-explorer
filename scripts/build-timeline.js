@@ -8,7 +8,7 @@
    Records live in data/milestones.json. Dates for 2027–28 are projected from the 2026 cycle (marked est.). */
 const TITLE = 'Road to uni — 2028 start';
 const SUBTITLE = 'Application, housing and enrolment milestones for a Semester 1 2028 start';
-const FOOTER = 'Built from <code>data/milestones.json</code>. Dates marked est. are projected from the 2026 VTAC and university cycles; confirm each as it is published. Sources: the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews, vtac.edu.au, NZQA and university pages.';
+const FOOTER = 'Built from <code>data/milestones.json</code>. Dates marked est. are projected from the 2026 VTAC and university cycles; confirm each as it is published. Sources: the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews, vtac.edu.au, NZQA, university pages and the UniMelb Calculus and Probability Online page.';
 /* The headline countdown comes from whichever record carries target: true — see load(). */
 
 /* REPLACE: return an array of records. See the comment in timelinePage(). */

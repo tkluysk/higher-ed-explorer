@@ -23,18 +23,32 @@
     "body": "From her own email account: once she's an applicant, Swinburne will only correspond with her. Ask about fashion materials, placement partners and a (virtual) session with the fashion academics."
   },
   {
-    "date": "2026-11-30",
-    "title": "Decide on the maths bridging course",
+    "date": "2026-11-20",
+    "title": "Decide on Calculus and Probability Online",
     "stream": "prep",
     "owner": "Student",
-    "body": "UniMelb Biomedicine needs NCEA Mathematics with Calculus. The Calculus and Probability Online summer intensive (Jan–Feb 2027) clears it before Year 13. Check whether Monash, RMIT and others accept it. [Calculus and Probability Online](https://ms.unimelb.edu.au/study/undergraduate-studies/student-resources/online-calculus-and-probability)"
+    "body": "UniMelb's online maths bridging subject, covering similar ground to VCE Mathematical Methods 3/4. A pass (50%+) meets the maths prerequisite for Biomedicine, Science, Commerce and Agriculture, so Year 13 could drop maths. It gives no credit towards a degree. It assumes VCE Methods 1/2 (roughly NCEA Level 2 Maths: algebra, functions and graphs, intro calculus). Two modules: **Calculus** (functions, limits, differentiation, integration; A$660) and **Probability** (sets, counting, conditional probability, tree diagrams; A$330), A$990 for both. Which module(s) count depends on prior study, so email the NCEA maths record to online-calcprob@unimelb.edu.au and ask before registering. Summer results can't be used for entry that same year (2027), but they're in time for a 2028 start. Only UniMelb is confirmed to accept it. Monash keeps its own list of alternatives, so check before relying on it elsewhere. RMIT and Swinburne fashion have no maths prerequisite. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability) · [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI) · [Monash maths prerequisites](https://www.monash.edu/study/courses/entry-requirements/math-science-prerequisite/)"
+  },
+  {
+    "date": "2026-11-30",
+    "title": "Calculus and Probability: Summer 2027 registration opens",
+    "stream": "prep",
+    "owner": "Parent",
+    "body": "Opens 10 am Melbourne time (about noon–1 pm NZ) and closes 11:59 pm Melbourne on Mon 4 Jan, the day the course starts. Register early: withdrawing before the start refunds all but 10%. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability)"
   },
   {
     "date": "2027-01-04",
-    "title": "Calculus and Probability summer intensive starts (est.)",
+    "title": "Calculus and Probability summer intensive starts",
     "stream": "prep",
     "owner": "Student",
-    "body": "About 6 weeks, January–February, online. Optional: only if she takes this route to the maths prerequisite."
+    "body": "6 teaching weeks, to Fri 12 Feb. Each week: watch the lecture videos, submit the weekly questions and attend a live online tutorial. Expect **8–12 hours a week**, probably the upper end since the 9-week course is squeezed into 6. That's about 60–70 hours plus exam revision. Needs a computer and reliable internet every week, so plan summer trips around it. Melbourne is 2 hours behind NZ, so check the tutorial times. [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI)"
+  },
+  {
+    "date": "2027-01-17",
+    "title": "Last refund point for Calculus and Probability (end of week 2)",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "Withdrawing by the end of week 2 refunds all but 20%; after that, nothing. Use the first two weeks to judge whether the workload fits the summer."
   },
   {
     "date": "2027-01-20",
@@ -48,7 +62,28 @@
     "title": "Year 13 starts — keep English and Chemistry",
     "stream": "prep",
     "owner": "Student",
-    "body": "English for the English prerequisite (Swinburne, UniMelb); Chemistry for UniMelb Biomedicine."
+    "body": "English for the English prerequisite (Swinburne, UniMelb); Chemistry for UniMelb Biomedicine. Schools start between 28 Jan and 3 Feb. If doing the Calculus and Probability intensive, its last two weeks and the 22 Feb exam fall in the first weeks of term. Keep NCEA maths as a fallback until the result is in on 1 Mar. [MoE term dates](https://www.education.govt.nz/term-dates-and-holidays)"
+  },
+  {
+    "date": "2027-02-12",
+    "title": "Calculus and Probability teaching ends",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "The last two teaching weeks overlap the start of Year 13. SWOT-VAC (revision week) runs 15–21 Feb, so revision happens in the evenings around school."
+  },
+  {
+    "date": "2027-02-22",
+    "title": "Calculus and Probability exam (online)",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "Monday, sat online via Zoom, in about week 3 of NZ Term 1. Check the start time in NZ time (2 hours ahead) and tell the school early if it falls in class time. A mark of 50%+ is needed to pass."
+  },
+  {
+    "date": "2027-03-01",
+    "title": "Calculus and Probability results returned",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "Some results can be prioritised for 24 Feb. **Pass:** the UniMelb maths prerequisite is met, so keep the result for the VTAC application in August. **Fail or withdrawn:** retake in the Semester 1 (9 weeks, Mar–May) or Semester 2 (Aug–Oct) intake, alongside Year 13, or rely on NCEA maths if it was kept as a fallback."
   },
   {
     "date": "2027-03-15",
