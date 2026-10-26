@@ -27,21 +27,35 @@
     "title": "Decide on Calculus and Probability Online",
     "stream": "prep",
     "owner": "Student",
-    "body": "UniMelb's online maths bridging subject, covering similar ground to VCE Mathematical Methods 3/4. A pass (50%+) meets the maths prerequisite for Biomedicine, Science, Commerce and Agriculture, so Year 13 could drop maths. It gives no credit towards a degree. It assumes VCE Methods 1/2 (roughly NCEA Level 2 Maths: algebra, functions and graphs, intro calculus). Two modules: **Calculus** (functions, limits, differentiation, integration; A$660) and **Probability** (sets, counting, conditional probability, tree diagrams; A$330), A$990 for both. Which module(s) count depends on prior study, so email the NCEA maths record to online-calcprob@unimelb.edu.au and ask before registering. Summer results can't be used for entry that same year (2027), but they're in time for a 2028 start. UniMelb is the strict one. Sydney's medical science degrees (USyd, UNSW, UTS, Macquarie, Western Sydney) list maths only as assumed knowledge. NZ biomedical degrees (Otago, Auckland, Victoria, Canterbury) need only University Entrance, though Otago strongly recommends Level 3 Calculus. Monash keeps its own list of alternatives. RMIT and Swinburne fashion have no maths prerequisite. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability) · [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI) · [Monash maths prerequisites](https://www.monash.edu/study/courses/entry-requirements/math-science-prerequisite/)"
+    "body": "UniMelb's online maths bridging subject, covering similar ground to VCE Mathematical Methods 3/4. A pass (50%+) meets the maths prerequisite for Biomedicine, Science, Commerce and Agriculture, so Year 13 could drop maths. It gives no credit towards a degree. It assumes VCE Methods 1/2 (roughly NCEA Level 2 Maths: algebra, functions and graphs, intro calculus). Two modules: **Calculus** (functions, limits, differentiation, integration; A$660) and **Probability** (sets, counting, conditional probability, tree diagrams; A$330), A$990 for both. Summer workload: 23–30 hours a week for both modules. Which module(s) count depends on prior study, and UniMelb recommends both if unsure, so email the NCEA maths record to online-calcprob@unimelb.edu.au and ask before registering. Summer results can't be used for entry that same year (2027), but they're in time for a 2028 start. UniMelb is the strict one. Sydney's medical science degrees (USyd, UNSW, UTS, Macquarie, Western Sydney) list maths only as assumed knowledge. NZ biomedical degrees (Otago, Auckland, Victoria, Canterbury) need only University Entrance, though Otago strongly recommends Level 3 Calculus. Monash keeps its own list of alternatives. RMIT and Swinburne fashion have no maths prerequisite. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability) · [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI) · [Monash maths prerequisites](https://www.monash.edu/study/courses/entry-requirements/math-science-prerequisite/)"
+  },
+  {
+    "date": "2026-11-21",
+    "title": "Take UniMelb's Test Yourself quiz",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "After the Level 2 maths external. Do it timed and closed-book, then mark it against the Mathematical Methods 1 and 2 summary: tick each topic as confident, shaky or never seen. The gaps decide the December revision and help answer which module(s) to take. [Methods 1 & 2 summary](https://ms.unimelb.edu.au/__data/assets/pdf_file/0020/3501272/MM_1and2_Summary.pdf) · [Test Yourself quiz](https://ms.unimelb.edu.au/__data/assets/pdf_file/0018/3501261/CalculusAndProbability-TestYourselfQuiz.pdf)"
   },
   {
     "date": "2026-11-30",
     "title": "Calculus and Probability: Summer 2027 registration opens",
     "stream": "prep",
     "owner": "Parent",
-    "body": "Opens 10 am Melbourne time (about noon–1 pm NZ) and closes 11:59 pm Melbourne on Mon 4 Jan, the day the course starts. Register early: withdrawing before the start refunds all but 10%. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability)"
+    "body": "Opens 10 am Melbourne, which is **12 noon NZ** (1 pm if the page's \"AEST\" is meant literally). Closes 11:59 pm Melbourne on Mon 4 Jan, which is 1:59 am NZ on Tue 5 Jan, the day after the course starts. Register early: withdrawing before the start refunds all but 10%. [Course page](https://ms.unimelb.edu.au/study/online-calculus-and-probability)"
+  },
+  {
+    "date": "2026-12-01",
+    "title": "December revision block for Calculus and Probability",
+    "stream": "prep",
+    "owner": "Student",
+    "body": "About 4–5 hours a week until Christmas, on the gaps the quiz found. Likely gaps beyond NCEA Level 2: logarithms and exponential functions, graphs and transformations of functions, polynomials (factor theorem, cubics), circular functions in radians, counting (permutations and combinations), and differentiation from first principles. Redo the quiz in the first week of January."
   },
   {
     "date": "2027-01-04",
     "title": "Calculus and Probability summer intensive starts",
     "stream": "prep",
     "owner": "Student",
-    "body": "6 teaching weeks, to Fri 12 Feb. Each week: watch the lecture videos, submit the weekly questions and attend a live online tutorial. Expect **8–12 hours a week**, probably the upper end since the 9-week course is squeezed into 6. That's about 60–70 hours plus exam revision. Needs a computer and reliable internet every week, so plan summer trips around it. Melbourne is 2 hours behind NZ, so check the tutorial times. [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI)"
+    "body": "6 teaching weeks, to Fri 12 Feb. Each week: watch the lecture videos, submit the weekly questions and join the online Zoom consultations (needs a webcam). UniMelb's estimate for Summer is **23–30 hours a week for both modules**, 16–20 for Calculus only and 7–10 for Probability only. That's close to a full-time job for 6 weeks; the overview video's 8–12 hours is for the longer offerings. Each week's material is released at the start of that week, so work can't be done ahead. Needs a computer and reliable internet every week, so plan summer trips around it. Tutorial times are in Melbourne time; add 2 hours for NZ (both are on daylight saving until 4 Apr). [Overview video](https://www.youtube.com/watch?v=MAHRUXG1gMI)"
   },
   {
     "date": "2027-01-17",
@@ -76,7 +90,7 @@
     "title": "Calculus and Probability exam (online)",
     "stream": "prep",
     "owner": "Student",
-    "body": "Monday, sat online via Zoom, in about week 3 of NZ Term 1. Check the start time in NZ time (2 hours ahead) and tell the school early if it falls in class time. A mark of 50%+ is needed to pass."
+    "body": "Monday, sat online via Zoom with an invigilator, in week 4 of NZ Term 1. Writing time is 1.5 hours for one module or 3 hours for both, plus 15 minutes' reading. The start time isn't published yet: add 2 hours for NZ, so a 9 am Melbourne start runs 11:00 to about 14:15 NZ. Tell the school early, as it takes most of a school day. A mark of 50%+ is needed to pass."
   },
   {
     "date": "2027-03-01",
