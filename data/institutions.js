@@ -877,7 +877,8 @@ const INSTITUTIONS = [
       academic: "NCEA Level 3 — Sydney calculates an ATAR-equivalent from NCEA Level 3 results (via NZQA/UAC), consistent with NZ University Entrance",
       english: "No NCEA-specific English subject/credit threshold — NZ/NCEA doesn't appear at all in Sydney's or UAC's English Language Proficiency tables (which cover IELTS/TOEFL/PTE/IB etc.), suggesting proficiency is satisfied automatically via NZ schooling rather than itemised",
       feeStatus: "Domestic — CSP places available to eligible NZ citizens who reside in Australia for the duration of study.",
-      sourceNote: "sydney.edu.au recognised-qualifications page (NCEA→ATAR conversion); uac.edu.au Sydney ELP page (no NZ/NCEA row); sydney.edu.au CSP eligibility page.",
+      subjectPrerequisites: "B Science (Medical Science): no subject prerequisites for 2027 entry, only assumed knowledge of Biology, Chemistry and Mathematics Advanced. An offer is possible without them; USyd recommends a bridging course to catch up. USyd's separate Mathematics prerequisite (HSC Mathematics Advanced, Band 4) applies to degrees such as engineering, mathematical sciences and pharmacy, not to B Science (Medical Science). Bridging courses don't satisfy USyd prerequisites, only assumed knowledge (2027 Admission Guide).",
+      sourceNote: "sydney.edu.au recognised-qualifications page (NCEA→ATAR conversion); uac.edu.au Sydney ELP page (no NZ/NCEA row); sydney.edu.au CSP eligibility page.; sydney.edu.au/content/dam/corporate/documents/study/guides/usyd-admission-guide.pdf (2027 entry; prerequisites vs assumed knowledge)",
     },
     mdPathway: {
       hasProgram: "Yes — Doctor of Medicine (MD), graduate-entry only.",
@@ -925,7 +926,8 @@ const INSTITUTIONS = [
       english: "No separate English proficiency proof required for Year-12-graduate-equivalent applicants (extends to NZ NCEA L3/UE completers) — distinct from the international/non-English-background IELTS/TOEFL pathway. Exact NCEA English credit count not separately published.",
       portfolio: "Optional but advantageous, not a strict gate — the ADA Portfolio Entry pathway offers an Early Conditional Offer with an adjusted selection rank up to 10 points below standard, as a bonus pathway alongside normal ATAR-rank admission (unlike Swinburne, where portfolio is mandatory and determinative).",
       feeStatus: "Domestic — standard UNSW domestic classification (NZ/AU citizens, AU PRs); domestic applicants apply through UAC.",
-      sourceNote: "unsw.edu.au Bachelor of Design (Honours) course page publishes exact current-year figures directly: 2026 lowest selection rank 83.0, lowest ATAR 65.0 — the clearest published cutoff of any institution in this dataset.",
+      subjectPrerequisites: "Bachelor of Medical Science: no prerequisites, only assumed knowledge of Chemistry and Mathematics Advanced (UAC listing, 2027 entry).",
+      sourceNote: "unsw.edu.au Bachelor of Design (Honours) course page publishes exact current-year figures directly: 2026 lowest selection rank 83.0, lowest ATAR 65.0 — the clearest published cutoff of any institution in this dataset.; uac.edu.au/course-search/search/undergraduate/course/429700 (Medical Science assumed knowledge)",
     },
     mdPathway: {
       hasProgram: "Yes — Bachelor of Medical Studies/Doctor of Medicine (BMed/MD), undergraduate-direct entry (6-year combined degree at Kensington, straight from Year 12).",
@@ -983,7 +985,8 @@ const INSTITUTIONS = [
       english: "No NCEA-specific English credit threshold confirmed — UTS domestic admission via UAC generally relies on the NZQA-calculated ATAR (which already incorporates UE English/literacy) rather than a separately stated credit count.",
       portfolio: "Splits by program. Bachelor of Design in Fashion and Textiles: eligible under UTS's Design Portfolio Scheme — NZ citizens can apply via portfolio+interview if not completing NCEA in the current admissions year (a 6-page digital PDF portfolio plus a 150-200 word written submission is the general Design-course format). Bachelor of Fashion Business (in UTS Business, not Design): no portfolio found — appears to be standard ATAR/selection-rank academic entry only.",
       feeStatus: "Domestic — NZ citizens are explicitly eligible as domestic applicants, including via the Design Portfolio Scheme.",
-      sourceNote: "uts.edu.au (course pages, Design Portfolio Scheme, admissions-stats-tool); uac.edu.au. Selection rank/ATAR for the specific fashion programs wasn't pinned to an exact figure — check UTS's live admissions-stats-tool.",
+      subjectPrerequisites: "Bachelor of Medical Science: no prerequisites. Assumed knowledge is Mathematics Advanced plus any 2 units of English and of science; Chemistry and Mathematics Extension 1 are recommended (UAC listing).",
+      sourceNote: "uts.edu.au (course pages, Design Portfolio Scheme, admissions-stats-tool); uac.edu.au. Selection rank/ATAR for the specific fashion programs wasn't pinned to an exact figure — check UTS's live admissions-stats-tool.; uac.edu.au/course-search/search/undergraduate/course/607051 (Medical Science assumed knowledge)",
     },
     mdPathway: {
       hasProgram: "No — UTS has no medical school (confirmed).",
@@ -1043,7 +1046,8 @@ const INSTITUTIONS = [
       academic: "NCEA Level 3 — current NZ students completing it apply via UAC and are assessed on that basis",
       english: "Unconfirmed. One search snippet suggested \"Level 3 University Entrance approved English\" credits, but this could not be verified on an official Macquarie or UAC page (key page returned a 403). May actually refer to the general NCEA University Entrance literacy standard (10 literacy credits at Level 2+) rather than a Macquarie-specific rule.",
       feeStatus: "Depends on visa/residency category — NZ citizens are domestic-classified for admission, but Macquarie has a dedicated \"Eligibility for New Zealand citizens\" fees page splitting NZ SCV holders who meet long-term residency (HELP-loan-eligible, can defer fees) from other NZ citizens who must pay fees fully upfront each period.",
-      sourceNote: "mq.edu.au English requirements page returned 403 on fetch — recommend the parent access it directly or contact Macquarie admissions. Fee-status split: mq.edu.au/study/admissions-and-entry/fees-and-costs/eligibility-for-new-zealand-citizens.",
+      subjectPrerequisites: "Bachelor of Medical Sciences: no assumed knowledge; HSC Mathematics Advanced and Chemistry are recommended (Macquarie program sheet, Aug 2024, so check for 2028).",
+      sourceNote: "mq.edu.au English requirements page returned 403 on fetch — recommend the parent access it directly or contact Macquarie admissions. Fee-status split: mq.edu.au/study/admissions-and-entry/fees-and-costs/eligibility-for-new-zealand-citizens.; mq.edu.au Bachelor of Medical Sciences program sheets (Aug 2024)",
     },
     mdPathway: {
       hasProgram: "Yes — Macquarie MD (4-year graduate-entry degree), with an undergraduate feeder pathway.",
@@ -1091,7 +1095,8 @@ const INSTITUTIONS = [
       academic: "NCEA Level 3 — NZ students apply via UAC International; admission is merit-based using an NZQA-calculated ATAR-equivalent",
       english: "Unconfirmed — the official Entry Qualifications PDF couldn't be parsed for NZ-specific detail. A general \"IELTS 6.5 (no band below 6.0)\" figure was found but appears to be the general international-student requirement rather than an NCEA-specific rule; unclear if NZ-schooled applicants are exempted.",
       feeStatus: "Depends on visa/residency category — domestic/CSP status is available to NZ citizens, but deferring fees via HECS-HELP/FEE-HELP requires the long-term residency test (8 of last 10 years + 18 of last 24 months in Australia); those who don't qualify pay the domestic contribution upfront rather than being pushed to international rates.",
-      sourceNote: "westernsydney.edu.au official Entry Qualifications PDF (text extraction failed — recommend opening directly) and \"Changes to fees for New Zealand Citizens\" page. Verify directly with Western Sydney admissions.",
+      subjectPrerequisites: "Bachelor of Medical Science: no prerequisites. Assumed knowledge is any 2 units each of English, science and mathematics; at least two of Biology, Chemistry, Physics and Mathematics Advanced are recommended (UAC listing).",
+      sourceNote: "westernsydney.edu.au official Entry Qualifications PDF (text extraction failed — recommend opening directly) and \"Changes to fees for New Zealand Citizens\" page. Verify directly with Western Sydney admissions.; uac.edu.au/course-search/search/international/course/728145 (Medical Science assumed knowledge)",
     },
     mdPathway: {
       hasProgram: "Yes — Bachelor of Clinical Science (Medicine)/Doctor of Medicine (MD), undergraduate-direct entry is the primary route.",
