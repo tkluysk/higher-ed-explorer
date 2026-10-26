@@ -35,6 +35,12 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
   HECS-HELP), so it also lists the payment schedule. Inputs persist in the browser
 - **Interviews** (`interviews.html`): every staff interview's questions,
   answers, open gaps and follow-ups, with transcript and recording links
+- **Degree routes** (`routes.html`): one lane per degree under consideration
+  (UniMelb, Monash, UNSW, USyd, Otago, Auckland, RMIT, Swinburne) on a shared
+  2027–2036 axis, from Year 13 to graduation or the first year as a doctor,
+  with each gate (subjects, portfolio, rank, UCAT/GAMSAT, interview, uni
+  grades) marked; a card per route lists every step with sources. Data in
+  `data/routes.js`
 - **Milestones timeline** (`timeline.html`): application, housing and
   enrolment deadlines for a 2028 start, built from `data/milestones.json` with
   the `timeline` skill's generator. Rebuild after editing the data with

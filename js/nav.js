@@ -7,6 +7,7 @@
     { href: "index.html", label: "Institutions" },
     { href: "accommodation.html", label: "Accommodation" },
     { href: "fees.html", label: "Fees" },
+    { href: "routes.html", label: "Routes" },
     { href: "timeline.html", label: "Timeline" },
     { href: "interviews.html", label: "Interviews" },
   ];
