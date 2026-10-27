@@ -178,7 +178,6 @@ body {
 .view-toggle:first-child { border-radius: 8px 0 0 8px; }
 .view-toggle:last-child { border-radius: 0 8px 8px 0; border-left: none; }
 .view-toggle.active { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
-.view-toggle-link { display: inline-flex; align-items: center; text-decoration: none; }
 
 .result-count {
   color: var(--text-muted);

@@ -892,6 +892,15 @@
     const mapBtn = document.getElementById("view-map-btn");
     const compareBtn = document.getElementById("view-compare-btn");
     const pathwaysBtn = document.getElementById("view-pathways-btn");
+    const routesView = document.getElementById("routes-view");
+    const routesBtn = document.getElementById("view-routes-btn");
+
+    routesView.hidden = view !== "routes";
+    routesBtn.classList.toggle("active", view === "routes");
+    routesBtn.setAttribute("aria-pressed", String(view === "routes"));
+    // The Routes view is bookmarkable as index.html#routes.
+    if (view === "routes" && !location.hash) history.replaceState(null, "", "#routes");
+    if (view !== "routes" && location.hash === "#routes") history.replaceState(null, "", location.pathname + location.search);
 
     listView.hidden = view !== "list";
     mapView.hidden = view !== "map";
@@ -921,6 +930,8 @@
   document.getElementById("view-map-btn").addEventListener("click", () => setView("map"));
   document.getElementById("view-compare-btn").addEventListener("click", () => setView("compare"));
   document.getElementById("view-pathways-btn").addEventListener("click", () => setView("pathways"));
+  document.getElementById("view-routes-btn").addEventListener("click", () => setView("routes"));
+  if (location.hash === "#routes") setView("routes");
 
   function refreshViews() {
     renderCards();
