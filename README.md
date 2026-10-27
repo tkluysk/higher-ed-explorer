@@ -8,9 +8,12 @@ Live at: https://tkluysk.github.io/higher-ed-explorer/
 
 ## Features
 
-- **List and map views** of 16 Melbourne universities, TAFEs, and private
-  colleges
-- **Filter** by field of interest, institution type, and status
+- **List and map views** of 16 Melbourne and 11 Sydney universities, TAFEs and
+  private colleges, plus the four NZ universities that lead to medicine
+  (Otago, Auckland, Waikato's graduate MD from 2028, and Victoria in
+  Wellington as a graduate-entry stepping stone)
+- **Filter** by city (Melbourne, Sydney, New Zealand), field of interest,
+  institution type, and status
 - **Search** across institution names, locations, and program names
 - **Detail view** per institution: relevant programs, a short description,
   and Open Day / campus tour info

@@ -1,4 +1,4 @@
-// Higher education institutions dataset (Melbourne, Sydney).
+// Higher education institutions dataset (Melbourne, Sydney, and the NZ universities on the medicine routes).
 // Compiled from institution websites, August 2026 — verify program names,
 // fees, and entry requirements directly with each institution before
 // applying, as these shift between academic years.
@@ -11,6 +11,8 @@
 // isn't repeated per institution. An institution can still set its own
 // `entryRequirements.applicationProcess` to override this default.
 const CITY_APPLICATION_PROCESS = {
+  nz:
+    "No central admissions centre: apply to each university directly, through its own online application. Halls of residence take separate applications, and they open early (around August of Year 13). For a 2028 start, check each university's 2027 closing dates; Auckland's limited-entry programmes closed 8 Dec 2026 for 2027 entry. NZ citizens study as domestic students, with StudyLink loans available.",
   melbourne:
     "Applications go through VTAC (Victorian Tertiary Admissions Centre), the shared domestic admissions portal for Victorian universities and colleges. Applying to more than one Victorian provider means applying through VTAC: Swinburne and RMIT push direct applicants with a VTAC account back to VTAC. One fee covers up to 8 course preferences (courses, not universities). For a 2028 start she applies during NZ Year 13: applications open early August 2027 and the on-time window closes late September. Late applications cost more but are otherwise treated the same, except some equity schemes (e.g. Access Melbourne) and arts and music courses. NCEA results reach VTAC in January, so she'll be in the January offer rounds, and preferences can be changed after results. NZ citizens are domestic and get a Commonwealth supported place, but without HECS-HELP the student contribution is paid upfront each semester. Confirmed by both the Swinburne (28 Sep 2026) and UniMelb (2 Oct 2026) interviews; dates from vtac.edu.au.",
 };
@@ -1352,6 +1354,138 @@ const INSTITUTIONS = [
       openDayUrl: "https://kent.edu.au",
       tours: "Not found — likely via direct enquiry at the Sydney CBD campus.",
       toursUrl: "https://kent.edu.au",
+    },
+  },
+  {
+    id: "otago",
+    city: "nz",
+    name: "University of Otago",
+    type: "University",
+    location: "Dunedin",
+    lat: -45.8648,
+    lng: 170.514,
+    website: "https://www.otago.ac.nz",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 with University Entrance. No subject requirements for Health Sciences First Year.",
+      english: "University Entrance literacy (10 Level 2+ credits in reading and writing).",
+      feeStatus: "Domestic (NZ citizen): government-subsidised fees, StudyLink loan available.",
+      subjectPrerequisites: "Health Sciences First Year: no subject requirements, but Otago strongly recommends Chemistry, Physics and Calculus to NCEA Level 3, plus an English-rich subject. JumpStart Physics (3 weeks in February, NZ$990 in 2027) is for students with under 14 Level 2 Physics credits.",
+      sourceNote: "otago.ac.nz Health Sciences First Year: preparing to study and admission FAQs; otago.ac.nz JumpStart Physics page.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Bachelor of Medicine and Bachelor of Surgery (MB ChB), 6 years including the first year.",
+      entry: "Three admission categories into second year. Health Sciences First Year (HSFY, Dunedin) is the main one: about 70% of the places left after the Alternative category. Graduate category: a first degree completed within the three years before applying. Alternative category: domestic applicants only (for example older graduates and health professionals). Equity pathways (the Mirror on Society policy) give priority to Māori, Pacific, rural-origin, low-socioeconomic and refugee-background applicants, who still have to meet the academic standard.",
+      requirements: "HSFY: all seven first-year papers (chemistry, biochemistry, cell biology, physics, two human body systems papers, population health) passed, with at least a 65% average in the best seven; offers need far more. UCAT ANZ sat in the application year (July). Applications open around 1 July and closed 13 Aug in 2026. Without an offer, the year counts towards a BSc, BBiomedSc or other health degree.",
+      sourceNote: "otago.ac.nz MB ChB qualification page and Medicine admissions pages (official pages block automated reads; category detail cross-checked with secondary guides).",
+    },
+    description:
+      "NZ's oldest medical school and the main route into medicine for school leavers, through Health Sciences First Year in Dunedin. Clinical years are taught in Dunedin, Christchurch and Wellington.",
+    fields: {
+      medicalSciences: [
+        "Health Sciences First Year, then MB ChB (6 years in total)",
+        "Bachelor of Biomedical Sciences (BBiomedSc), often started through Health Sciences First Year",
+      ],
+      biology: ["Bachelor of Science — biological science majors"],
+      chemistry: ["Bachelor of Science — Chemistry major"],
+      business: ["Bachelor of Commerce"],
+    },
+  },
+  {
+    id: "auckland",
+    city: "nz",
+    name: "University of Auckland",
+    type: "University",
+    location: "Auckland (City campus, Grafton for medicine)",
+    lat: -36.8523,
+    lng: 174.7691,
+    website: "https://www.auckland.ac.nz",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 with University Entrance. Entry uses a rank score: the best 80 Level 3 credits from up to 5 approved subjects (max 24 per subject), Excellence 4, Merit 3, Achieved 2, out of 320. A guaranteed entry score of 200 applies across the health programmes.",
+      english: "University Entrance literacy.",
+      feeStatus: "Domestic (NZ citizen): government-subsidised fees, StudyLink loan available.",
+      subjectPrerequisites: "Bachelor of Biomedical Science and Bachelor of Health Sciences: no named NCEA subjects found on the course pages.",
+      sourceNote: "auckland.ac.nz NCEA rank score page; Bachelor of Biomedical Science page; health programmes news release, 19 May 2026.",
+    },
+    mdPathway: {
+      hasProgram: "Yes — Bachelor of Medicine and Bachelor of Surgery (MBChB), 6 years including the first year. 317 domestic places a year.",
+      entry: "First Year entry (the school-leaver route): a full-time first year of the Bachelor of Biomedical Science, the Bachelor of Health Sciences (Community Health or Health Systems and Data Analytics) or a health-related BSc major (Cell and Molecular Bioscience, Exercise Sciences, Medicinal Chemistry, Nutrition, Pharmacology, Physiology), then entry to MBChB Year 2. Graduate entry: a NZ degree with a GPA of 6.0 (B+), completed in minimum time within five years. Special entry schemes exist for Māori, Pacific and rural applicants.",
+      requirements: "From 2028 entry: a GPA of 6.0 across BIOSCI 107, CHEM 190, MEDSCI 142 and POPLHLTH 111, no grade below B in the eight required courses, first attempts only. Casper (an online situational-judgement test) in the application year replaces the UCAT; final ranking is the MMI (recorded, asynchronous) 50% and Casper 50%. Applications close 1 July of the first year.",
+      sourceNote: "auckland.ac.nz MBChB programme page (2027 and 2028 entry requirements); health programmes news release, 19 May 2026.",
+    },
+    description:
+      "NZ's largest university. Medicine is entered after one first year in biomedical science, health sciences or a health BSc major; the first year counts towards that degree if medicine doesn't follow.",
+    fields: {
+      medicalSciences: [
+        "Bachelor of Biomedical Science (new 2027) — a first-year route into MBChB Year 2",
+        "Bachelor of Health Sciences — also a first-year route into MBChB",
+        "Bachelor of Medicine and Bachelor of Surgery (MBChB)",
+      ],
+      biology: ["Bachelor of Science — Cell and Molecular Bioscience, Physiology, Pharmacology majors"],
+      chemistry: ["Bachelor of Science — Medicinal Chemistry major"],
+      business: ["Bachelor of Commerce"],
+    },
+  },
+  {
+    id: "victoria-wgtn",
+    city: "nz",
+    name: "Victoria University of Wellington | Te Herenga Waka",
+    type: "University",
+    location: "Wellington (Kelburn)",
+    lat: -41.2902,
+    lng: 174.7681,
+    website: "https://www.wgtn.ac.nz",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 with University Entrance.",
+      english: "University Entrance literacy.",
+      feeStatus: "Domestic (NZ citizen): government-subsidised fees, StudyLink loan available.",
+      subjectPrerequisites: "Bachelor of Biomedical Science: University Entrance; biology, chemistry and maths are useful background, and Level 3 Chemistry is strongly recommended. Introductory courses cover gaps.",
+      sourceNote: "wgtn.ac.nz Bachelor of Biomedical Science and NZ University Entrance pages; careers.govt.nz qualification listing.",
+    },
+    mdPathway: {
+      hasProgram: "No medical school. A home-city degree that leads to graduate-entry medicine elsewhere.",
+      entry: "After the 3-year Bachelor of Biomedical Science: Otago's Graduate category (degree within three years, UCAT), Auckland's graduate entry (GPA 6.0, Casper, MMI), or Waikato's 4-year graduate MD (B average, GAMSAT, interview).",
+      requirements: "Grades across the whole degree count, so the first year matters as much as the last.",
+      sourceNote: "Entry rules from the Otago, Auckland and Waikato medicine pages; see those institutions.",
+    },
+    description:
+      "Wellington's university: study from home, then apply to graduate-entry medicine. Otago also teaches medical students in Wellington in their clinical years.",
+    fields: {
+      medicalSciences: ["Bachelor of Biomedical Science (3 years): molecular and cell biology, biochemistry, genetics, neuroscience, reproduction"],
+      biology: ["Bachelor of Science — biology majors"],
+      chemistry: ["Bachelor of Science — Chemistry major"],
+      business: ["Bachelor of Commerce"],
+    },
+  },
+  {
+    id: "waikato",
+    city: "nz",
+    name: "University of Waikato",
+    type: "University",
+    location: "Hamilton",
+    lat: -37.7876,
+    lng: 175.3175,
+    website: "https://www.waikato.ac.nz",
+    entryRequirements: {
+      ncealLevel: "L3",
+      academic: "NCEA Level 3 with University Entrance for undergraduate study. The MD itself is graduate-entry.",
+      english: "University Entrance literacy.",
+      feeStatus: "Domestic (NZ citizen): government-subsidised fees, StudyLink loan available.",
+      sourceNote: "waikato.ac.nz New Zealand Graduate School of Medicine page.",
+    },
+    mdPathway: {
+      hasProgram: "Yes, from 2028 — Doctor of Medicine (MD) at the New Zealand Graduate School of Medicine: 4 years, graduate-entry, first intake of 120 in 2028. Not yet accredited (as of Oct 2026).",
+      entry: "Graduate entry only: a bachelor's degree in any field (or in its final year) with a B average, a passing GAMSAT and an admissions interview. Year 1 is in Hamilton; Years 2–4 are clinical placements in Waikato, Bay of Plenty, Taranaki/Whanganui, Hawke's Bay or Nelson/Marlborough.",
+      requirements: "Indicative, until accreditation: GAMSAT pass (guides say 50 overall with no section under 50), B average, interview. For the first 2028 intake the GAMSAT had to be sat by March 2027 and applications open mid-2027; for a later intake, the same pattern a year before entry. Focus on rural and regional medicine and primary care.",
+      sourceNote: "waikato.ac.nz New Zealand Graduate School of Medicine page; cutline.nz graduate-entry guide (GAMSAT threshold).",
+    },
+    description:
+      "Hamilton university opening NZ's third medical school: a graduate-entry MD from 2028, training doctors for regional and rural New Zealand.",
+    fields: {
+      medicalSciences: ["Doctor of Medicine (MD), graduate entry, from 2028 — New Zealand Graduate School of Medicine"],
+      biology: ["Bachelor of Science — biological sciences"],
     },
   },
 ];

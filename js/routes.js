@@ -5,7 +5,7 @@
 // The "today" line is computed in the browser.
 const RouteView = (function () {
   const AXIS_FROM = Date.parse("2026-10-01");
-  const AXIS_TO = Date.parse("2036-03-01");
+  const AXIS_TO = Date.parse("2037-03-01");
   const pct = (iso) => ((Date.parse(iso) - AXIS_FROM) / (AXIS_TO - AXIS_FROM)) * 100;
   const clamp = (v) => Math.max(0, Math.min(100, v));
 
@@ -34,7 +34,7 @@ const RouteView = (function () {
 
   function renderOverview(routes) {
     const years = [];
-    for (let y = 2027; y <= 2036; y++) years.push(y);
+    for (let y = 2027; y <= 2037; y++) years.push(y);
     const ticks = years
       .map((y) => `<span class="rt-tick" style="left:${pct(`${y}-01-01`).toFixed(2)}%"><span>${y}</span></span>`)
       .join("");

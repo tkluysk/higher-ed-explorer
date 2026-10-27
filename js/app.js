@@ -27,11 +27,13 @@
     all: [-35.5, 148.0],
     melbourne: [-37.8136, 144.9631],
     sydney: [-33.8688, 151.2093],
+    nz: [-41.0, 174.0],
   };
 
   const CITY_LABELS = {
     melbourne: "Melbourne",
     sydney: "Sydney",
+    nz: "New Zealand",
   };
 
   function locationLabel(inst) {
@@ -717,9 +719,8 @@
   }
 
   // Routes (data/routes.js) pass the same filter bar as institutions. A route
-  // takes its type and status from its institution; NZ routes have no
-  // institution entry, so they show only under All cities and All statuses.
-  const ROUTE_CITY = { Melbourne: "melbourne", Sydney: "sydney" };
+  // takes its type and status from its institution.
+  const ROUTE_CITY = { Melbourne: "melbourne", Sydney: "sydney", Dunedin: "nz", Auckland: "nz", Wellington: "nz", Hamilton: "nz" };
   const ROUTE_FIELDS = { medicine: ["medicalSciences", "biology", "chemistry"], science: ["medicalSciences", "biology", "chemistry"], fashion: ["fashion"] };
 
   function routeMatchesFilters(route) {
