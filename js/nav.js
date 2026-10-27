@@ -7,7 +7,6 @@
     { href: "index.html", label: "Institutions" },
     { href: "accommodation.html", label: "Accommodation" },
     { href: "fees.html", label: "Fees" },
-    { href: "routes.html", label: "Routes" },
     { href: "timeline.html", label: "Timeline" },
     { href: "interviews.html", label: "Interviews" },
   ];
@@ -40,15 +39,15 @@
       .site-nav-brand { font-weight: 700; font-size: 0.95rem; color: var(--text-primary, var(--ink, #111)); text-decoration: none; white-space: nowrap; }
       .site-nav-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; flex-wrap: wrap; overflow-x: auto; }
       .site-nav-links::before { content: none; } /* the timeline page draws its spine on every ul */
-      .site-nav-links a { display: block; padding: 12px 10px; font-size: 0.88rem; color: var(--text-secondary, var(--ink2, #555));
-        text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; }
-      .site-nav-links a:hover { color: var(--text-primary, var(--ink, #111)); }
-      .site-nav-links a[aria-current="page"] { color: var(--text-primary, var(--ink, #111)); font-weight: 600;
-        border-bottom-color: var(--field-business, #2a78d6); }
+      .site-nav-links a { display: block; margin: 8px 0; padding: 5px 12px; border-radius: 999px; font-size: 0.88rem;
+        color: var(--text-secondary, var(--ink2, #555)); text-decoration: none; white-space: nowrap; }
+      .site-nav-links a:hover { color: var(--text-primary, var(--ink, #111)); background: var(--gridline, rgba(127,127,127,.15)); }
+      .site-nav-links a[aria-current="page"] { font-weight: 600; color: var(--surface-1, var(--bg, #fff));
+        background: var(--text-primary, var(--ink, #111)); }
       @media (max-width: 640px) {
         .site-nav { padding: 6px 16px 0; }
         .site-nav-links { width: 100%; flex-wrap: nowrap; }
-        .site-nav-links a { padding: 8px 8px 10px; }
+        .site-nav-links a { margin: 6px 0 8px; padding: 4px 10px; }
       }`;
     document.head.appendChild(style);
   }

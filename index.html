@@ -6,27 +6,22 @@
 <title>Higher Ed Explorer</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<link rel="stylesheet" href="css/styles.css?v=20261027">
+<link rel="stylesheet" href="css/styles.css?v=20261028">
 </head>
 <body>
 <nav id="site-nav"></nav>
-<header class="app-header">
-  <div class="header-inner">
-    <h1>Institutions</h1>
-    <p class="subtitle">Melbourne and Sydney universities, TAFEs and colleges for fashion, science, business and medicine. Open any school for entry requirements, fees, visit notes and interview answers.</p>
-  </div>
-</header>
-
 <main class="app-main">
-  <section class="controls" aria-label="Filters">
-    <div class="control-group" role="group" aria-label="Filter by city">
-      <span class="control-label">City</span>
-      <div class="chip-row" id="city-filters">
-        <button class="chip chip-all" data-city="all" aria-pressed="false">All cities</button>
-        <button class="chip" data-city="melbourne" aria-pressed="true">Melbourne</button>
-        <button class="chip" data-city="sydney" aria-pressed="false">Sydney</button>
-      </div>
+  <div class="toolbar">
+    <div class="view-toggle-group" role="group" aria-label="View">
+      <button class="view-toggle active" id="view-list-btn" aria-pressed="true">List</button>
+      <button class="view-toggle" id="view-map-btn" aria-pressed="false">Map</button>
+      <button class="view-toggle" id="view-compare-btn" aria-pressed="false">Compare</button>
+      <button class="view-toggle" id="view-pathways-btn" aria-pressed="false">Pathways</button>
     </div>
+    <p class="result-count" id="result-count" aria-live="polite"></p>
+  </div>
+
+  <section class="controls" aria-label="Filters">
     <div class="control-group" role="group" aria-label="Filter by field (select multiple)">
       <span class="control-label">Field</span>
       <div class="chip-row" id="field-filters">
@@ -38,6 +33,14 @@
         <button class="chip" data-field="finance" aria-pressed="false">Finance</button>
         <button class="chip" data-field="entrepreneurship" aria-pressed="false">Entrepreneurship</button>
         <button class="chip" data-field="medicalSciences" aria-pressed="false">Medical Sciences</button>
+      </div>
+    </div>
+    <div class="control-group" role="group" aria-label="Filter by city">
+      <span class="control-label">City</span>
+      <div class="chip-row" id="city-filters">
+        <button class="chip chip-all" data-city="all" aria-pressed="false">All cities</button>
+        <button class="chip" data-city="melbourne" aria-pressed="true">Melbourne</button>
+        <button class="chip" data-city="sydney" aria-pressed="false">Sydney</button>
       </div>
     </div>
     <div class="control-group" role="group" aria-label="Filter by institution type">
@@ -61,16 +64,7 @@
       <label class="control-label" for="search-input">Search</label>
       <input type="search" id="search-input" placeholder="Search institutions or programs…">
     </div>
-    <div class="control-group view-toggle-group" role="group" aria-label="View">
-      <button class="view-toggle active" id="view-list-btn" aria-pressed="true">List</button>
-      <button class="view-toggle" id="view-map-btn" aria-pressed="false">Map</button>
-      <button class="view-toggle" id="view-compare-btn" aria-pressed="false">Compare</button>
-      <button class="view-toggle" id="view-pathways-btn" aria-pressed="false">Pathways</button>
-      <button class="view-toggle" id="view-routes-btn" aria-pressed="false">Routes</button>
-    </div>
   </section>
-
-  <p class="result-count" id="result-count" aria-live="polite"></p>
 
   <section id="list-view" class="list-view">
     <div class="card-grid" id="card-grid"></div>
@@ -90,19 +84,18 @@
   </section>
 
   <section id="pathways-view" class="pathways-view" hidden>
-    <p class="pathways-intro">
-      Trace a path from Year 13 entry requirements through an undergraduate degree to a rough career direction — or work backwards from a career to see which schools and prep lead there. Click any node to highlight its connections; click again to clear. Use the <strong>Field</strong> filter above to narrow the middle column — with all fields shown the graph gets dense fast.
-    </p>
+    <h2 class="view-heading">Routes over time</h2>
+    <p class="pathways-intro">Every step from Year 13 to graduation for each degree under consideration, filtered by the bar above. Each diamond is a gate: a subject requirement, a portfolio, a rank, an entrance test, an interview or grades at university. Hover a diamond for its details; click a lane for its full route below. The red line is today. NZ routes show under All cities.</p>
+    <div class="rt-legend" id="rt-legend"></div>
+    <section class="rt-overview" id="rt-overview" aria-label="Routes on one time axis"></section>
+
+    <h2 class="view-heading">From entry to career</h2>
+    <p class="pathways-intro">Every filtered institution, from its NCEA entry level through its degrees to a rough career direction. Click any node to highlight its connections; click again to clear.</p>
     <div class="pathways-graph-wrap">
       <svg id="pathways-graph" class="pathways-graph"></svg>
     </div>
-  </section>
 
-  <section id="routes-view" class="routes-view" hidden>
-    <p class="pathways-intro">Every step from Year 13 to graduation for each degree under consideration. Each diamond is a gate: a subject requirement, a portfolio, a rank, an entrance test, an interview or grades at university. Hover a diamond for its details; click a lane to jump to its card. The red line is today. Also on its own page: <a href="routes.html">Routes</a>.</p>
-    <div class="rt-filters" id="rt-filters" role="group" aria-label="Filter routes"></div>
-    <div class="rt-legend" id="rt-legend"></div>
-    <section class="rt-overview" id="rt-overview" aria-label="All routes on one time axis"></section>
+    <h2 class="view-heading">Route details</h2>
     <div class="rt-cards" id="rt-cards"></div>
   </section>
 </main>
@@ -120,10 +113,10 @@
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="js/nav.js?v=20261027"></script>
-<script src="data/institutions.js?v=20261027"></script>
-<script src="js/app.js?v=20261027"></script>
-<script src="data/routes.js?v=20261027"></script>
-<script src="js/routes.js?v=20261027"></script>
+<script src="js/nav.js?v=20261028"></script>
+<script src="data/institutions.js?v=20261028"></script>
+<script src="data/routes.js?v=20261028"></script>
+<script src="js/routes.js?v=20261028"></script>
+<script src="js/app.js?v=20261028"></script>
 </body>
 </html>

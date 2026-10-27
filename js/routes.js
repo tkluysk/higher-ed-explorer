@@ -1,7 +1,9 @@
-// Routes page: one lane per degree on a shared time axis (phases as bars,
-// gates as diamonds), then a card per route listing every step. Data lives in
-// data/routes.js. The "today" line is computed in the browser.
-(function () {
+// Routes renderer for the explorer's Pathways view: one lane per degree on a
+// shared time axis (phases as bars, gates as diamonds), then a card per route
+// listing every step. Data lives in data/routes.js; js/app.js decides which
+// routes pass the filter bar and calls RouteView.render(routes).
+// The "today" line is computed in the browser.
+const RouteView = (function () {
   const AXIS_FROM = Date.parse("2026-10-01");
   const AXIS_TO = Date.parse("2036-03-01");
   const pct = (iso) => ((Date.parse(iso) - AXIS_FROM) / (AXIS_TO - AXIS_FROM)) * 100;
@@ -20,29 +22,7 @@
     return `${a.m} ${a.y} – ${b.m} ${b.y}`;
   };
 
-  const FIELDS = [
-    { key: "all", label: "All routes" },
-    { key: "medicine", label: "Medicine" },
-    { key: "science", label: "Science" },
-    { key: "fashion", label: "Fashion" },
-  ];
-  let active = "all";
-
   const diamond = (kind) => `<span class="rt-diamond rt-gate-${kind}" aria-hidden="true"></span>`;
-
-  function renderFilters() {
-    const el = document.getElementById("rt-filters");
-    el.innerHTML = FIELDS.map(
-      (f) => `<button type="button" class="rt-chip" data-field="${f.key}" aria-pressed="${f.key === active}">${f.label}</button>`
-    ).join("");
-    el.querySelectorAll("button").forEach((b) =>
-      b.addEventListener("click", () => {
-        active = b.dataset.field;
-        renderFilters();
-        applyFilter();
-      })
-    );
-  }
 
   function renderLegend() {
     const gates = Object.entries(GATE_KINDS).map(([k, label]) => `<span class="rt-key">${diamond(k)}${label}</span>`).join("");
@@ -52,7 +32,7 @@
       `<div class="rt-legend-row"><span class="rt-legend-label">Phases</span>${phases}</div>`;
   }
 
-  function renderOverview() {
+  function renderOverview(routes) {
     const years = [];
     for (let y = 2027; y <= 2036; y++) years.push(y);
     const ticks = years
@@ -63,7 +43,7 @@
     // Every lane draws its own year lines and today line, so lanes can stack on a phone.
     const grid = years.map((y) => `<span class="rt-gridline" style="left:${pct(`${y}-01-01`).toFixed(2)}%"></span>`).join("") + nowLine;
 
-    const lanes = ROUTES.map((r) => {
+    const lanes = routes.map((r) => {
       const bars = r.phases
         .map((p) => {
           const l = clamp(pct(p.from)), w = clamp(pct(p.to)) - l;
@@ -78,20 +58,21 @@
           return `<span class="rt-gate-mark" style="left:${left.toFixed(2)}%" title="${GATE_KINDS[s.gate]}: ${s.label} (${fmtWhen(s)}${s.est ? ", est." : ""})">${diamond(s.gate)}</span>`;
         })
         .join("");
-      return `<a class="rt-lane" href="#${r.id}" data-field="${r.field}">
+      return `<a class="rt-lane" href="#${r.id}">
           <span class="rt-lane-label"><strong>${r.inst}</strong><span>${r.name}</span></span>
           <span class="rt-track">${grid}${bars}${gates}</span>
           <span class="rt-lane-end">${r.outcome}</span>
         </a>`;
     }).join("");
 
-    document.getElementById("rt-overview").innerHTML =
-      `<div class="rt-axis"><span class="rt-lane-label"></span><span class="rt-track rt-track-axis">${ticks}</span><span class="rt-lane-end"></span></div>` +
-      `<div class="rt-lanes">${lanes}</div>`;
+    document.getElementById("rt-overview").innerHTML = routes.length
+      ? `<div class="rt-axis"><span class="rt-lane-label"></span><span class="rt-track rt-track-axis">${ticks}</span><span class="rt-lane-end"></span></div>` +
+        `<div class="rt-lanes">${lanes}</div>`
+      : `<p class="no-results">No routes match these filters.</p>`;
   }
 
-  function renderCards() {
-    const cards = ROUTES.map((r) => {
+  function renderCards(routes) {
+    document.getElementById("rt-cards").innerHTML = routes.map((r) => {
       const steps = r.steps
         .slice()
         .sort((a, b) => a.date.localeCompare(b.date))
@@ -108,28 +89,24 @@
       const inst = r.instId ? `<a href="index.html#school=${r.instId}&full">${r.inst}</a>` : r.inst;
       const sources = r.sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a>`).join(" · ");
       const nGates = r.steps.filter((s) => s.gate).length;
-      return `<article class="rt-card" id="${r.id}" data-field="${r.field}">
+      return `<article class="rt-card" id="${r.id}">
           <header class="rt-card-head">
             <p class="rt-card-meta">${inst} · ${r.city} · ${nGates} gates · ${r.outcome}</p>
-            <h2>${r.name}</h2>
+            <h3>${r.name}</h3>
             <p class="rt-card-summary">${r.summary}</p>
           </header>
           <ol class="rt-steps">${steps}</ol>
           <p class="rt-sources">Sources: ${sources}</p>
         </article>`;
     }).join("");
-    document.getElementById("rt-cards").innerHTML = cards;
   }
 
-  function applyFilter() {
-    document.querySelectorAll(".rt-lane, .rt-card").forEach((el) => {
-      el.hidden = active !== "all" && el.dataset.field !== active;
-    });
-  }
-
-  renderFilters();
-  renderLegend();
-  renderOverview();
-  renderCards();
-  applyFilter();
+  let legendDone = false;
+  return {
+    render(routes) {
+      if (!legendDone) { renderLegend(); legendDone = true; }
+      renderOverview(routes);
+      renderCards(routes);
+    },
+  };
 })();

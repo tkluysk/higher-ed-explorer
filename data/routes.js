@@ -1,4 +1,4 @@
-// Routes to each degree under consideration, for routes.html: every step from
+// Routes to each degree under consideration, for the explorer's Pathways view: every step from
 // Year 13 to graduation (and, for medicine, to the first year as a doctor),
 // with the gates that decide whether the route stays open.
 //

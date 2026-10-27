@@ -106,6 +106,7 @@
     renderCards();
     if (state.view === "map") renderMarkers();
     if (state.view === "compare") renderCompareTable();
+    if (state.view === "pathways") renderPathways();
   }
 
   const cardGrid = document.getElementById("card-grid");
@@ -715,6 +716,33 @@
     };
   }
 
+  // Routes (data/routes.js) pass the same filter bar as institutions. A route
+  // takes its type and status from its institution; NZ routes have no
+  // institution entry, so they show only under All cities and All statuses.
+  const ROUTE_CITY = { Melbourne: "melbourne", Sydney: "sydney" };
+  const ROUTE_FIELDS = { medicine: ["medicalSciences", "biology", "chemistry"], science: ["medicalSciences", "biology", "chemistry"], fashion: ["fashion"] };
+
+  function routeMatchesFilters(route) {
+    const inst = route.instId && INSTITUTIONS.find((i) => i.id === route.instId);
+    if (state.city !== "all" && ROUTE_CITY[route.city] !== state.city) return false;
+    if (state.fields.size && !ROUTE_FIELDS[route.field].some((f) => state.fields.has(f))) return false;
+    if (state.type !== "all" && state.type !== "University") return false;
+    if (state.status !== "all" && !(inst && getStatus(inst.id) === state.status)) return false;
+    if (state.query) {
+      const haystack = [route.inst, route.name, route.summary, ...route.steps.map((st) => `${st.label} ${st.note || ""}`)].join(" ").toLowerCase();
+      if (!haystack.includes(state.query.toLowerCase())) return false;
+    }
+    return true;
+  }
+
+  function renderPathways() {
+    const routes = ROUTES.filter(routeMatchesFilters);
+    RouteView.render(routes);
+    renderPathwaysGraph();
+    const n = getFilteredInstitutions().length;
+    resultCount.textContent = `${routes.length} route${routes.length === 1 ? "" : "s"} · ${n} institution${n === 1 ? "" : "s"}`;
+  }
+
   let pathwaysSelectedNode = null;
 
   function renderPathwaysGraph() {
@@ -892,15 +920,9 @@
     const mapBtn = document.getElementById("view-map-btn");
     const compareBtn = document.getElementById("view-compare-btn");
     const pathwaysBtn = document.getElementById("view-pathways-btn");
-    const routesView = document.getElementById("routes-view");
-    const routesBtn = document.getElementById("view-routes-btn");
-
-    routesView.hidden = view !== "routes";
-    routesBtn.classList.toggle("active", view === "routes");
-    routesBtn.setAttribute("aria-pressed", String(view === "routes"));
-    // The Routes view is bookmarkable as index.html#routes.
-    if (view === "routes" && !location.hash) history.replaceState(null, "", "#routes");
-    if (view !== "routes" && location.hash === "#routes") history.replaceState(null, "", location.pathname + location.search);
+    // The Pathways view is bookmarkable as index.html#pathways.
+    if (view === "pathways" && !location.hash) history.replaceState(null, "", "#pathways");
+    if (view !== "pathways" && location.hash === "#pathways") history.replaceState(null, "", location.pathname + location.search);
 
     listView.hidden = view !== "list";
     mapView.hidden = view !== "map";
@@ -922,22 +944,21 @@
     } else if (view === "compare") {
       renderCompareTable();
     } else if (view === "pathways") {
-      renderPathwaysGraph();
+      renderPathways();
     }
+    if (view !== "pathways") renderCards(); // puts the institution count back
   }
 
   document.getElementById("view-list-btn").addEventListener("click", () => setView("list"));
   document.getElementById("view-map-btn").addEventListener("click", () => setView("map"));
   document.getElementById("view-compare-btn").addEventListener("click", () => setView("compare"));
   document.getElementById("view-pathways-btn").addEventListener("click", () => setView("pathways"));
-  document.getElementById("view-routes-btn").addEventListener("click", () => setView("routes"));
-  if (location.hash === "#routes") setView("routes");
 
   function refreshViews() {
     renderCards();
     if (state.view === "map") renderMarkers();
     if (state.view === "compare") renderCompareTable();
-    if (state.view === "pathways") renderPathwaysGraph();
+    if (state.view === "pathways") renderPathways();
   }
 
   function setupChipGroup(containerId, key) {
@@ -994,8 +1015,11 @@
     renderCards();
     if (state.view === "map") renderMarkers();
     if (state.view === "compare") renderCompareTable();
+    if (state.view === "pathways") renderPathways();
   });
 
   renderCards();
   openFromHash();
+  // #routes is the old address of the routes view, now part of Pathways.
+  if (location.hash === "#pathways" || location.hash === "#routes") setView("pathways");
 })();
